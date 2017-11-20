@@ -43,13 +43,13 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         new webpack.NoEmitOnErrorsPlugin(),
         new HtmlWebpackPlugin({
             filename: './page1/index.html',
-            template: './src/views/page1/index.html',
+            template: 'index.html',
             inject: true,
             chunks:['page1']
         }),
         new HtmlWebpackPlugin({
             filename: './page2/index.html',
-            template: './src/views/page2/index.html',
+            template: 'index.html',
             inject: true,
             chunks:['page2']
         })
