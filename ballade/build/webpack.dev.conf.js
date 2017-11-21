@@ -7,6 +7,22 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const routes = require('../src/routes-temp.json')
+
+function createHtmls () {
+    var items = [];
+    for (let key in routes) {
+        items.push(
+            new HtmlWebpackPlugin({
+                filename: `.${key}/index.html`,
+                template: 'index.html',
+                inject: true,
+                chunks:[key.slice(1)]
+            })
+        );
+    }
+    return items;
+}
 
 const devWebpackConfig = merge(baseWebpackConfig, {
     module: {
@@ -41,24 +57,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
         new webpack.NoEmitOnErrorsPlugin(),
-        new HtmlWebpackPlugin({
-            filename: './page1/index.html',
-            template: 'index.html',
-            inject: true,
-            chunks:['page1']
-        }),
-        new HtmlWebpackPlugin({
-            filename: './page2/index.html',
-            template: 'index.html',
-            inject: true,
-            chunks:['page2']
-        }),
-        new HtmlWebpackPlugin({
-            filename: './page3/index.html',
-            template: 'index.html',
-            inject: true,
-            chunks:['page3']
-        })
+        ...createHtmls()
     ]
 })
 

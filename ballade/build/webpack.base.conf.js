@@ -2,8 +2,8 @@
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
-const routes = require('../src/routes-temp.json')
 const vueLoaderConfig = require('./vue-loader.conf')
+const routes = require('../src/routes-temp.json')
 
 function resolve (dir) {
     return path.join(__dirname, '..', dir)
