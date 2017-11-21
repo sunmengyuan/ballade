@@ -9,10 +9,10 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 const routes = require('../src/routes-temp.json')
 
-function createHtmls () {
-    var items = [];
+function htmls () {
+    var htmls = [];
     for (let key in routes) {
-        items.push(
+        htmls.push(
             new HtmlWebpackPlugin({
                 filename: `.${key}/index.html`,
                 template: 'index.html',
@@ -21,7 +21,7 @@ function createHtmls () {
             })
         );
     }
-    return items;
+    return htmls;
 }
 
 const devWebpackConfig = merge(baseWebpackConfig, {
@@ -57,7 +57,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
         new webpack.NoEmitOnErrorsPlugin(),
-        ...createHtmls()
+        ...htmls()
     ]
 })
 

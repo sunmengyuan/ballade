@@ -1,5 +1,6 @@
 {
     "/page1": "./views/group1/page1.html",
     "/page2": "./views/group1/page2.html",
-    "/page3": "./views/group2/page3.html"
+    "/page3": "./views/group2/page3.html",
+    "/page4": "./views/group2/page4.html"
 }
