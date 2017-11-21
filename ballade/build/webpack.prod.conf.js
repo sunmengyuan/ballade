@@ -11,6 +11,27 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
 const env = require('../config/prod.env')
+const routes = require('../src/routes-temp.json')
+
+function htmls () {
+    var htmls = [];
+    for (let key in routes) {
+        htmls.push(
+            new HtmlWebpackPlugin({
+                filename: path.resolve(__dirname, `../dist/${routes[key].split('./views/')[1]}`),
+                template: 'index.html',
+                inject: true,
+                minify: {
+                    removeComments: true,
+                    collapseWhitespace: true,
+                    removeAttributeQuotes: true
+                },
+                chunksSortMode: 'dependency'
+            }),
+        );
+    }
+    return htmls;
+}
 
 const webpackConfig = merge(baseWebpackConfig, {
     module: {
@@ -57,20 +78,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         // generate dist index.html with correct asset hash for caching.
         // you can customize output by editing /index.html
         // see https://github.com/ampedandwired/html-webpack-plugin
-        new HtmlWebpackPlugin({
-            filename: config.build.index,
-            template: 'index.html',
-            inject: true,
-            minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeAttributeQuotes: true
-                // more options:
-                // https://github.com/kangax/html-minifier#options-quick-reference
-            },
-            // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-            chunksSortMode: 'dependency'
-        }),
+        ...htmls(),
         // keep module.id stable when vender modules does not change
         new webpack.HashedModuleIdsPlugin(),
         // enable scope hoisting
