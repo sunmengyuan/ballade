@@ -2,19 +2,24 @@
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
+const routes = require('../src/routes-temp.json')
 const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
     return path.join(__dirname, '..', dir)
 }
 
+function entries () {
+    var entries = {};
+    for (let key in routes) {
+        entries[key.slice(1)] = './src/entry.js';
+    }
+    return entries;
+}
+
 module.exports = {
     context: path.resolve(__dirname, '../'),
-    entry: {
-        'page1': './src/entry.js',
-        'page2': './src/entry.js',
-        'page3': './src/entry.js'
-    },
+    entry: entries(),
     output: {
         path: config.build.assetsRoot,
         filename: '[name].js',
