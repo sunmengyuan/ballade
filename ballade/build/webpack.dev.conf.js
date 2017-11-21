@@ -52,6 +52,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
             template: 'index.html',
             inject: true,
             chunks:['page2']
+        }),
+        new HtmlWebpackPlugin({
+            filename: './page3/index.html',
+            template: 'index.html',
+            inject: true,
+            chunks:['page3']
         })
     ]
 })

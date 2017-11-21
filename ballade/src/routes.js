@@ -1,5 +1,6 @@
-import Page1 from './views/page1/Page1'
-import Page2 from './views/page2/Page2'
+import Page1 from './views/group1/Page1'
+import Page2 from './views/group1/Page2'
+import Page3 from './views/group2/Page3'
 
 export default {
     '/page1': {
@@ -7,5 +8,8 @@ export default {
     },
     '/page2': {
         component: Page2
+    },
+    '/page3': {
+        component: Page3
     }
 }

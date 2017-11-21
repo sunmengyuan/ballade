@@ -12,7 +12,8 @@ module.exports = {
     context: path.resolve(__dirname, '../'),
     entry: {
         'page1': './src/entry.js',
-        'page2': './src/entry.js'
+        'page2': './src/entry.js',
+        'page3': './src/entry.js'
     },
     output: {
         path: config.build.assetsRoot,
