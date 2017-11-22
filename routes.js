@@ -1,14 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var routes = require('./ballade/setting/routes.json');
 
-router.get('/diary_book', function (req, res) {
-    res.render('post/diaryBook');
-});
-router.get('/topic/detail', function (req, res) {
-    res.render('post/topic');
-});
-router.get('/activity/detail', function (req, res) {
-    res.render('activity/activity');
-});
+for (var route in routes) {
+    router.get(route, function (req, res) {
+        res.render(routes[route].template.slice(1).split('.html')[0]);
+    });
+}
 
 module.exports = router;
