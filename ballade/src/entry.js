@@ -2,11 +2,13 @@ import Vue from 'vue'
 import routes from './routes-comp'
 
 const pathname = window.location.pathname
-const View = routes[pathname].view
+const Page = routes[pathname].view
+
+/* eslint-disable no-new */
 new Vue({
     el: '#app',
-    template: '<View />',
+    template: '<Page />',
     components: {
-        View
+        Page
     }
 })
