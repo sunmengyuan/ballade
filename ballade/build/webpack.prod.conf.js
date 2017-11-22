@@ -18,7 +18,7 @@ function htmls () {
     for (let key in setting.routes) {
         htmls.push(
             new HtmlWebpackPlugin({
-                filename: path.resolve(__dirname, `../dist${setting.routes[key].template}`),
+                filename: path.resolve(__dirname, `../../dist${setting.routes[key].template}`),
                 template: setting.sourcePath + '/index.html',
                 inject: true,
                 minify: {
