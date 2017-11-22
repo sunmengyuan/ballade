@@ -6,6 +6,7 @@
         "start": "node ./bin/www"
     },
     "dependencies": {
-        "express": "^4.13.1"
+        "express": "^4.13.1",
+        "ejs": "^2.3.3"
     }
 }

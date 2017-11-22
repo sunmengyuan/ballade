@@ -1,7 +1,7 @@
 {
     "/diary_book": {
         "name": "diaryBook",
-        "template": "/post/diarybook.html"
+        "template": "/post/diaryBook.html"
     },
     "/topic/detail": {
         "name": "topic",
