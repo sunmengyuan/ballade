@@ -26,6 +26,7 @@ function htmls () {
                     collapseWhitespace: true,
                     removeAttributeQuotes: true
                 },
+                chunks:[key.slice(1)],
                 chunksSortMode: 'dependency'
             }),
         );
