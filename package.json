@@ -1,0 +1,11 @@
+{
+    "name": "ballade",
+    "version": "1.0.0",
+    "author": "sunmy <sunmy_meow@sina.com>",
+    "scripts": {
+        "start": "node ./bin/www"
+    },
+    "dependencies": {
+        "express": "^4.13.1"
+    }
+}
