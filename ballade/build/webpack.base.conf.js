@@ -3,7 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
-const routes = require('../src/routes-temp.json')
+const routes = require('../routes.json')
 
 function resolve (dir) {
     return path.join(__dirname, '..', dir)
@@ -12,7 +12,7 @@ function resolve (dir) {
 function entries () {
     var entries = {};
     for (let key in routes) {
-        entries[key.slice(1)] = './src/entry.js';
+        entries[routes[key].name] = './src/entry.js';
     }
     return entries;
 }

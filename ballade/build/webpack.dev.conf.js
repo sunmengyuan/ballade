@@ -7,7 +7,7 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
-const routes = require('../src/routes-temp.json')
+const routes = require('../routes.json')
 
 function htmls () {
     var htmls = [];
@@ -17,7 +17,7 @@ function htmls () {
                 filename: `.${key}/index.html`,
                 template: 'index.html',
                 inject: true,
-                chunks:[key.slice(1)]
+                chunks: [routes[key].name]
             })
         );
     }

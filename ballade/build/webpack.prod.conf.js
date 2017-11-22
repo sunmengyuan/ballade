@@ -11,14 +11,14 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
 const env = require('../config/prod.env')
-const routes = require('../src/routes-temp.json')
+const routes = require('../routes.json')
 
 function htmls () {
     var htmls = [];
     for (let key in routes) {
         htmls.push(
             new HtmlWebpackPlugin({
-                filename: path.resolve(__dirname, `../dist/${routes[key].split('./views/')[1]}`),
+                filename: path.resolve(__dirname, `../dist${routes[key].template}`),
                 template: 'index.html',
                 inject: true,
                 minify: {
@@ -26,7 +26,7 @@ function htmls () {
                     collapseWhitespace: true,
                     removeAttributeQuotes: true
                 },
-                chunks:[key.slice(1)],
+                chunks:[routes[key].name],
                 chunksSortMode: 'dependency'
             }),
         );

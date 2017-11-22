@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import routes from './routes-comp'
+import routes from './routes'
 
 const pathname = window.location.pathname
 const Page = routes[pathname].view
