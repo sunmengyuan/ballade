@@ -26,7 +26,7 @@ function htmls () {
                     collapseWhitespace: true,
                     removeAttributeQuotes: true
                 },
-                chunks:[setting.routes[key].name],
+                chunks:['vendor', 'manifest', setting.routes[key].name],
                 chunksSortMode: 'dependency'
             })
         );
