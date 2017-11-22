@@ -11,27 +11,27 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
 const env = require('../config/prod.env')
-const routes = require('../routes.json')
+const setting = require('../setting/setting')
 
 function htmls () {
-    var htmls = [];
-    for (let key in routes) {
+    var htmls = []
+    for (let key in setting.routes) {
         htmls.push(
             new HtmlWebpackPlugin({
-                filename: path.resolve(__dirname, `../dist${routes[key].template}`),
-                template: 'index.html',
+                filename: path.resolve(__dirname, `../dist${setting.routes[key].template}`),
+                template: setting.sourcePath + '/index.html',
                 inject: true,
                 minify: {
                     removeComments: true,
                     collapseWhitespace: true,
                     removeAttributeQuotes: true
                 },
-                chunks:[routes[key].name],
+                chunks:[setting.routes[key].name],
                 chunksSortMode: 'dependency'
-            }),
+            })
         );
     }
-    return htmls;
+    return htmls
 }
 
 const webpackConfig = merge(baseWebpackConfig, {

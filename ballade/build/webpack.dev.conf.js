@@ -7,21 +7,21 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
-const routes = require('../routes.json')
+const setting = require('../setting/setting')
 
 function htmls () {
-    var htmls = [];
-    for (let key in routes) {
+    var htmls = []
+    for (let key in setting.routes) {
         htmls.push(
             new HtmlWebpackPlugin({
                 filename: `.${key}/index.html`,
-                template: 'index.html',
+                template: setting.sourcePath + '/index.html',
                 inject: true,
-                chunks: [routes[key].name]
+                chunks: [setting.routes[key].name]
             })
-        );
+        )
     }
-    return htmls;
+    return htmls
 }
 
 const devWebpackConfig = merge(baseWebpackConfig, {
