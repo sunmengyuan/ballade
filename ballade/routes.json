@@ -6,5 +6,9 @@
     "/topic/detail": {
         "name": "topic",
         "template": "/post/topic.html"
+    },
+    "/activity/detail": {
+        "name": "activity",
+        "template": "/activity/activity.html"
     }
 }

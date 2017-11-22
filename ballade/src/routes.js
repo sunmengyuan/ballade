@@ -1,7 +1,9 @@
-import DiaryBook from './views/post/DiaryBook.vue'
-import Topic from './views/post/Topic.vue'
+import DiaryBook from './views/post/DiaryBook'
+import Topic from './views/post/Topic'
+import Activity from './views/activity/Activity'
 
 export default {
     '/diary_book': {view: DiaryBook},
-    '/topic/detail': {view: Topic}
+    '/topic/detail': {view: Topic},
+    '/activity/detail': {view: Activity}
 }
