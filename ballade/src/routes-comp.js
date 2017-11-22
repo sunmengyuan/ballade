@@ -4,16 +4,8 @@ import Page3 from './views/group2/Page3'
 import Page4 from './views/group2/Page4'
 
 export default {
-    '/page1': {
-        component: Page1
-    },
-    '/page2': {
-        component: Page2
-    },
-    '/page3': {
-        component: Page3
-    },
-    '/page4': {
-        component: Page4
-    }
+    '/page1': {view: Page1},
+    '/page2': {view: Page2},
+    '/page3': {view: Page3},
+    '/page4': {view: Page4}
 }
