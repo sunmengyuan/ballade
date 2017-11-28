@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import routes from './routes'
+import views from './views'
 
 const pathname = window.location.pathname
-const Page = routes[pathname].view
+const Page = views[routes[pathname].name]
 
 /* eslint-disable no-new */
 new Vue({

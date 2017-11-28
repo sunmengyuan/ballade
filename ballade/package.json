@@ -38,6 +38,7 @@
         "friendly-errors-webpack-plugin": "^1.6.1",
         "gulp": "^3.9.0",
         "gulp-rename": "^1.2.2",
+        "gulp-replace-task": "^0.11.0",
         "html-webpack-plugin": "^2.30.1",
         "webpack-bundle-analyzer": "^2.9.0",
         "node-notifier": "^5.1.2",

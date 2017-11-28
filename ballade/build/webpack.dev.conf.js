@@ -7,17 +7,17 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
-const setting = require('../setting/setting')
+const routes = require('../src/routes.json')
 
 function htmls () {
     var htmls = []
-    for (let key in setting.routes) {
+    for (let key in routes) {
         htmls.push(
             new HtmlWebpackPlugin({
                 filename: `.${key}/index.html`,
-                template: setting.sourcePath + '/index.html',
+                template: './src/index.html',
                 inject: true,
-                chunks: [setting.routes[key].name]
+                chunks: [routes[key].name]
             })
         )
     }

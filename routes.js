@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var routes = require('./ballade/setting/routes.json');
+var routes = require('./ballade/src/routes.json');
 
 for (var route in routes) {
     router.get(route, function (req, res) {

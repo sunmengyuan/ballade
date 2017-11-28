@@ -9,24 +9,23 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-
 const env = require('../config/prod.env')
-const setting = require('../setting/setting')
+const routes = require('../src/routes.json')
 
 function htmls () {
     var htmls = []
-    for (let key in setting.routes) {
+    for (let key in routes) {
         htmls.push(
             new HtmlWebpackPlugin({
-                filename: path.resolve(__dirname, `../../dist${setting.routes[key].template}`),
-                template: setting.sourcePath + '/index.html',
+                filename: `../dist${routes[key].template}`,
+                template: './src/index.html',
                 inject: true,
                 minify: {
                     removeComments: true,
                     collapseWhitespace: true,
                     removeAttributeQuotes: true
                 },
-                chunks:['vendor', 'manifest', setting.routes[key].name],
+                chunks:['vendor', 'manifest', routes[key].name],
                 chunksSortMode: 'dependency'
             })
         );
