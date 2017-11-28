@@ -1,14 +1,14 @@
 {
     "/diary_book": {
-        "name": "DiaryBook",
-        "template": "/post/DiaryBook.html"
+        "name": "diaryBook",
+        "template": "/post/diaryBook.html"
     },
     "/topic/detail": {
-        "name": "Topic",
-        "template": "/post/Topic.html"
+        "name": "topic",
+        "template": "/post/topic.html"
     },
     "/activity/detail": {
-        "name": "Activity",
-        "template": "/activity/Activity.html"
+        "name": "activity",
+        "template": "/activity/activity.html"
     }
 }
