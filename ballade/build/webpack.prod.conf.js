@@ -10,14 +10,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const env = require('../config/prod.env')
-const routes = require('../src/routes.json')
+const routes = require('../src/routes')
 
 function htmls () {
     var htmls = []
     for (let key in routes) {
         htmls.push(
             new HtmlWebpackPlugin({
-                filename: `../dist${routes[key].template}`,
+                filename: path.resolve(__dirname, `../../dist${routes[key].template}`),
                 template: './src/index.html',
                 inject: true,
                 minify: {
