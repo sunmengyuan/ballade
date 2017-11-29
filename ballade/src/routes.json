@@ -1,9 +1,9 @@
 {
-    "/diary_book": {
+    "/diary_book/:id": {
         "view": "DiaryBook",
         "path": "post/"
     },
-    "/topic/detail": {
+    "/topic/detail/:id": {
         "view": "Topic",
         "path": "post/"
     },
