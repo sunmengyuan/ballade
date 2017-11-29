@@ -17,7 +17,7 @@ function htmls () {
                 filename: `.${key}/index.html`,
                 template: './src/index.html',
                 inject: true,
-                chunks: [routes[key].name]
+                chunks: [routes[key].view]
             })
         )
     }

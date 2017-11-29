@@ -17,7 +17,7 @@ function htmls () {
     for (let key in routes) {
         htmls.push(
             new HtmlWebpackPlugin({
-                filename: path.resolve(__dirname, `../../dist${routes[key].template}`),
+                filename: path.resolve(__dirname, `../../dist/${routes[key].path}${routes[key].view}.html`),
                 template: './src/index.html',
                 inject: true,
                 minify: {
@@ -25,7 +25,7 @@ function htmls () {
                     collapseWhitespace: true,
                     removeAttributeQuotes: true
                 },
-                chunks:['vendor', 'manifest', routes[key].name],
+                chunks:['vendor', 'manifest', routes[key].view],
                 chunksSortMode: 'dependency'
             })
         );
