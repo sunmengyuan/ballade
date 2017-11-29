@@ -1,14 +1,17 @@
 {
     "/diary_book": {
-        "name": "diaryBook",
-        "template": "/post/diaryBook.html"
+        "view": "DiaryBook",
+        "path": "post/",
+        "template": ""
     },
     "/topic/detail": {
-        "name": "topic",
-        "template": "/post/topic.html"
+        "view": "Topic",
+        "path": "post/",
+        "template": ""
     },
     "/activity/detail": {
-        "name": "activity",
-        "template": "/activity/activity.html"
+        "view": "Activity",
+        "path": "activity/",
+        "template": ""
     }
 }

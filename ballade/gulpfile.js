@@ -9,16 +9,12 @@ gulp.task('entries', function () {
             .pipe(replace({
                 patterns: [
                     {
-                        match: /.\/routes/g,
-                        replacement: '../routes'
-                    },
-                    {
-                        match: /.\/views/g,
-                        replacement: '../views'
+                        match: /<%=Page%>/g,
+                        replacement: `../../views/${routes[key].path}${routes[key].view}`
                     }
                 ]
             }))
-            .pipe(rename(`entries/${routes[key].name}.js`))
+            .pipe(rename(`entries/${routes[key].path}${routes[key].view}.js`))
             .pipe(gulp.dest('./src'))
     }
 })
