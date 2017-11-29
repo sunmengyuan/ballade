@@ -1,11 +1,17 @@
 {
-    "/diary_book/:id": {
+    "/diary_book": {
         "view": "DiaryBook",
-        "path": "post/"
+        "path": "post/",
+        "query": [
+            "id"
+        ]
     },
-    "/topic/detail/:id": {
+    "/topic/detail": {
         "view": "Topic",
-        "path": "post/"
+        "path": "post/",
+        "query": [
+            "id"
+        ]
     },
     "/activity/detail": {
         "view": "Activity",
