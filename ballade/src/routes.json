@@ -1,17 +1,14 @@
 {
     "/diary_book": {
         "view": "DiaryBook",
-        "path": "post/",
-        "template": ""
+        "path": "post/"
     },
     "/topic/detail": {
         "view": "Topic",
-        "path": "post/",
-        "template": ""
+        "path": "post/"
     },
     "/activity/detail": {
         "view": "Activity",
-        "path": "activity/",
-        "template": ""
+        "path": "activity/"
     }
 }
