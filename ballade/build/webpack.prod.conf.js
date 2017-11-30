@@ -21,7 +21,7 @@ function htmls () {
                 filename: path.resolve(__dirname, `../../dist/${routes[key].path}${routes[key].view}.html`),
                 template: './src/index.html',
                 inject: true,
-                inlineSource: '.(js|css)$',
+                inlineSource: '^((?!vendor|manifest).)*(js|css)$',
                 minify: {
                     removeComments: true,
                     collapseWhitespace: true,
