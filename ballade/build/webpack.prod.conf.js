@@ -7,6 +7,7 @@ const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const InlineSourcePlugin = require('html-webpack-inline-source-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const env = require('../config/prod.env')
@@ -20,6 +21,7 @@ function htmls () {
                 filename: path.resolve(__dirname, `../../dist/${routes[key].path}${routes[key].view}.html`),
                 template: './src/index.html',
                 inject: true,
+                inlineSource: '.(js|css)$',
                 minify: {
                     removeComments: true,
                     collapseWhitespace: true,
@@ -27,7 +29,8 @@ function htmls () {
                 },
                 chunks:['vendor', 'manifest', routes[key].view],
                 chunksSortMode: 'dependency'
-            })
+            }),
+            new InlineSourcePlugin()
         );
     }
     return htmls
