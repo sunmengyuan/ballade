@@ -18,3 +18,9 @@ gulp.task('entries', function () {
             .pipe(gulp.dest('./src'))
     }
 })
+
+gulp.task('manifest', function () {
+    gulp.src('../dist/static/js/manifest.*.js')
+        .pipe(rename('manifest.js'))
+        .pipe(gulp.dest('../dist/static'))
+})
