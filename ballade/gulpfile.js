@@ -28,7 +28,8 @@ gulp.task('commons', function () {
         .pipe(rename('vendor.js'))
         .pipe(gulp.dest('../dist/static'))
 })
-
-gulp.task('clean', function () {
+gulp.task('clear', ['commons'], function () {
     return del(['../dist/static/js', '../dist/static/css'], {force: true})
 })
+
+gulp.task('default', ['clear'])
