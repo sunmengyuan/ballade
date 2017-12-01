@@ -12,7 +12,9 @@ function resolve (dir) {
 function entries () {
     var entries = {}
     for (let key in routes) {
-        entries[routes[key].view] = `./src/entries/${routes[key].view}.js`
+        entries[routes[key].view] = process.env.NODE_ENV === 'production'
+            ? `./entry/entries/${routes[key].view}.js`
+            : './entry/env.js'
     }
     return entries
 }
