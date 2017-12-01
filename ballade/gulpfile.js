@@ -1,6 +1,7 @@
 const gulp = require('gulp')
 const replace = require('gulp-replace-task')
 const rename = require('gulp-rename')
+const del = require('del')
 const routes = require('./src/routes')
 
 gulp.task('entries', function () {
@@ -26,4 +27,8 @@ gulp.task('commons', function () {
     gulp.src('../dist/static/js/vendor.*.js')
         .pipe(rename('vendor.js'))
         .pipe(gulp.dest('../dist/static'))
+})
+
+gulp.task('clean', function () {
+    return del(['../dist/static/js', '../dist/static/css'], {force: true})
 })
