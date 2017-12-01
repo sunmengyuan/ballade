@@ -19,8 +19,11 @@ gulp.task('entries', function () {
     }
 })
 
-gulp.task('manifest', function () {
+gulp.task('commons', function () {
     gulp.src('../dist/static/js/manifest.*.js')
         .pipe(rename('manifest.js'))
+        .pipe(gulp.dest('../dist/static'))
+    gulp.src('../dist/static/js/vendor.*.js')
+        .pipe(rename('vendor.js'))
         .pipe(gulp.dest('../dist/static'))
 })

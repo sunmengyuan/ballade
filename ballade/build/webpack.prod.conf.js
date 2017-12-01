@@ -27,7 +27,7 @@ function htmls () {
                     collapseWhitespace: true,
                     removeAttributeQuotes: true
                 },
-                chunks: ['vendor', routes[key].view],
+                chunks: [routes[key].view],
                 chunksSortMode: 'dependency'
             }),
             new InlineSourcePlugin()
