@@ -32,4 +32,4 @@ gulp.task('clear', ['commons'], function () {
     return del(['../dist/static/js', '../dist/static/css'], {force: true})
 })
 
-gulp.task('default', ['clear'])
+gulp.task('static', ['clear'])
