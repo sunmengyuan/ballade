@@ -6,19 +6,19 @@
 </template>
 
 <script>
-    export default {
-        name: 'DiaryBook',
+export default {
+    name: 'DiaryBook',
 
-        data () {
-            return {
-                message: '日记本'
-            }
-        },
-
-        methods: {
-
+    data () {
+        return {
+            message: '日记本'
         }
+    },
+
+    methods: {
+
     }
+}
 </script>
 
 <style scoped>

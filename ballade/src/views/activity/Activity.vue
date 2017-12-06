@@ -6,19 +6,19 @@
 </template>
 
 <script>
-    export default {
-        name: 'Activity',
+export default {
+    name: 'Activity',
 
-        data () {
-            return {
-                message: '活动'
-            }
-        },
-
-        methods: {
-
+    data () {
+        return {
+            message: '活动'
         }
+    },
+
+    methods: {
+
     }
+}
 </script>
 
 <style scoped>
