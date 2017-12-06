@@ -21,5 +21,5 @@ gulp.task('entries', function () {
 })
 
 gulp.task('clear', function () {
-    return del(['../dist/static/js', '../dist/static/css'], {force: true})
+    return del(['../dist/static/*', '!../dist/static/vendor.*.js', '!../dist/static/manifest.*.js'], {force: true})
 })
