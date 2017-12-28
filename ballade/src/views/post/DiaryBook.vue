@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import Common from '../../utils/common'
+
 export default {
     name: 'DiaryBook',
 
@@ -15,6 +17,10 @@ export default {
         }
     },
 
+    created () {
+        Common.main()
+    },
+
     methods: {
 
     }
@@ -22,5 +28,5 @@ export default {
 </script>
 
 <style scoped>
-h4 {color: rebeccapurple;}
+h4 {color: red;}
 </style>

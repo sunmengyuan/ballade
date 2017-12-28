@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import Common from '../../utils/common'
+
 export default {
     name: 'Topic',
 
@@ -13,6 +15,10 @@ export default {
         return {
             message: '日记帖'
         }
+    },
+
+    created () {
+        Common.main()
     },
 
     methods: {
