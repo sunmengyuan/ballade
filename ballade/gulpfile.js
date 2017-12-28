@@ -40,6 +40,10 @@ gulp.task('stamps', function () {
     }
 })
 
+gulp.task('delete', function () {
+    return del(['../dist/*'], {force: true})
+})
+
 gulp.task('clear', function () {
     return del(['../dist/static/*', '!../dist/static/vendor.*.js'], {force: true})
 })
