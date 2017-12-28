@@ -35,6 +35,7 @@ gulp.task('stamps', function () {
                 gulp.src(`../dist/${path}${view}.html`)
                     .pipe(rename(`${view}.${stamp}.html`))
                     .pipe(gulp.dest(`../dist/${path}`))
+                return del([`../dist/${path}${view}.html`], {force: true})
             })
     }
 })
