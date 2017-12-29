@@ -1,6 +1,7 @@
 <template>
     <section>
         <h4>活动</h4>
+        <button>按钮</button>
         <p>{{ message }}</p>
         <comp></comp>
     </section>
@@ -34,5 +35,6 @@ export default {
 </script>
 
 <style scoped>
+@import "../../assets/button.css";
 h4 {color: yellowgreen;}
 </style>

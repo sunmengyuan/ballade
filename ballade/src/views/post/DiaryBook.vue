@@ -1,6 +1,7 @@
 <template>
     <section>
         <h4>DiaryBook</h4>
+        <button>按钮</button>
         <p>{{ message }}</p>
     </section>
 </template>
