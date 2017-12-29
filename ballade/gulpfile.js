@@ -23,28 +23,28 @@ gulp.task('entries', function () {
 
 gulp.task('stamps', function () {
     for (let key in routes) {
-        let stamp_js = '';
-        let stamp_css = '';
-        let view = routes[key].view;
-        let path = routes[key].path;
-        gulp.src(`../dist/static/${view}.*.js`)
-            .pipe(through2.obj(function (chunk, enc, callback) {
-                stamp_js = chunk.path.split(`${view}.`)[1].split('.js')[0];
-                callback();
-            }))
-            .on('finish', function () {
-                gulp.src(`../dist/static/${view}.*.css`)
-                    .pipe(through2.obj(function (chunk, enc, callback) {
-                        stamp_css = chunk.path.split(`${view}.`)[1].split('.css')[0];
-                        callback();
-                    }))
-                    .on('finish', function () {
-                        gulp.src(`../dist/${path}${view}.html`)
-                            .pipe(rename(`${view}.${stamp_js}.${stamp_css}.html`))
-                            .pipe(gulp.dest(`../dist/${path}`))
-                        return del([`../dist/${path}${view}.html`], {force: true})
-                    })
-            })
+        let stamp = {}
+        let view = routes[key].view
+        let path = routes[key].path
+        let getStamp = function (type, finish) {
+            gulp.src(`../dist/static/${view}.*.${type}`)
+                .pipe(through2.obj(function (chunk, enc, callback) {
+                    stamp[type] = chunk.path.split(`${view}.`)[1].split(`.${type}`)[0]
+                    callback()
+                }))
+                .on('finish', function () {
+                    finish()
+                })
+        }
+        let addStamp = function () {
+            gulp.src(`../dist/${path}${view}.html`)
+                .pipe(rename(`${view}.${stamp['js']}.${stamp['css']}.html`))
+                .pipe(gulp.dest(`../dist/${path}`))
+            return del([`../dist/${path}${view}.html`], {force: true})
+        }
+        getStamp('js', function () {
+            getStamp('css', addStamp)
+        });
     }
 })
 
