@@ -21,13 +21,13 @@ function htmls () {
                 filename: path.resolve(__dirname, `../../dist/${routes[key].path}${routes[key].view}.html`),
                 template: './src/index.html',
                 inject: true,
-                inlineSource: '^((?!vendor).)*(js|css)$',
+                inlineSource: '^((?!vendor|manifest).)*(js|css)$',
                 minify: {
                     removeComments: true,
                     collapseWhitespace: true,
                     removeAttributeQuotes: true
                 },
-                chunks: ['vendor', 'manifest', routes[key].view],
+                chunks: [routes[key].view],
                 chunksSortMode: 'dependency'
             }),
             new InlineSourcePlugin()

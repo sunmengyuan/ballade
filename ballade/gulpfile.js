@@ -53,5 +53,11 @@ gulp.task('delete', function () {
 })
 
 gulp.task('clear', function () {
-    return del(['../dist/static/*', '!../dist/static/vendor.*.js'], {force: true})
+    gulp.src('../dist/static/vendor.*.js')
+        .pipe(rename('vendor.js'))
+        .pipe(gulp.dest('../dist/static/'))
+    gulp.src('../dist/static/manifest.*.js')
+        .pipe(rename('manifest.js'))
+        .pipe(gulp.dest('../dist/static/'))
+    return del(['../dist/static/*', '!../dist/static/vendor.js', '!../dist/static/manifest.js'], {force: true})
 })
