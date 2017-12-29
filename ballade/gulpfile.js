@@ -2,7 +2,7 @@ const gulp = require('gulp')
 const replace = require('gulp-replace-task')
 const rename = require('gulp-rename')
 const del = require('del')
-const through2 = require('through2');
+const through2 = require('through2')
 const routes = require('./src/routes')
 
 gulp.task('entries', function () {
@@ -44,7 +44,7 @@ gulp.task('stamps', function () {
         }
         getStamp('js', function () {
             getStamp('css', addStamp)
-        });
+        })
     }
 })
 
@@ -53,11 +53,12 @@ gulp.task('delete', function () {
 })
 
 gulp.task('clear', function () {
-    gulp.src('../dist/static/vendor.*.js')
-        .pipe(rename('vendor.js'))
-        .pipe(gulp.dest('../dist/static/'))
-    gulp.src('../dist/static/manifest.*.js')
-        .pipe(rename('manifest.js'))
-        .pipe(gulp.dest('../dist/static/'))
+    var copy = function (type) {
+        gulp.src(`../dist/static/${type}.*.js`)
+            .pipe(rename(`${type}.js`))
+            .pipe(gulp.dest('../dist/static/'))
+    }
+    copy('vendor')
+    copy('manifest')
     return del(['../dist/static/*', '!../dist/static/vendor.js', '!../dist/static/manifest.js'], {force: true})
 })
