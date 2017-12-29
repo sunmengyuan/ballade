@@ -14,7 +14,5 @@ export default {
 </script>
 
 <style scoped>
-.comp {
-    color: mediumpurple;
-}
+.comp {color: mediumpurple;}
 </style>
