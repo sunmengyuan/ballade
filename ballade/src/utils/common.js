@@ -1,5 +1,6 @@
 export default {
-    main: () => {
+    main: (id) => {
         console.log('common')
+        console.log(id)
     }
 }

@@ -18,7 +18,7 @@ export default {
     },
 
     created () {
-        Common.main()
+        Common.main('DiaryBook')
     },
 
     methods: {
