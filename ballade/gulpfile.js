@@ -23,19 +23,27 @@ gulp.task('entries', function () {
 
 gulp.task('stamps', function () {
     for (let key in routes) {
-        let stamp = '';
+        let stamp_js = '';
+        let stamp_css = '';
         let view = routes[key].view;
         let path = routes[key].path;
         gulp.src(`../dist/static/${view}.*.js`)
             .pipe(through2.obj(function (chunk, enc, callback) {
-                stamp = chunk.path.split(`${view}.`)[1].split('.js')[0];
+                stamp_js = chunk.path.split(`${view}.`)[1].split('.js')[0];
                 callback();
             }))
             .on('finish', function () {
-                gulp.src(`../dist/${path}${view}.html`)
-                    .pipe(rename(`${view}.${stamp}.html`))
-                    .pipe(gulp.dest(`../dist/${path}`))
-                return del([`../dist/${path}${view}.html`], {force: true})
+                gulp.src(`../dist/static/${view}.*.css`)
+                    .pipe(through2.obj(function (chunk, enc, callback) {
+                        stamp_css = chunk.path.split(`${view}.`)[1].split('.css')[0];
+                        callback();
+                    }))
+                    .on('finish', function () {
+                        gulp.src(`../dist/${path}${view}.html`)
+                            .pipe(rename(`${view}.${stamp_js}.${stamp_css}.html`))
+                            .pipe(gulp.dest(`../dist/${path}`))
+                        return del([`../dist/${path}${view}.html`], {force: true})
+                    })
             })
     }
 })
