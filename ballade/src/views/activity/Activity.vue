@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import Echarts from 'echarts'
 import Comp from '../../components/Comp'
 
 export default {
@@ -20,6 +21,10 @@ export default {
         return {
             message: '活动'
         }
+    },
+
+    created () {
+        console.log(Echarts)
     },
 
     methods: {
