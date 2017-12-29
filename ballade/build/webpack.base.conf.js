@@ -14,7 +14,7 @@ function entries () {
     for (let key in routes) {
         entries[routes[key].view] = process.env.NODE_ENV === 'production'
             ? `./entry/entries/${routes[key].view}.js`
-            : './entry/env.js'
+            : './entry/dev.js'
     }
     return entries
 }
