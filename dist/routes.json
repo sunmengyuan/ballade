@@ -1,17 +1,17 @@
 {
     "items": [
         {
-            "remote_file": "https://github.com/sunmengyuan/ballade/dist/post/Topic.afdcd573fe4530db9ee2.17f06ec3cd4e21795d3c3fdc80712e55.html",
-            "uri": "http://backend.igengmei.com/topic/detail[/]?.*"
-        },
-        {
             "remote_file": "https://github.com/sunmengyuan/ballade/dist/post/DiaryBook.f7648769a3293c6a3cdb.d2b6081f639e89549cfdfa4c3d560fd3.html",
             "uri": "http://backend.igengmei.com/diary_book[/]?.*"
+        },
+        {
+            "remote_file": "https://github.com/sunmengyuan/ballade/dist/post/Topic.afdcd573fe4530db9ee2.17f06ec3cd4e21795d3c3fdc80712e55.html",
+            "uri": "http://backend.igengmei.com/topic/detail[/]?.*"
         },
         {
             "remote_file": "https://github.com/sunmengyuan/ballade/dist/activity/Activity.e9eb6530ff7cba31bea7.b06062a3bd41e15505b1b5703b0fbf4e.html",
             "uri": "http://backend.igengmei.com/activity/detail[/]?.*"
         }
     ],
-    "deploy_time": "Tue Jan 16 2018 16:51:10 GMT+0800 (CST)"
+    "deploy_time": "Tue Jan 16 2018 16:56:19 GMT+0800 (CST)"
 }
