@@ -3,6 +3,7 @@ const replace = require('gulp-replace-task')
 const rename = require('gulp-rename')
 const del = require('del')
 const through2 = require('through2')
+const settings = require('./settings')
 const routes = require('./src/routes')
 
 gulp.task('entries', function () {
@@ -55,8 +56,8 @@ gulp.task('stamps', function () {
         }
         let addStamp = function () {
             uris.push({
-                "remote_file": `/dist/${path}${view}.${stamp['js']}.${stamp['css']}.html`,
-                "uri": `${key}[/]?.*`
+                "remote_file": `${settings.downloadUrl}/dist/${path}${view}.${stamp['js']}.${stamp['css']}.html`,
+                "uri": `${settings.baseUrl}${key}[/]?.*`
             })
             if (count >= length) fileUris()
             count++
