@@ -29,6 +29,20 @@ gulp.task('stamps', function () {
         let stamp = {}
         let view = routes[key].view
         let path = routes[key].path
+        let fileUris = function () {
+            var timestamp = (new Date()).toString()
+            gulp.src('./uris.json')
+            .pipe(replace({
+                patterns: [
+                    {
+                        match: /<%=Uris%>/g,
+                        replacement: `{"items": ${JSON.stringify(uris)},"deploy_time": "${timestamp}"}`
+                    }
+                ]
+            }))
+            .pipe(rename('routes.json'))
+            .pipe(gulp.dest('../dist/'))
+        }
         let getStamp = function (type, finish) {
             gulp.src(`../dist/static/${view}.*.${type}`)
                 .pipe(through2.obj(function (chunk, enc, callback) {
@@ -41,12 +55,10 @@ gulp.task('stamps', function () {
         }
         let addStamp = function () {
             uris.push({
-                remote_file: `/dist/${path}${view}.${stamp['js']}.${stamp['css']}.html`,
-                uri: key
+                "remote_file": `/dist/${path}${view}.${stamp['js']}.${stamp['css']}.html`,
+                "uri": `${key}[/]?.*`
             })
-            if (count >= length) {
-                console.log(uris)
-            }
+            if (count >= length) fileUris()
             count++
             gulp.src(`../dist/${path}${view}.html`)
                 .pipe(rename(`${view}.${stamp['js']}.${stamp['css']}.html`))
