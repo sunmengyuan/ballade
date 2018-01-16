@@ -26,24 +26,24 @@ gulp.task('stamps', function () {
     var count = 1
     var length = Object.keys(routes).length
     var uris = []
+    var fileUris = function () {
+        var timestamp = (new Date()).toString()
+        gulp.src('./uris.json')
+        .pipe(replace({
+            patterns: [
+                {
+                    match: /<%=Uris%>/g,
+                    replacement: `{"items": ${JSON.stringify(uris)},"deploy_time": "${timestamp}"}`
+                }
+            ]
+        }))
+        .pipe(rename('routes.json'))
+        .pipe(gulp.dest('../dist/'))
+    }
     for (let key in routes) {
         let stamp = {}
         let view = routes[key].view
         let path = routes[key].path
-        let fileUris = function () {
-            var timestamp = (new Date()).toString()
-            gulp.src('./uris.json')
-            .pipe(replace({
-                patterns: [
-                    {
-                        match: /<%=Uris%>/g,
-                        replacement: `{"items": ${JSON.stringify(uris)},"deploy_time": "${timestamp}"}`
-                    }
-                ]
-            }))
-            .pipe(rename('routes.json'))
-            .pipe(gulp.dest('../dist/'))
-        }
         let getStamp = function (type, finish) {
             gulp.src(`../dist/static/${view}.*.${type}`)
                 .pipe(through2.obj(function (chunk, enc, callback) {
