@@ -22,6 +22,9 @@ gulp.task('entries', function () {
 })
 
 gulp.task('stamps', function () {
+    var count = 1
+    var length = Object.keys(routes).length
+    var uris = []
     for (let key in routes) {
         let stamp = {}
         let view = routes[key].view
@@ -37,6 +40,14 @@ gulp.task('stamps', function () {
                 })
         }
         let addStamp = function () {
+            uris.push({
+                remote_file: `/dist/${path}${view}.${stamp['js']}.${stamp['css']}.html`,
+                uri: key
+            })
+            if (count >= length) {
+                console.log(uris)
+            }
+            count++
             gulp.src(`../dist/${path}${view}.html`)
                 .pipe(rename(`${view}.${stamp['js']}.${stamp['css']}.html`))
                 .pipe(gulp.dest(`../dist/${path}`))
