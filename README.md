@@ -1,11 +1,11 @@
-### 开发环境
+##### dev
 
 ```bash
 cd ballade
 npm run dev
 ```
 
-### 资源打包
+##### prod
 
 ```bash
 cd ballade
