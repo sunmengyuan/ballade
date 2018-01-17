@@ -1,11 +1,11 @@
-##### dev
+##### Dev
 
 ```bash
 cd ballade
 npm run dev
 ```
 
-##### prod
+##### Prod
 
 ```bash
 cd ballade
