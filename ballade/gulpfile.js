@@ -115,6 +115,6 @@ gulp.task('clear', function () {
 
 gulp.task('zip', function () {
     gulp.src('../dist/**/*')
-        .pipe(zip('ballade.zip'))
+        .pipe(zip(`${settings.name}.zip`))
         .pipe(gulp.dest('../'))
 })
