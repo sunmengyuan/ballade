@@ -1,12 +1,14 @@
 const gulp = require('gulp')
 const replace = require('gulp-replace-task')
 const rename = require('gulp-rename')
+const rev = require('gulp-rev')
 const del = require('del')
 const through2 = require('through2')
 const settings = require('./settings')
 const routes = require('./src/routes')
 
 gulp.task('entries', function () {
+    // TODO 优化
     for (let key in routes) {
         gulp.src('./entry/entry.js')
             .pipe(replace({
@@ -29,60 +31,58 @@ gulp.task('stamps', function () {
     var fileUris = function () {
         var timestamp = (new Date()).toString()
         gulp.src('./uris.json')
-        .pipe(replace({
-            patterns: [
-                {
-                    match: /<%=Uris%>/g,
-                    replacement: `{"items": ${JSON.stringify(uris)},"deploy_time": "${timestamp}"}`
-                }
-            ]
-        }))
-        .pipe(rename('routes.json'))
+            .pipe(replace({
+                patterns: [
+                    {
+                        match: /<%=Uris%>/g,
+                        replacement: `{"items": ${JSON.stringify(uris)},"deploy_time": "${timestamp}"}`
+                    }
+                ]
+            }))
+            .pipe(rename('routes.json'))
+            .pipe(gulp.dest('../dist/'))
+    }
+    gulp.src('../dist/**/*.html')
+        .pipe(rev())
         .pipe(gulp.dest('../dist/'))
-    }
-    for (let key in routes) {
-        let stamp = {}
-        let view = routes[key].view
-        let path = routes[key].path
-        let getStamp = function (type, finish) {
-            gulp.src(`../dist/static/${view}.*.${type}`)
-                .pipe(through2.obj(function (chunk, enc, callback) {
-                    stamp[type] = chunk.path.split(`${view}.`)[1].split(`.${type}`)[0]
-                    callback()
-                }))
-                .on('finish', function () {
-                    finish()
-                })
-        }
-        let addStamp = function () {
-            uris.push({
-                "remote_file": `${settings.downloadUrl}/dist/${path}${view}.${stamp['js']}.${stamp['css']}.html`,
-                "uri": `${settings.baseUrl}${key}[/]?.*`
-            })
-            if (count >= length) fileUris()
-            count++
-            gulp.src(`../dist/${path}${view}.html`)
-                .pipe(rename(`${view}.${stamp['js']}.${stamp['css']}.html`))
-                .pipe(gulp.dest(`../dist/${path}`))
-            return del([`../dist/${path}${view}.html`], {force: true})
-        }
-        getStamp('js', function () {
-            getStamp('css', addStamp)
+        .on('end', function () {
+            for (let key in routes) {
+                let view = routes[key].view
+                let path = routes[key].path
+                gulp.src(`../dist/${path}${view}-*.html`)
+                    .pipe(through2.obj(function (chunk, enc, callback) {
+                        var stamp = chunk.path.split('-')[1].split('.html')[0]
+                        uris.push({
+                            "remote_file": `${settings.downloadUrl}/dist/${path}${view}-${stamp}.html`,
+                            "uri": `${settings.baseUrl}${key}[/]?.*`
+                        })
+                        if (count >= length) fileUris()
+                        count++
+                    }))
+            }
         })
-    }
 })
 
 gulp.task('delete', function () {
-    return del(['../dist/*'], {force: true})
+    del(['../dist/*'], {force: true})
 })
 
 gulp.task('clear', function () {
-    var copy = function (type) {
+    var copy = function (type, callback) {
         gulp.src(`../dist/static/${type}.*.js`)
             .pipe(rename(`${type}.js`))
             .pipe(gulp.dest('../dist/static/'))
+            .on('end', callback)
     }
-    copy('vendor')
-    copy('manifest')
-    return del(['../dist/static/*', '!../dist/static/vendor.js', '!../dist/static/manifest.js'], {force: true})
+    copy('vendor', function () {
+        copy('manifest', function () {
+            del([
+                '../dist/static/*',
+                '../dist/**/*.html',
+                '!../dist/static/vendor.js',
+                '!../dist/static/manifest.js',
+                '!../dist/**/*-*.html'
+            ], {force: true})
+        })
+    })
 })
