@@ -13,6 +13,8 @@ export default {
 }
 </script>
 
-<style scoped>
-.comp {color: mediumpurple;}
+<style lang="scss" scoped>
+.comp {
+    color: mediumpurple;
+}
 </style>

@@ -29,5 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h4 {color: red;}
+h4 {
+    color: red;
+}
 </style>

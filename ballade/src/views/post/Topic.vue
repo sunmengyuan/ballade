@@ -37,5 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h4 {color: green;}
+h4 {
+    color: green;
+}
 </style>

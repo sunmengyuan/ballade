@@ -36,5 +36,8 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../assets/button";
-h4 {color: yellowgreen;}
+h4 {
+    font-size: 0.28rem;
+    color: yellowgreen;
+}
 </style>
