@@ -1,10 +1,9 @@
 const gulp = require('gulp')
-const replace = require('gulp-replace-task')
 const rename = require('gulp-rename')
+const replace = require('gulp-replace-task')
 const rev = require('gulp-rev')
 const zip = require('gulp-zip')
 const del = require('del')
-const through2 = require('through2')
 const settings = require('./settings')
 const routes = require('./src/routes')
 
@@ -73,8 +72,8 @@ gulp.task('stamps', function () {
             }
         })
     gulp.src('../dist/static/vendor.*.js')
-        .pipe(through2.obj(function (chunk, enc, callback) {
-            var stamp = chunk.path.split('vendor.')[1].split('.js')[0]
+        .on('data', function (file) {
+            var stamp = file.path.split(`${settings.name}/dist/`)[1].split('vendor.')[1].split('.js')[0]
             gulp.src('./temp.json')
                 .pipe(replace({
                     patterns: [
@@ -86,7 +85,7 @@ gulp.task('stamps', function () {
                 }))
                 .pipe(rename('vendor.json'))
                 .pipe(gulp.dest('../dist/'))
-        }))
+        })
 })
 
 gulp.task('delete', function () {
