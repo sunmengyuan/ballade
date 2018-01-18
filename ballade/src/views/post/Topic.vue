@@ -9,7 +9,7 @@
 
 <script>
 import Echarts from 'echarts'
-import Common from '../../utils/common'
+import Module from '../../utils/module'
 import Comp from '../../components/Comp'
 
 export default {
@@ -26,7 +26,7 @@ export default {
     },
 
     created () {
-        Common.main()
+        Module.main()
         console.log(Echarts)
     },
 

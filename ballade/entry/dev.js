@@ -1,15 +1,17 @@
 import Vue from 'vue'
-import routes from '../src/routes'
-import views from '../src/views'
+import Routes from '../src/routes'
+import Views from '../src/views'
+import App from '../src/utils/app'
 import '../src/utils/rem'
 import '../src/assets/app.scss'
 
-const pathname = window.location.pathname
-const Page = `<${routes[pathname].view} />`
+const Pathname = window.location.pathname
+const Page = `<${Routes[Pathname].view} />`
+App.do()
 
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
     template: Page,
-    components: views
+    components: Views
 })

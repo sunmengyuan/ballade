@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Common from '../../utils/common'
+import Module from '../../utils/module'
 
 export default {
     name: 'DiaryBook',
@@ -19,7 +19,7 @@ export default {
     },
 
     created () {
-        Common.main('DiaryBook')
+        Module.main('DiaryBook')
     },
 
     methods: {
