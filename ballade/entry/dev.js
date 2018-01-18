@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import routes from '../src/routes'
 import views from '../src/views'
+import '../src/utils/rem'
 import '../src/assets/app.scss'
 
 const pathname = window.location.pathname

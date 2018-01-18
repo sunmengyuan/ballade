@@ -4,21 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
     <title>Ballade</title>
-    <script>
-        (function (doc, win) {
-            var docEl = doc.documentElement,
-                resizeMethod = 'orientationchange' in window ? 'orientationchange' : 'resize';
-            function recalculate () {
-                var width = docEl.clientWidth,
-                    rem = width * 100 / 750;
-                docEl.style.fontSize = Math.min(rem, 50) + 'px';
-            }
-            recalculate();
-            if (!win.addEventListener) return;
-            win.addEventListener(resizeMethod, recalculate, false);
-            doc.addEventListener('DOMContentLoaded', recalculate, false);
-        })(document, window);
-    </script>
 </head>
 <body>
 <div id="app"></div>
