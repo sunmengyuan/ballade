@@ -9,19 +9,29 @@ const settings = require('./settings')
 const routes = require('./src/routes')
 
 gulp.task('entries', function () {
-    // TODO 优化
+    var flag = true
     for (let key in routes) {
-        gulp.src('./entry/entry.js')
-            .pipe(replace({
-                patterns: [
-                    {
-                        match: /<%=Page%>/g,
-                        replacement: `../../src/views/${routes[key].path}${routes[key].view}`
-                    }
-                ]
-            }))
-            .pipe(rename(`entries/${routes[key].view}.js`))
-            .pipe(gulp.dest('./entry/'))
+        gulp.src(`./entry/entries/${routes[key].view}.js`)
+            .on('data', function () {
+                flag = false
+            })
+            .on('end', function () {
+                if (flag) {
+                    console.log('new entry: ', routes[key].view)
+                    gulp.src('./entry/entry.js')
+                        .pipe(replace({
+                            patterns: [
+                                {
+                                    match: /<%=Page%>/g,
+                                    replacement: `../../src/views/${routes[key].path}${routes[key].view}`
+                                }
+                            ]
+                        }))
+                        .pipe(rename(`entries/${routes[key].view}.js`))
+                        .pipe(gulp.dest('./entry/'))
+                }
+                flag = true
+            })
     }
 })
 
