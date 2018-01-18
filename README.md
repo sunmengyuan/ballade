@@ -1,13 +1,8 @@
-##### Dev
-
 ```bash
-cd ballade
+# dev
 npm run dev
-```
 
-##### Prod
-
-```bash
-cd ballade
+# prod
 ./build.sh
+gulp zip
 ```

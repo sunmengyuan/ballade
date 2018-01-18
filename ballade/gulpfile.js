@@ -2,6 +2,7 @@ const gulp = require('gulp')
 const replace = require('gulp-replace-task')
 const rename = require('gulp-rename')
 const rev = require('gulp-rev')
+const zip = require('gulp-zip')
 const del = require('del')
 const through2 = require('through2')
 const settings = require('./settings')
@@ -100,4 +101,10 @@ gulp.task('clear', function () {
             ], {force: true})
         })
     })
+})
+
+gulp.task('zip', function () {
+    gulp.src('../dist/**/*')
+        .pipe(zip('ballade.zip'))
+        .pipe(gulp.dest('../'))
 })
