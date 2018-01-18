@@ -61,15 +61,15 @@ gulp.task('stamps', function () {
                 let view = routes[key].view
                 let path = routes[key].path
                 gulp.src(`../dist/${path}${view}-*.html`)
-                    .pipe(through2.obj(function (chunk, enc, callback) {
-                        var stamp = chunk.path.split('-')[1].split('.html')[0]
+                    .on('data', function (file) {
+                        var stamp = file.path.split(`${settings.name}/dist/`)[1].split('-')[1].split('.html')[0]
                         uris.push({
                             "remote_file": `${settings.downloadUrl}/dist/${path}${view}-${stamp}.html`,
                             "uri": `${settings.baseUrl}${key}[/]?.*`
                         })
                         if (count >= length) fileUris()
                         count++
-                    }))
+                    })
             }
         })
     gulp.src('../dist/static/vendor.*.js')
