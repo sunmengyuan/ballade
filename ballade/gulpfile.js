@@ -62,7 +62,7 @@ gulp.task('stamps', function () {
                 gulp.src(`../dist/${path}${view}-*.html`)
                     .on('data', function (file) {
                         var stamp = file.path.split(`${settings.name}/dist/`)[1].split('-')[1].split('.html')[0]
-                        console.log(`/dist/${path}${view}-${stamp}.html`)
+                        console.log(`${count}: `, `/dist/${path}${view}-${stamp}.html`)
                         uris.push({
                             "remote_file": `${settings.downloadUrl}/dist/${path}${view}-${stamp}.html`,
                             "uri": `${settings.baseUrl}${key}[/]?.*`
