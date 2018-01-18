@@ -34,7 +34,7 @@ export default {
 }
 </script>
 
-<style scoped>
-@import "../../assets/button.css";
+<style lang="scss" scoped>
+@import "../../assets/button";
 h4 {color: yellowgreen;}
 </style>
