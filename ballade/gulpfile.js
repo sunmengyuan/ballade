@@ -16,7 +16,7 @@ gulp.task('entries', function () {
             })
             .on('end', function () {
                 if (flag) {
-                    console.log('new entry: ', routes[key].view)
+                    console.log('new entry: ', `/entries/${routes[key].view}.js`)
                     gulp.src('./entry/entry.js')
                         .pipe(replace({
                             patterns: [
@@ -62,6 +62,7 @@ gulp.task('stamps', function () {
                 gulp.src(`../dist/${path}${view}-*.html`)
                     .on('data', function (file) {
                         var stamp = file.path.split(`${settings.name}/dist/`)[1].split('-')[1].split('.html')[0]
+                        console.log(`/dist/${path}${view}-${stamp}.html`)
                         uris.push({
                             "remote_file": `${settings.downloadUrl}/dist/${path}${view}-${stamp}.html`,
                             "uri": `${settings.baseUrl}${key}[/]?.*`
@@ -74,6 +75,7 @@ gulp.task('stamps', function () {
     gulp.src('../dist/static/vendor.*.js')
         .on('data', function (file) {
             var stamp = file.path.split(`${settings.name}/dist/`)[1].split('vendor.')[1].split('.js')[0]
+            console.log(`/dist/static/vendor-${stamp}.js`)
             gulp.src('./temp.json')
                 .pipe(replace({
                     patterns: [
