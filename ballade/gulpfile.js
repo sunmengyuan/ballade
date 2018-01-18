@@ -30,12 +30,12 @@ gulp.task('stamps', function () {
     var uris = []
     var fileUris = function () {
         var timestamp = (new Date()).toString()
-        gulp.src('./uris.json')
+        gulp.src('./temp.json')
             .pipe(replace({
                 patterns: [
                     {
-                        match: /<%=Uris%>/g,
-                        replacement: `{"items": ${JSON.stringify(uris)},"deploy_time": "${timestamp}"}`
+                        match: /<%=Placeholder%>/g,
+                        replacement: `{"items":${JSON.stringify(uris)},"deploy_time":"${timestamp}"}`
                     }
                 ]
             }))
@@ -61,6 +61,21 @@ gulp.task('stamps', function () {
                     }))
             }
         })
+    gulp.src('../dist/static/vendor.*.js')
+        .pipe(through2.obj(function (chunk, enc, callback) {
+            var stamp = chunk.path.split('vendor.')[1].split('.js')[0]
+            gulp.src('./temp.json')
+                .pipe(replace({
+                    patterns: [
+                        {
+                            match: /<%=Placeholder%>/g,
+                            replacement: `{"remote_file":"${settings.downloadUrl}/dist/static/vendor.json","hash":"${stamp}"}`
+                        }
+                    ]
+                }))
+                .pipe(rename('vendor.json'))
+                .pipe(gulp.dest('../dist/'))
+        }))
 })
 
 gulp.task('delete', function () {
