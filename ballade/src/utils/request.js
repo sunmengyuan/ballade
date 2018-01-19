@@ -20,7 +20,8 @@ export default (opts = {}) => {
         url: Server + opts.url,
         method: opts.method || 'GET',
         headers: {
-            'Content-type': opts.contentType || 'application/x-www-form-urlencoded'
+            'Content-type': opts.contentType || 'application/x-www-form-urlencoded',
+            'X-CSRFToken': this.$cookie.get('csrftoken')
         },
         params: {
             ...opts.params,
