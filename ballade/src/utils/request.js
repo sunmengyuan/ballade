@@ -1,11 +1,22 @@
 import Axios from 'axios'
 import Cookie from 'vue-cookie'
-import settings from '../../settings.json'
-const Server = (process.env.NODE_ENV === 'production') ? settings.server : ''
+import Settings from '../../settings.json'
+import App from '@/utils/app'
+const Server = (process.env.NODE_ENV === 'production') ? Settings.server : ''
 
 export default (opts = {}) => {
     var tracks = {
-        t: (new Date()).valueOf()
+        t: (new Date()).valueOf(),
+        channel: App.getUrlQuery('channel'),
+        current_city_id: App.getUrlQuery('current_city_id'),
+        device_id: App.getUrlQuery('device_id'),
+        idfa: App.getUrlQuery('idfa'),
+        idfv: App.getUrlQuery('idfv'),
+        lat: App.getUrlQuery('lat'),
+        lng: App.getUrlQuery('lng'),
+        platform: App.getUrlQuery('platform'),
+        os_version: App.getUrlQuery('os_version'),
+        json: ''
     }
     var successFn = opts.successFn || function () {}
     var failFn = opts.failFn || function () {}
