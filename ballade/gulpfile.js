@@ -38,20 +38,6 @@ gulp.task('stamps', () => {
     var count = 1
     var length = Object.keys(routes).length
     var uris = []
-    var fileUris = () => {
-        var timestamp = (new Date()).toString()
-        gulp.src('./temp.json')
-            .pipe(replace({
-                patterns: [
-                    {
-                        match: /<%=Holder%>/g,
-                        replacement: `{"items":${JSON.stringify(uris)},"deploy_time":"${timestamp}"}`
-                    }
-                ]
-            }))
-            .pipe(rename('routes.json'))
-            .pipe(gulp.dest('../dist/'))
-    }
     gulp.src('../dist/**/*.html')
         .pipe(rev())
         .pipe(gulp.dest('../dist/'))
@@ -61,20 +47,39 @@ gulp.task('stamps', () => {
                 let path = routes[key].path
                 gulp.src(`../dist/${path}${view}-*.html`)
                     .on('data', (file) => {
-                        var stamp = file.path.split(`${settings.project}/dist/`)[1].split('-')[1].split('.html')[0]
+                        var stamp = file.path
+                            .split(`${settings.project}/dist/`)[1]
+                            .split('-')[1]
+                            .split('.html')[0]
                         console.log(`${count}: `, `/dist/${path}${view}-${stamp}.html`)
                         uris.push({
                             "remote_file": `${settings.cdn}/dist/${path}${view}-${stamp}.html`,
                             "uri": `${key}[/]?.*`
                         })
-                        if (count >= length) fileUris()
+                        if (count >= length) {
+                            var timestamp = (new Date()).toString()
+                            gulp.src('./temp.json')
+                                .pipe(replace({
+                                    patterns: [
+                                        {
+                                            match: /<%=Holder%>/g,
+                                            replacement: `{"items":${JSON.stringify(uris)},"deploy_time":"${timestamp}"}`
+                                        }
+                                    ]
+                                }))
+                                .pipe(rename('routes.json'))
+                                .pipe(gulp.dest('../dist/'))
+                        }
                         count++
                     })
             }
         })
     gulp.src('../dist/static/vendor.*.js')
         .on('data', (file) => {
-            var stamp = file.path.split(`${settings.project}/dist/`)[1].split('vendor.')[1].split('.js')[0]
+            var stamp = file.path
+                .split(`${settings.project}/dist/`)[1]
+                .split('vendor.')[1]
+                .split('.js')[0]
             console.log('vendor: ', `/dist/static/vendor-${stamp}.js`)
             gulp.src('./temp.json')
                 .pipe(replace({
