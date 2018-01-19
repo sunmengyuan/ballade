@@ -20,7 +20,7 @@ export default (opts = {}) => {
         url: Server + opts.url,
         method: opts.method || 'GET',
         headers: {
-            'Content-type': opts.contentType || 'application/json;charset=UTF-8'
+            'Content-type': opts.contentType || 'application/x-www-form-urlencoded'
         },
         params: {
             ...opts.params,
