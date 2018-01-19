@@ -95,23 +95,23 @@ gulp.task('delete', () => {
 })
 
 gulp.task('clear', () => {
-    var copy = (type, callback) => {
+    var copy = (type) => {
         gulp.src(`../dist/static/${type}.*.js`)
             .pipe(rename(`${type}.js`))
             .pipe(gulp.dest('../dist/static/'))
-            .on('end', callback)
+            .on('end', () => {
+                del([`../dist/static/${type}.*.js`], {force: true})
+            })
     }
-    copy('vendor', () => {
-        copy('manifest', () => {
-            del([
-                '../dist/static/*',
-                '../dist/**/*.html',
-                '!../dist/static/vendor.js',
-                '!../dist/static/manifest.js',
-                '!../dist/**/*-*.html'
-            ], {force: true})
-        })
-    })
+    copy('vendor')
+    copy('manifest')
+    del([
+        '../dist/static/*',
+        '../dist/**/*.html',
+        '!../dist/static/vendor.*js',
+        '!../dist/static/manifest.*js',
+        '!../dist/**/*-*.html'
+    ], {force: true})
 })
 
 gulp.task('zip', () => {
