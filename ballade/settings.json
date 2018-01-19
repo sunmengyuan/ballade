@@ -1,4 +1,5 @@
 {
     "project": "ballade",
-    "cdn": "https://github.com/sunmengyuan/ballade"
+    "cdn": "https://github.com/sunmengyuan/ballade",
+    "server": "https://backend.igengmei.com"
 }

@@ -1,4 +1,6 @@
 import Axios from 'axios'
+import settings from '../../settings.json'
+const Server = (process.env.NODE_ENV === 'production') ? settings.server : ''
 
 export default (opts = {}) => {
     var tracks = {
@@ -15,7 +17,7 @@ export default (opts = {}) => {
         }
     }
     Axios({
-        url: opts.url,
+        url: Server + opts.url,
         method: opts.method || 'GET',
         headers: {
             'Content-type': opts.contentType || 'application/json;charset=UTF-8'

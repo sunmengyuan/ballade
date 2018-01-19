@@ -54,7 +54,7 @@ gulp.task('stamps', () => {
                         console.log(`${count}: `, `/dist/${path}${view}-${stamp}.html`)
                         uris.push({
                             "remote_file": `${settings.cdn}/dist/${path}${view}-${stamp}.html`,
-                            "uri": `${key}[/]?.*`
+                            "uri": `${settings.server}${key}[/]?.*`
                         })
                         if (count >= length) {
                             var timestamp = (new Date()).toString()
