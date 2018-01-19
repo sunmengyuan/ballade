@@ -1,20 +1,9 @@
 {
-    "/diary_book": {
-        "view": "DiaryBook",
-        "path": "post/",
+    "/demo": {
+        "view": "Demo",
+        "path": "demo/",
         "query": [
-            "id"
+            "service_id"
         ]
-    },
-    "/topic/detail": {
-        "view": "Topic",
-        "path": "post/",
-        "query": [
-            "id"
-        ]
-    },
-    "/activity/detail": {
-        "view": "Activity",
-        "path": "activity/"
     }
 }

@@ -1,9 +1,5 @@
-import DiaryBook from '@/views/post/DiaryBook'
-import Topic from '@/views/post/Topic'
-import Activity from '@/views/activity/Activity'
+import Demo from '@/views/demo/Demo'
 
 export default {
-    DiaryBook,
-    Topic,
-    Activity
+    Demo
 }
