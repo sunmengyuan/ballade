@@ -1,10 +1,10 @@
-(function (doc, win) {
+((doc, win) => {
     var docEl = doc.documentElement
     var resizeMethod = 'orientationchange' in window ? 'orientationchange' : 'resize'
-    function recalculate () {
+    var recalculate = () => {
         var width = docEl.clientWidth
         var rem = width * 100 / 750
-        docEl.style.fontSize = Math.min(rem, 50) + 'px'
+        docEl.style.fontSize = `${Math.min(rem, 50)}px`
     }
     recalculate()
     if (!win.addEventListener) return
