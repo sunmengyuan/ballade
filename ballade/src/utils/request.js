@@ -1,4 +1,5 @@
 import Axios from 'axios'
+import Cookie from 'vue-cookie'
 import settings from '../../settings.json'
 const Server = (process.env.NODE_ENV === 'production') ? settings.server : ''
 
@@ -21,7 +22,7 @@ export default (opts = {}) => {
         method: opts.method || 'GET',
         headers: {
             'Content-type': opts.contentType || 'application/x-www-form-urlencoded',
-            'X-CSRFToken': this.$cookie.get('csrftoken')
+            'X-CSRFToken': Cookie.get('csrftoken')
         },
         params: {
             ...opts.params,
