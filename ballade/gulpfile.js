@@ -7,14 +7,14 @@ const del = require('del')
 const settings = require('./settings')
 const routes = require('./src/routes')
 
-gulp.task('entries', function () {
+gulp.task('entries', () => {
     var flag = true
     for (let key in routes) {
         gulp.src(`./entry/entries/${routes[key].view}.js`)
-            .on('data', function () {
+            .on('data', () => {
                 flag = false
             })
-            .on('end', function () {
+            .on('end', () => {
                 if (flag) {
                     console.log('new entry: ', `/entries/${routes[key].view}.js`)
                     gulp.src('./entry/entry.js')
@@ -34,11 +34,11 @@ gulp.task('entries', function () {
     }
 })
 
-gulp.task('stamps', function () {
+gulp.task('stamps', () => {
     var count = 1
     var length = Object.keys(routes).length
     var uris = []
-    var fileUris = function () {
+    var fileUris = () => {
         var timestamp = (new Date()).toString()
         gulp.src('./temp.json')
             .pipe(replace({
@@ -55,12 +55,12 @@ gulp.task('stamps', function () {
     gulp.src('../dist/**/*.html')
         .pipe(rev())
         .pipe(gulp.dest('../dist/'))
-        .on('end', function () {
+        .on('end', () => {
             for (let key in routes) {
                 let view = routes[key].view
                 let path = routes[key].path
                 gulp.src(`../dist/${path}${view}-*.html`)
-                    .on('data', function (file) {
+                    .on('data', (file) => {
                         var stamp = file.path.split(`${settings.project}/dist/`)[1].split('-')[1].split('.html')[0]
                         console.log(`${count}: `, `/dist/${path}${view}-${stamp}.html`)
                         uris.push({
@@ -73,7 +73,7 @@ gulp.task('stamps', function () {
             }
         })
     gulp.src('../dist/static/vendor.*.js')
-        .on('data', function (file) {
+        .on('data', (file) => {
             var stamp = file.path.split(`${settings.project}/dist/`)[1].split('vendor.')[1].split('.js')[0]
             console.log('vendor: ', `/dist/static/vendor-${stamp}.js`)
             gulp.src('./temp.json')
@@ -90,19 +90,19 @@ gulp.task('stamps', function () {
         })
 })
 
-gulp.task('delete', function () {
+gulp.task('delete', () => {
     del(['../dist/*'], {force: true})
 })
 
-gulp.task('clear', function () {
-    var copy = function (type, callback) {
+gulp.task('clear', () => {
+    var copy = (type, callback) => {
         gulp.src(`../dist/static/${type}.*.js`)
             .pipe(rename(`${type}.js`))
             .pipe(gulp.dest('../dist/static/'))
             .on('end', callback)
     }
-    copy('vendor', function () {
-        copy('manifest', function () {
+    copy('vendor', () => {
+        copy('manifest', () => {
             del([
                 '../dist/static/*',
                 '../dist/**/*.html',
@@ -114,7 +114,7 @@ gulp.task('clear', function () {
     })
 })
 
-gulp.task('zip', function () {
+gulp.task('zip', () => {
     gulp.src('../dist/**/*')
         .pipe(zip('dist.zip'))
         .pipe(gulp.dest('../'))
