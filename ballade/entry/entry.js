@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Page from '<%=Page%>'
-import App from '../../src/utils/app'
-import '../../src/utils/rem'
-import '../../src/assets/app.scss'
+import App from '@/utils/app'
+import '@/utils/rem'
+import '@/assets/app.scss'
 
 App.do()
 

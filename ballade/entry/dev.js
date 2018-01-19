@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import Routes from '../src/routes'
-import Views from '../src/views'
-import App from '../src/utils/app'
-import '../src/utils/rem'
-import '../src/assets/app.scss'
+import Routes from '@/routes'
+import Views from '@/views'
+import App from '@/utils/app'
+import '@/utils/rem'
+import '@/assets/app.scss'
 
 const Pathname = window.location.pathname
 const Page = `<${Routes[Pathname].view} />`
