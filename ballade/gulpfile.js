@@ -44,7 +44,7 @@ gulp.task('stamps', function () {
             .pipe(replace({
                 patterns: [
                     {
-                        match: /<%=Placeholder%>/g,
+                        match: /<%=Holder%>/g,
                         replacement: `{"items":${JSON.stringify(uris)},"deploy_time":"${timestamp}"}`
                     }
                 ]
@@ -61,11 +61,11 @@ gulp.task('stamps', function () {
                 let path = routes[key].path
                 gulp.src(`../dist/${path}${view}-*.html`)
                     .on('data', function (file) {
-                        var stamp = file.path.split(`${settings.name}/dist/`)[1].split('-')[1].split('.html')[0]
+                        var stamp = file.path.split(`${settings.project}/dist/`)[1].split('-')[1].split('.html')[0]
                         console.log(`${count}: `, `/dist/${path}${view}-${stamp}.html`)
                         uris.push({
-                            "remote_file": `${settings.downloadUrl}/dist/${path}${view}-${stamp}.html`,
-                            "uri": `${settings.baseUrl}${key}[/]?.*`
+                            "remote_file": `${settings.cdn}/dist/${path}${view}-${stamp}.html`,
+                            "uri": `${key}[/]?.*`
                         })
                         if (count >= length) fileUris()
                         count++
@@ -74,14 +74,14 @@ gulp.task('stamps', function () {
         })
     gulp.src('../dist/static/vendor.*.js')
         .on('data', function (file) {
-            var stamp = file.path.split(`${settings.name}/dist/`)[1].split('vendor.')[1].split('.js')[0]
+            var stamp = file.path.split(`${settings.project}/dist/`)[1].split('vendor.')[1].split('.js')[0]
             console.log('vendor: ', `/dist/static/vendor-${stamp}.js`)
             gulp.src('./temp.json')
                 .pipe(replace({
                     patterns: [
                         {
-                            match: /<%=Placeholder%>/g,
-                            replacement: `{"remote_file":"${settings.downloadUrl}/dist/static/vendor.json","hash":"${stamp}"}`
+                            match: /<%=Holder%>/g,
+                            replacement: `{"remote_file":"${settings.cdn}/dist/static/vendor.json","hash":"${stamp}"}`
                         }
                     ]
                 }))

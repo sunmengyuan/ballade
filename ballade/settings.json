@@ -1,5 +1,4 @@
 {
-    "name": "ballade",
-    "baseUrl": "https://backend.igengmei.com",
-    "downloadUrl": "https://github.com/sunmengyuan/ballade"
+    "project": "ballade",
+    "cdn": "https://github.com/sunmengyuan/ballade"
 }
