@@ -1,9 +1,11 @@
 import Request from '@/utils/request'
 
 const Loadmore = {
+    flag: true,
     view: null,
     opts: null,
     do: function (view, opts) {
+        this.flag = true
         this.view = view
         this.opts = {
             url: opts.url,
@@ -20,6 +22,7 @@ const Loadmore = {
         if (type === 'scroll') this.listenScroll()
     },
     loadData: function () {
+        var _this = this
         var view = this.view
         var opts = this.opts
         var status = {
@@ -29,6 +32,8 @@ const Loadmore = {
                 ? view._Loadmore.flag
                 : true
         }
+        if (!_this.flag) return
+        _this.flag = false
         if (status.flag) {
             Request({
                 url: opts.url,
@@ -51,6 +56,7 @@ const Loadmore = {
                             opts.completeFn()
                         }
                     }
+                    _this.flag = true
                 },
                 failFn: (data) => {
                     var list = opts.key ? data.data[opts.key] : data.data
@@ -63,11 +69,13 @@ const Loadmore = {
                         opts.completeFn()
                     }
                     opts.failFn()
+                    _this.flag = true
                 },
                 errorFn: () => {
                     if ((status.page === 1) || (status.start_num === 0)) {
                         opts.errorFn()
                     }
+                    _this.flag = true
                 }
             })
         }
