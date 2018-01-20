@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import Cookie from 'vue-cookie'
-import Settings from '../../settings.json'
+import Settings from '~/settings.json'
 import App from '@/utils/app'
 const Server = (process.env.NODE_ENV === 'production') ? Settings.server : ''
 
