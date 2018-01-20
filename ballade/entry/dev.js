@@ -10,6 +10,7 @@ const Pathname = window.location.pathname
 const Page = `<${Routes[Pathname].view} />`
 
 Vue.use(Cookie)
+Vue.use(App)
 App.do()
 
 /* eslint-disable no-new */

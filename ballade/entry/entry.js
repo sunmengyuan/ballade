@@ -6,6 +6,7 @@ import '@/utils/rem'
 import '@/assets/app.scss'
 
 Vue.use(Cookie)
+Vue.use(App)
 App.do()
 
 /* eslint-disable no-new */

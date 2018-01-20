@@ -7,15 +7,15 @@ const Server = (process.env.NODE_ENV === 'production') ? Settings.server : ''
 export default (opts = {}) => {
     var tracks = {
         t: (new Date()).valueOf(),
-        channel: App.getUrlQuery('channel'),
-        current_city_id: App.getUrlQuery('current_city_id'),
-        device_id: App.getUrlQuery('device_id'),
-        idfa: App.getUrlQuery('idfa'),
-        idfv: App.getUrlQuery('idfv'),
-        lat: App.getUrlQuery('lat'),
-        lng: App.getUrlQuery('lng'),
-        platform: App.getUrlQuery('platform'),
-        os_version: App.getUrlQuery('os_version'),
+        channel: App.$router.query('channel'),
+        current_city_id: App.$router.query('current_city_id'),
+        device_id: App.$router.query('device_id'),
+        idfa: App.$router.query('idfa'),
+        idfv: App.$router.query('idfv'),
+        lat: App.$router.query('lat'),
+        lng: App.$router.query('lng'),
+        platform: App.$router.query('platform'),
+        os_version: App.$router.query('os_version'),
         json: ''
     }
     var successFn = opts.successFn || function () {}
