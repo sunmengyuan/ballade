@@ -2,9 +2,9 @@ import Axios from 'axios'
 import Cookie from 'vue-cookie'
 import Settings from '~/settings.json'
 import App from '@/utils/app'
-const Server = (process.env.NODE_ENV === 'production') ? Settings.server : ''
 
-export default (opts = {}) => {
+const Server = (process.env.NODE_ENV === 'production') ? Settings.server : ''
+const Request = (opts = {}) => {
     var tracks = {
         t: (new Date()).valueOf(),
         channel: App.$router.query('channel'),
@@ -51,3 +51,8 @@ export default (opts = {}) => {
         errorFn()
     })
 }
+Request.install = (Vue, options) => {
+    Vue.prototype.$request = Request
+}
+
+export default Request
