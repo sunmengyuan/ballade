@@ -1,5 +1,6 @@
 const api = [
-    '/hybrid/'
+    '/hybrid/',
+    '/api/'
 ]
 
 const target = 'https://backend.igengmei.com'

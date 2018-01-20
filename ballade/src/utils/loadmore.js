@@ -7,10 +7,12 @@ const Loadmore = {
     do: function (view, opts) {
         this.flag = true
         this.view = view
+        this.view._Loadmore = view._Loadmore || {}
         this.opts = {
             url: opts.url,
-            count: opts.count || 10,
+            key: opts.key,
             params: opts.params || {},
+            count: opts.count || 10,
             callbackFn: opts.callbackFn || function () {},
             completeFn: opts.completeFn || function () {},
             nodataFn: opts.nodataFn || function () {},
@@ -26,9 +28,9 @@ const Loadmore = {
         var view = this.view
         var opts = this.opts
         var status = {
-            page: (view._Loadmore && view._Loadmore.page) || 1,
-            start_num: (view._Loadmore && view._Loadmore.start_num) || 0,
-            flag: ((view._Loadmore && view._Loadmore.flag) !== undefined)
+            page: view._Loadmore.page || 1,
+            start_num: view._Loadmore.start_num || 0,
+            flag: (view._Loadmore.flag !== undefined)
                 ? view._Loadmore.flag
                 : true
         }
@@ -45,15 +47,13 @@ const Loadmore = {
                 },
                 successFn: (data) => {
                     opts.callbackFn(data.data)
-                    view._Loadmore = {
-                        page: status.page + 1,
-                        start_num: status.start_num + opts.count
-                    }
+                    view._Loadmore.page = status.page + 1
+                    view._Loadmore.start_num = status.start_num + opts.count
                     var list = opts.key ? data.data[opts.key] : data.data
-                    if (list.length < 10) {
+                    if ((list instanceof Array) && (list.length < 10)) {
                         if ((status.page === 1) || (status.start_num === 0)) {
                             view._Loadmore.flag = false
-                            opts.completeFn()
+                            opts.completeFn(data)
                         }
                     }
                     _this.flag = true
@@ -64,17 +64,22 @@ const Loadmore = {
                     if (isNull) {
                         view._Loadmore.flag = false
                         if ((status.page === 1) || (status.start_num === 0)) {
-                            opts.nodataFn()
+                            opts.nodataFn(data)
                         }
-                        opts.completeFn()
+                        opts.completeFn(data)
                     }
-                    opts.failFn()
+                    opts.failFn({
+                        data: data,
+                        page: status.page,
+                        start_num: status.start_num
+                    })
                     _this.flag = true
                 },
                 errorFn: () => {
-                    if ((status.page === 1) || (status.start_num === 0)) {
-                        opts.errorFn()
-                    }
+                    opts.errorFn({
+                        page: status.page,
+                        start_num: status.start_num
+                    })
                     _this.flag = true
                 }
             })
