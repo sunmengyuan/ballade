@@ -17,11 +17,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/vars";
+
 .gm-loading {
     font-size: 0.26rem;
     line-height: 0.4rem;
     text-align: center;
-    color: #999;
+    color: $fontWeakColor;
     margin: 0.5rem 0.8rem;
     overflow: hidden;
     .complete {
@@ -31,7 +33,7 @@ export default {
             display: block;
             width: 50%;
             height: 1px;
-            background-color: #F0F0F0;
+            background-color: $borderColor;
             position: absolute;
             top: 50%;
             transform: translate(0,-50%);

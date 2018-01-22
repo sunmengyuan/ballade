@@ -27,6 +27,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/vars";
+
 .service-square-item {
     float: left;
     width: 50%;
@@ -40,7 +42,7 @@ export default {
     .service-bio {
         padding: 0.4rem;
         margin: -0.74rem 0 -0.74rem -50%;
-        border: 1px solid #E5E5E5;
+        border: 1px solid $borderStrongColor;
         border-top: none;
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
@@ -60,7 +62,7 @@ export default {
             float: left;
             font-size: 0.6rem;
             line-height: 0.62rem;
-            color: #FF7690;
+            color: $fontPinkColor;
             &:first-letter, em {
                 font-size: 0.36rem;
             }
@@ -69,7 +71,7 @@ export default {
             float: right;
             font-size: 0.36rem;
             line-height: 0.8rem;
-            color: #999;
+            color: $fontWeakColor;
         }
     }
 }

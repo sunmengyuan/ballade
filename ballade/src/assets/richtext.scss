@@ -1,5 +1,7 @@
+@import "vars";
+
 .gm-richtext {
-    color: #666;
+    color: $fontMainColor;
     line-height: 1.5;
     ul, ol {
         margin-left: 0.5rem;
@@ -11,7 +13,7 @@
         list-style-type: decimal;
     }
     a {
-        color: #3ADBD2;
+        color: $fontLinkColor;
         text-decoration: underline;
     }
     p {
