@@ -5,7 +5,7 @@
                 <img :src="data.image" />
             </div>
             <div class="service-bio gm-tiny-scale">
-                <h4>{{ data.desc }}</h4>
+                <h4 class="gm-ellipsis gm-row2">{{ data.desc }}</h4>
                 <div class="gm-clear">
                     <span>&yen;{{ data.price }}<em v-if="data.is_price_range">起</em></span>
                     <span>{{ data.appoint_count }}人已预约</span>

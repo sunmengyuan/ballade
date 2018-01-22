@@ -60,3 +60,18 @@ a, a:visited {
         transform: translate(-50%, -50%);
     }
 }
+.gm-ellipsis {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+}
+.gm-row1 {
+    -webkit-line-clamp: 1;
+}
+.gm-row2 {
+    -webkit-line-clamp: 2;
+}
+.gm-row3 {
+    -webkit-line-clamp: 3;
+}
