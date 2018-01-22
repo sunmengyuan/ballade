@@ -43,6 +43,12 @@ export default {
         this.service_id = this.$router.query('service_id')
         this.loadTopicDetail()
         this.loadRelatedServices()
+        if ((gmclient !== undefined) && (gmclient.showToast !== undefined)) {
+            gmclient.showToast(JSON.stringify({
+                text: '我是 Native Toast',
+                duration: 0
+            }))
+        }
     },
 
     methods: {
@@ -58,10 +64,10 @@ export default {
                     this.showLoading = true
                     if (gmclient !== undefined) {
                         if (gmclient.setPageData !== undefined) {
-                            gmclient.setPageData({
+                            gmclient.setPageData(JSON.stringify({
                                 page_name: 'demo',
                                 share_data: data.detail.share_data
-                            })
+                            }))
                         }
                         if (gmclient.setPageTitle !== undefined) {
                             gmclient.setPageTitle(data.detail.top_title)
