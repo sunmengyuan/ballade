@@ -18,7 +18,8 @@ export default {
         return {
             topic_id: null,
             service_id: null,
-            topicDetail: {}
+            topicDetail: {},
+            services: []
         }
     },
 
@@ -48,7 +49,9 @@ export default {
                     service_id: this.service_id
                 },
                 callbackFn: (data) => {
-                    console.log(data)
+                    var list = this.services
+                    list = list.concat(data)
+                    this.services = list
                 }
             })
         }

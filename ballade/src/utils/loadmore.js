@@ -24,7 +24,6 @@ const Loadmore = {
         if (type === 'scroll') this.listenScroll()
     },
     loadData: function () {
-        var _this = this
         var view = this.view
         var opts = this.opts
         var status = {
@@ -34,8 +33,8 @@ const Loadmore = {
                 ? view._Loadmore.flag
                 : true
         }
-        if (!_this.flag) return
-        _this.flag = false
+        if (!this.flag) return
+        this.flag = false
         if (status.flag) {
             Request({
                 url: opts.url,
@@ -56,7 +55,7 @@ const Loadmore = {
                             opts.completeFn(data)
                         }
                     }
-                    _this.flag = true
+                    this.flag = true
                 },
                 failFn: (data) => {
                     var list = opts.key ? data.data[opts.key] : data.data
@@ -73,14 +72,14 @@ const Loadmore = {
                         page: status.page,
                         start_num: status.start_num
                     })
-                    _this.flag = true
+                    this.flag = true
                 },
                 errorFn: () => {
                     opts.errorFn({
                         page: status.page,
                         start_num: status.start_num
                     })
-                    _this.flag = true
+                    this.flag = true
                 }
             })
         }
