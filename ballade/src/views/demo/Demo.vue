@@ -43,6 +43,7 @@ export default {
         this.service_id = this.$router.query('service_id')
         this.loadTopicDetail()
         this.loadRelatedServices()
+        this.clientJS()
         if ((gmclient !== undefined) && (gmclient.showToast !== undefined)) {
             gmclient.showToast(JSON.stringify({
                 text: '我是 Native Toast',
@@ -91,6 +92,11 @@ export default {
                     this.loading = false
                 }
             })
+        },
+        clientJS: function () {
+            window.gmJS.showAlert = () => {
+                alert('我是 H5 Alert')
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 const App = {
     do: function () {
-
+        window.gmJS = {}
     },
     $router: {
         query: (key) => {
