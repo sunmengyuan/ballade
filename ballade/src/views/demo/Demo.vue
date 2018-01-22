@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import Loadmore from '@/utils/loadmore'
+
 export default {
     name: 'Demo',
 
@@ -23,11 +25,12 @@ export default {
     created () {
         this.topic_id = this.$router.query('topic_id')
         this.service_id = this.$router.query('service_id')
-        this.loadTopic()
+        this.loadTopicDetail()
+        this.loadRelatedServices()
     },
 
     methods: {
-        loadTopic: function () {
+        loadTopicDetail: function () {
             this.$request({
                 url: '/hybrid/topic_detail/_data',
                 params: {
@@ -35,6 +38,17 @@ export default {
                 },
                 successFn: (data) => {
                     this.topicDetail = data.data.detail.topic
+                }
+            })
+        },
+        loadRelatedServices: function () {
+            Loadmore.do(this, {
+                url: '/hybrid/promotion/related_service/_data',
+                params: {
+                    service_id: this.service_id
+                },
+                callbackFn: (data) => {
+                    console.log(data)
                 }
             })
         }
