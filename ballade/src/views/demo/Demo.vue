@@ -10,18 +10,21 @@
                 :key="service.id"
                 v-for="service in services"></service-square>
         </div>
+        <loading :loading="loading" v-show="showLoading"></loading>
     </section>
 </template>
 
 <script>
 import Loadmore from '@/utils/loadmore'
 import ServiceSquare from '@/templates/ServiceSquare'
+import Loading from '@/components/Loading'
 
 export default {
     name: 'Demo',
 
     components: {
-        ServiceSquare
+        ServiceSquare,
+        Loading
     },
 
     data () {
@@ -29,7 +32,9 @@ export default {
             topic_id: null,
             service_id: null,
             topicDetail: {},
-            services: []
+            services: [],
+            showLoading: false,
+            loading: true
         }
     },
 
@@ -49,6 +54,7 @@ export default {
                 },
                 successFn: (data) => {
                     this.topicDetail = data.data.detail.topic
+                    this.showLoading = true
                 }
             })
         },
@@ -62,6 +68,9 @@ export default {
                     var list = this.services
                     list = list.concat(data)
                     this.services = list
+                },
+                completeFn: (data) => {
+                    this.loading = false
                 }
             })
         }
