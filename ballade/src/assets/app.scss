@@ -39,12 +39,16 @@ a, a:visited {
     clear: both;
     visibility: hidden;
 }
+
+/* 缩放 */
 .gm-tiny-scale{
     width: 200%;
     margin-left: -50%;
     box-sizing: border-box;
     transform: scale(0.5);
 }
+
+/* 方图占位 */
 .gm-nothumb {
     position: relative;
     width: 100%;
@@ -60,18 +64,19 @@ a, a:visited {
         transform: translate(-50%, -50%);
     }
 }
-.gm-ellipsis {
-    display: -webkit-box;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-}
-.gm-row1 {
-    -webkit-line-clamp: 1;
-}
-.gm-row2 {
-    -webkit-line-clamp: 2;
-}
-.gm-row3 {
-    -webkit-line-clamp: 3;
+
+/* 多行省略 */
+@for $lineCount from 1 through 3 {
+    .gm-ellipsis-row#{$lineCount} {
+        overflow: hidden;
+        @if $lineCount == 1 {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        } @else {
+            display: -webkit-box;
+            text-overflow: -o-ellipsis-lastline;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: $lineCount;
+        }
+    }
 }
