@@ -2,7 +2,7 @@
     var docEl = doc.documentElement
     var resizeMethod = 'orientationchange' in window ? 'orientationchange' : 'resize'
     var recalculate = () => {
-        var width = docEl.clientWidth
+        var width = (docEl.clientWidth > 320) ? docEl.clientWidth : 320
         var rem = width * 100 / 750
         docEl.style.fontSize = `${Math.min(rem, 50)}px`
     }

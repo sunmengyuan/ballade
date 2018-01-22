@@ -31,6 +31,7 @@ export default {
     float: left;
     width: 50%;
     padding: 0.1rem;
+    overflow: hidden;
     box-sizing: border-box;
     .gm-nothumb {
         border-top-left-radius: 4px;
