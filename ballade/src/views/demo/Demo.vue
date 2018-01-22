@@ -44,6 +44,7 @@ export default {
         this.loadTopicDetail()
         this.loadRelatedServices()
         this.clientJS()
+        /* eslint-disable no-undef */
         if ((typeof gmclient !== 'undefined') && (typeof gmclient.showToast !== 'undefined')) {
             gmclient.showToast(JSON.stringify({
                 text: '我是 Native Toast',
@@ -63,6 +64,7 @@ export default {
                     var detail = data.data.detail
                     this.topicDetail = detail.topic
                     this.showLoading = true
+                    /* eslint-disable no-undef */
                     if (typeof gmclient !== 'undefined') {
                         if (typeof gmclient.setPageData !== 'undefined') {
                             gmclient.setPageData(JSON.stringify({
