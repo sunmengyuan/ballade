@@ -1,6 +1,6 @@
 <template>
     <div class="service-square-item">
-        <a href="javascript:;" class="gm-block">
+        <a :href="'gengmei://service?service_id=' + data.id" class="gm-block">
             <div class="gm-nothumb">
                 <img :src="data.image" />
             </div>
