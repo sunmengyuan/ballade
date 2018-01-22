@@ -1,0 +1,29 @@
+.gm-richtext {
+    color: #666;
+    line-height: 1.5;
+    ul, ol {
+        margin-left: 0.5rem;
+    }
+    ul, ul > li {
+        list-style-type: disc;
+    }
+    ol, ol > li {
+        list-style-type: decimal;
+    }
+    a {
+        color: #3ADBD2;
+        text-decoration: underline;
+    }
+    p {
+        &:first-child {
+            margin-top: 0;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    img {
+        display: block;
+        max-width: 100%;
+    }
+}
