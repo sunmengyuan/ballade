@@ -1,7 +1,4 @@
-$fontColor: #333;
-$fontHighlightColor: #3ADBD2;
-$borderColor: #F0F0F0;
-$bgColor: #F5F5F5;
+@import "vars";
 
 html, body {
     word-wrap: break-word;
@@ -15,10 +12,10 @@ html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, form, th, td, hr {
 body {
     font: 0.28rem/1.3 sans-serif;
     text-align: left;
-    color: #333;
+    color: $fontMainColor;
     min-width: 320px;
     padding-bottom: 1rem;
-    background-color: #F5F5F5;
+    background-color: $bgColor;
     outline: 0;
     -webkit-text-size-adjust: none;
     -webkit-overflow-scrolling: touch;
@@ -54,7 +51,7 @@ button{
     background-color: transparent;
 }
 a, a:visited {
-    color: #333;
+    color: $fontMainColor;
     text-decoration: none;
 }
 img {
@@ -190,20 +187,20 @@ img {
 
 /* Tab 栏 */
 .gm-navigator {
-    border-bottom: 1px solid #F0F0F0;
+    border-bottom: 1px solid $borderColor;
     background-color: #FFF;
     li {
         text-align: center;
         &.active {
             position: relative;
-            color: #3ADBD2;
+            color: $lightColor;
         }
         &.active:after {
             content: "";
             position: absolute;
             bottom: 0;
             left: 50%;
-            background-color: #3ADBD2;
+            background-color: $lightColor;
             transform: translate(-50%, 0);
         }
     }
