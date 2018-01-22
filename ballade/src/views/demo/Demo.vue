@@ -53,8 +53,20 @@ export default {
                     topic_id: this.topic_id
                 },
                 successFn: (data) => {
-                    this.topicDetail = data.data.detail.topic
+                    var data = data.data
+                    this.topicDetail = data.detail.topic
                     this.showLoading = true
+                    if (gmclient !== undefined) {
+                        if (gmclient.setPageData !== undefined) {
+                            gmclient.setPageData({
+                                page_name: 'demo',
+                                share_data: data.detail.share_data
+                            })
+                        }
+                        if (gmclient.setPageTitle !== undefined) {
+                            gmclient.setPageTitle(data.detail.top_title)
+                        }
+                    }
                 }
             })
         },
