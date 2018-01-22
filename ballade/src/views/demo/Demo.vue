@@ -4,15 +4,25 @@
             <div class="content" v-html="topicDetail.content"></div>
             <img :src="item.image" v-for="item in topicDetail.images" />
         </div>
-        <div class="service-list"></div>
+        <div class="service-list gm-clear">
+            <service-square
+                :data="service"
+                :key="service.id"
+                v-for="service in services"></service-square>
+        </div>
     </section>
 </template>
 
 <script>
 import Loadmore from '@/utils/loadmore'
+import ServiceSquare from '@/templates/ServiceSquare'
 
 export default {
     name: 'Demo',
+
+    components: {
+        ServiceSquare
+    },
 
     data () {
         return {
@@ -69,5 +79,8 @@ export default {
             margin-bottom: 0;
         }
     }
+}
+.service-list {
+    padding: 0.2rem;
 }
 </style>
