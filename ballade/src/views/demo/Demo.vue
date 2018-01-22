@@ -44,7 +44,7 @@ export default {
         this.loadTopicDetail()
         this.loadRelatedServices()
         this.clientJS()
-        if ((gmclient !== undefined) && (gmclient.showToast !== undefined)) {
+        if ((typeof gmclient !== 'undefined') && (typeof gmclient.showToast !== 'undefined')) {
             gmclient.showToast(JSON.stringify({
                 text: '我是 Native Toast',
                 duration: 0
@@ -60,18 +60,18 @@ export default {
                     topic_id: this.topic_id
                 },
                 successFn: (data) => {
-                    var data = data.data
-                    this.topicDetail = data.detail.topic
+                    var detail = data.data.detail
+                    this.topicDetail = detail.topic
                     this.showLoading = true
-                    if (gmclient !== undefined) {
-                        if (gmclient.setPageData !== undefined) {
+                    if (typeof gmclient !== 'undefined') {
+                        if (typeof gmclient.setPageData !== 'undefined') {
                             gmclient.setPageData(JSON.stringify({
                                 page_name: 'demo',
-                                share_data: data.detail.share_data
+                                share_data: detail.share_data
                             }))
                         }
-                        if (gmclient.setPageTitle !== undefined) {
-                            gmclient.setPageTitle(data.detail.top_title)
+                        if (typeof gmclient.setPageTitle !== 'undefined') {
+                            gmclient.setPageTitle(detail.top_title)
                         }
                     }
                 }
