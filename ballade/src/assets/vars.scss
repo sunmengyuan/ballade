@@ -1,28 +1,29 @@
 /* 标题文字 */
-$fontTitleColor: #282828;
+$fClrTitle: #282828;
 /* 正文字 */
-$fontMainColor: #464646;
-/* 辅助文字 */
-$fontAssistColor: #666;
-$fontWeakColor: #999;
-$fontWeakestColor: #CCC;
-$fontPinkColor: #FF7690;
+$fClrMain: #464646;
+/* 辅助文字灰 */
+$fClrWeak: #666;
+$fClrWeaker: #999;
+$fClrWeakest: #CCC;
+/* 辅助文字彩 */
+$fClr7690: #FF7690;
 /* 链接文字 */
-$fontLinkColor: #4ABAB4;
+$fClrLink: #4ABAB4;
 /* 提示文字 */
-$fontTipColor: #9D704F;
+$fClrTip: #9D704F;
 
 /* 主视觉 */
-$lightColor: #3ADBD2;
+$clrLight: #3ADBD2;
 /* 辅助色 */
-$pinkColor: #FF7690;
+$clr7690: #FF7690;
 /* 提示色 */
-$tipColor: FFFBE4;
+$clrTip: FFFBE4;
+/* 失效色 */
+$clrDis: #D5D5D5;
 
 /* 分割线 */
-$borderColor: #F0F0F0;
-$borderStrongColor: #E5E5E5;
+$bdClr: #F0F0F0;
+$bdClrStrong: #E5E5E5;
 /* 背景色 */
-$bgColor: #F4F3F8;
-/* 失效色 */
-$disColor: #D5D5D5;
+$bgClr: #F4F3F8;
