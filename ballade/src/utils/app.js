@@ -9,7 +9,7 @@ const App = {
             var tmp = []
             if (search) {
                 tmp = (process.env.NODE_ENV === 'production')
-                    ? decodeURI(search.split('uri=')[1]).split('?')[1].split('&')
+                    ? decodeURIComponent(search.split('uri=')[1]).split('?')[1].split('&')
                     : search.slice(1).split('&')
             }
             for (let i in tmp) {
