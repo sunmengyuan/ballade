@@ -77,19 +77,6 @@ gulp.task('stamps', () => {
         })
 })
 
-gulp.task('copy', () => {
-    var copy = (type) => {
-        gulp.src(`../dist/static/${type}.*.js`)
-            .pipe(rename(`${type}.js`))
-            .pipe(gulp.dest('../dist/static/'))
-            .on('end', () => {
-                del([`../dist/static/${type}.*.js`], {force: true})
-            })
-    }
-    copy('vendor')
-    copy('manifest')
-})
-
 gulp.task('inline', () => {
     gulp.src('../dist/**/*-*.html')
         .pipe(inline())

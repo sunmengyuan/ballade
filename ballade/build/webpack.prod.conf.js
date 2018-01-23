@@ -47,8 +47,8 @@ const webpackConfig = merge(baseWebpackConfig, {
     devtool: config.build.productionSourceMap ? config.build.devtool : false,
     output: {
         path: config.build.assetsRoot,
-        filename: utils.assetsPath('[name].[chunkhash].js'),
-        chunkFilename: utils.assetsPath('[name].[chunkhash].js')
+        filename: utils.assetsPath('[name].js'),
+        chunkFilename: utils.assetsPath('[name].js')
     },
     plugins: [
         // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -65,7 +65,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         }),
         // extract css into its own file
         new ExtractTextPlugin({
-            filename: utils.assetsPath('[name].[contenthash].css'),
+            filename: utils.assetsPath('[name].css'),
             // set the following option to `true` if you want to extract CSS from
             // codesplit chunks into this main css file as well.
             // This will result in *all* of your app's CSS being loaded upfront.
