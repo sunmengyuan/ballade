@@ -2,6 +2,7 @@ const gulp = require('gulp')
 const rename = require('gulp-rename')
 const replace = require('gulp-replace-task')
 const rev = require('gulp-rev')
+const inline = require('gulp-inline-source')
 const zip = require('gulp-zip')
 const del = require('del')
 const settings = require('./settings')
@@ -74,32 +75,9 @@ gulp.task('stamps', () => {
                     })
             }
         })
-    gulp.src('../dist/static/vendor.*.js')
-        .on('data', (file) => {
-            var stamp = file.path
-                .split(`${settings.project}/dist/`)[1]
-                .split('vendor.')[1]
-                .split('.js')[0]
-            console.log('vendor: ', `/dist/static/vendor-${stamp}.js`)
-            gulp.src('./temp.json')
-                .pipe(replace({
-                    patterns: [
-                        {
-                            match: /<%=Holder%>/g,
-                            replacement: `{"remote_file":"${settings.cdn}/dist/static/vendor.json","hash":"${stamp}"}`
-                        }
-                    ]
-                }))
-                .pipe(rename('vendor.json'))
-                .pipe(gulp.dest('../dist/'))
-        })
 })
 
-gulp.task('delete', () => {
-    del(['../dist/*'], {force: true})
-})
-
-gulp.task('clear', () => {
+gulp.task('copy', () => {
     var copy = (type) => {
         gulp.src(`../dist/static/${type}.*.js`)
             .pipe(rename(`${type}.js`))
@@ -110,11 +88,22 @@ gulp.task('clear', () => {
     }
     copy('vendor')
     copy('manifest')
+})
+
+gulp.task('inline', () => {
+    gulp.src('../dist/**/*-*.html')
+        .pipe(inline())
+        .pipe(gulp.dest('../dist/'))
+})
+
+gulp.task('delete', () => {
+    del(['../dist/*'], {force: true})
+})
+
+gulp.task('clear', () => {
     del([
-        '../dist/static/*',
+        '../dist/static',
         '../dist/**/*.html',
-        '!../dist/static/vendor.*js',
-        '!../dist/static/manifest.*js',
         '!../dist/**/*-*.html'
     ], {force: true})
 })
