@@ -1,5 +1,6 @@
 <template>
-    <section class="gm-content">
+    <section class="demo-wrap gm-content">
+        <a href="javascript:;" class="button" @click="showAlert">点我</a>
         <div class="topic-detail">
             <div class="content" v-html="topicDetail.content"></div>
             <img :src="item.image" v-for="item in topicDetail.images" />
@@ -99,6 +100,19 @@ export default {
             window.gmJS.showAlert = () => {
                 alert('我是 H5 Alert')
             }
+        },
+        showAlert: function () {
+            /* eslint-disable no-undef */
+            if ((typeof gmclient !== 'undefined') && (typeof gmclient.showAlert !== 'undefined')) {
+                gmclient.showAlert({
+                    title: 'Native Alert',
+                    content: '我是客户端弹窗',
+                    confirm_text: '知道了',
+                    confirm_callback: function () {
+                        window.gmJS.showAlert()
+                    }
+                })
+            }
         }
     }
 }
@@ -117,5 +131,13 @@ export default {
 }
 .service-list {
     padding: 0.2rem;
+}
+.demo-wrap .button {
+    display: block;
+    font-size: 0.3rem;
+    line-height: 0.8rem;
+    text-align: center;
+    color: #FFF;
+    background-color: rebeccapurple;
 }
 </style>
