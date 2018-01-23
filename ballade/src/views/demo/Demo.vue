@@ -104,14 +104,12 @@ export default {
         showAlert: function () {
             /* eslint-disable no-undef */
             if ((typeof gmclient !== 'undefined') && (typeof gmclient.showAlert !== 'undefined')) {
-                gmclient.showAlert({
+                gmclient.showAlert(JSON.stringify({
                     title: 'Native Alert',
                     content: '我是客户端弹窗',
                     confirm_text: '知道了',
-                    confirm_callback: function () {
-                        window.gmJS.showAlert()
-                    }
-                })
+                    confirm_callback: 'window.gmJS.showAlert()'
+                }))
             }
         }
     }
