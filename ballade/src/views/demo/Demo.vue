@@ -41,7 +41,7 @@ export default {
             services: [],
             showLoading: false,
             loading: true,
-            reqError: true
+            reqError: false
         }
     },
 
@@ -83,6 +83,9 @@ export default {
                             gmclient.setPageTitle(detail.top_title)
                         }
                     }
+                },
+                errorFn: () => {
+                    this.reqError = true
                 }
             })
         },
