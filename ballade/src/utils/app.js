@@ -1,4 +1,9 @@
+import Settings from '~/settings.json'
+
 const App = {
+    GLOBAL: {
+        src: Settings.source
+    },
     do: function () {
         window.gmJS = {}
     },
@@ -24,6 +29,7 @@ const App = {
     $gmclient: {}
 }
 App.install = (Vue, options) => {
+    Vue.prototype.GLOBAL = App.GLOBAL
     Vue.prototype.$app = {
 
     }
