@@ -27,9 +27,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/vars";
-@import "../assets/mixins";
-
 .service-square-item {
     float: left;
     width: 50%;

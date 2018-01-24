@@ -24,9 +24,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/vars";
-@import "../assets/mixins";
-
 .gm-error {
     position: fixed;
     left: 0;

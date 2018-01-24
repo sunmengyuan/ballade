@@ -17,9 +17,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/vars";
-@import "../assets/mixins";
-
 .gm-loading {
     font-size: 0.26rem;
     line-height: 0.4rem;

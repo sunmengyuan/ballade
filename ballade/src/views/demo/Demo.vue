@@ -133,8 +133,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/vars";
-
 .topic-detail {
     padding: 0.3rem;
     margin-bottom: 0.2rem;

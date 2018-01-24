@@ -25,9 +25,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/vars";
-@import "../assets/mixins";
-
 .gm-nodata {
     position: relative;
     width: 100%;
