@@ -112,7 +112,33 @@
             position: absolute;
             bottom: 0;
             background-color: $fClrLink;
-            @extend %gm-horizontal-center
+            @extend %gm-horizontal-center;
+        }
+    }
+}
+
+/* 箭头 */
+@mixin gm-arrow-right ($clr: #AAA) {
+    position: relative;
+    i {
+        position: absolute;
+        right: 0.3rem;
+        @extend %gm-vertical-center;
+        &:before, &:after {
+            content: "";
+            display: block;
+            width: 9px;
+            height: 1px;
+            border-radius: 1px / 50%;
+            background-color: $clr;
+        }
+        &:before {
+            margin-top: 2px;
+            transform: rotate(-45deg);
+        }
+        &:after {
+            margin-top: -7px;
+            transform: rotate(-135deg);
         }
     }
 }
