@@ -1,6 +1,9 @@
 <template>
     <div class="gm-loading">
-        <div class="loading" v-if="loading">正在加载...</div>
+        <div class="loading" v-if="loading">
+            <img :src="GLOBAL.src + '/icon_loading.png'" />
+            <span>正在加载...</span>
+        </div>
         <div class="complete" v-else>我们是有底线的</div>
     </div>
 </template>
@@ -42,6 +45,26 @@ export default {
         &:after {
             right: 0;
             margin-right: -1.24rem;
+        }
+    }
+    .loading {
+        img, span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        img {
+            width: 0.28rem;
+            height: 0.28rem;
+            margin-right: 0.1rem;
+            animation: loading 0.5s linear infinite forwards;
+            @keyframes loading {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
         }
     }
 }
