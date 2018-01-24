@@ -36,7 +36,7 @@ export default {
             width: 50%;
             height: 1px;
             background-color: $bdClr;
-            @extend %gm-vertical-center
+            @extend %gm-vertical-center;
         }
         &:before {
             left: 0;
