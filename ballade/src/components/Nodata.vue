@@ -1,5 +1,5 @@
 <template>
-    <section class="gm-nodata">
+    <section class="gm-nodata" :style="'height: ' + height + 'px'">
         <img :src="GLOBAL.src + '/holder_' + type + '.png'">
         <p>{{ message }}</p>
     </section>
@@ -15,6 +15,10 @@ export default {
         type: {
             type: String,
             default: 'common'
+        },
+        height: {
+            type: Number,
+            default: 300
         }
     }
 }

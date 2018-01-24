@@ -2,7 +2,9 @@ import Settings from '~/settings.json'
 
 const App = {
     GLOBAL: {
-        src: Settings.source
+        src: Settings.source,
+        winWidth: window.screen.availWidth,
+        winHeight: window.screen.availHeight
     },
     do: function () {
         window.gmJS = {}
