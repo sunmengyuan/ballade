@@ -118,27 +118,50 @@
 }
 
 /* 箭头 */
-@mixin gm-arrow-right ($clr: #AAA) {
+@mixin gm-arrow ($clr: #AAA, $direct: 'right', $size: 9px) {
     position: relative;
     i {
-        position: absolute;
-        right: 0.3rem;
-        @extend %gm-vertical-center;
+        position: absolute !important;
+        position: relative;
+        width: $size;
+        height: $size;
+        border: 2px solid $clr;
+        border-top: none;
+        border-left: none;
+        border-bottom-right-radius: 2px;
+        transform-origin: center center;
+        @if $direct == 'right' {
+            top: 50%;
+            right: 0.3rem;
+            transform: rotate(-45deg) translate(0, -50%);
+        }
+        @if $direct == 'left' {
+            transform: rotate(135deg);
+        }
+        @if $direct == 'top' {
+            transform: rotate(-135deg)
+        }
+        @if $direct == 'bottom' {
+            transform: rotate(45deg);
+        }
         &:before, &:after {
             content: "";
+            position: absolute;
             display: block;
-            width: 9px;
-            height: 1px;
-            border-radius: 1px / 50%;
+            border-radius: 50%;
             background-color: $clr;
         }
         &:before {
-            margin-top: 2px;
-            transform: rotate(-45deg);
+            width: 3px;
+            height: 2px;
+            bottom: -2px;
+            left: -2px;
         }
         &:after {
-            margin-top: -7px;
-            transform: rotate(-135deg);
+            width: 2px;
+            height: 3px;
+            top: -2px;
+            right: -2px;
         }
     }
 }
