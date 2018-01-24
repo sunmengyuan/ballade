@@ -2,7 +2,7 @@
     <section class="gm-error">
         <img :src="GLOBAL.src + '/holder_error.png'">
         <p>{{ message }}</p>
-        <a href="javascript:;">重新加载</a>
+        <a href="javascript:;" @click="reload">重新加载</a>
     </section>
 </template>
 
@@ -12,6 +12,12 @@ export default {
         message: {
             type: String,
             default: '原谅我一看到美人就不淡定'
+        }
+    },
+
+    methods: {
+        reload: () => {
+            window.location.reload()
         }
     }
 }
