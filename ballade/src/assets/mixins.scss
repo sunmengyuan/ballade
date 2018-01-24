@@ -23,6 +23,17 @@
     transform: scale(0.5);
 }
 
+/* 多列布局 */
+@for $colCount from 1 through 4 {
+    %gm-col#{$colCount} {
+        .gm-item {
+            float: left;
+            width: 100%/$colCount;
+            box-sizing: border-box;
+        }
+    }
+}
+
 /* 单排横划 */
 %gm-horizontal-scroll {
     white-space: nowrap;

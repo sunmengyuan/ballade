@@ -85,17 +85,17 @@ img {
 }
 
 /* 多行省略 */
-@for $lineCount from 1 through 3 {
-    .gm-ellipsis-row#{$lineCount} {
+@for $rowCount from 1 through 3 {
+    .gm-ellipsis-row#{$rowCount} {
         overflow: hidden;
-        @if $lineCount == 1 {
+        @if $rowCount == 1 {
             white-space: nowrap;
             text-overflow: ellipsis;
         } @else {
             display: -webkit-box;
             text-overflow: -o-ellipsis-lastline;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: $lineCount;
+            -webkit-line-clamp: $rowCount;
         }
     }
 }
