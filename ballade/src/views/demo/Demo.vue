@@ -7,7 +7,8 @@
                 <div class="content" v-html="topicDetail.content"></div>
                 <img :src="item.image" v-for="item in topicDetail.images" />
             </div>
-            <div class="service-list gm-clear">
+            <nodata v-if="showEmpty"></nodata>
+            <div class="service-list gm-clear" v-else>
                 <service-square
                     :data="service"
                     :key="service.id"
@@ -23,6 +24,7 @@ import Loadmore from '@/utils/loadmore'
 import ServiceSquare from '@/templates/ServiceSquare'
 import Loading from '@/components/Loading'
 import Error from '@/components/Error'
+import Nodata from '@/components/Nodata'
 
 export default {
     name: 'Demo',
@@ -30,7 +32,8 @@ export default {
     components: {
         ServiceSquare,
         Loading,
-        Error
+        Error,
+        Nodata
     },
 
     data () {
@@ -41,6 +44,7 @@ export default {
             services: [],
             showLoading: false,
             loading: true,
+            showEmpty: false,
             reqError: false
         }
     },
@@ -102,6 +106,9 @@ export default {
                 },
                 completeFn: (data) => {
                     this.loading = false
+                },
+                nodataFn: (data) => {
+                    this.showEmpty = true
                 }
             })
         },
@@ -130,6 +137,7 @@ export default {
 
 .topic-detail {
     padding: 0.3rem;
+    margin-bottom: 0.2rem;
     background-color: #FFF;
     img {
         margin: 0.2rem auto;
