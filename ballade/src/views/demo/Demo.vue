@@ -1,17 +1,20 @@
 <template>
-    <section class="demo-wrap gm-content">
-        <a href="javascript:;" class="button" @click="showAlert">点我</a>
-        <div class="topic-detail">
-            <div class="content" v-html="topicDetail.content"></div>
-            <img :src="item.image" v-for="item in topicDetail.images" />
-        </div>
-        <div class="service-list gm-clear">
-            <service-square
-                :data="service"
-                :key="service.id"
-                v-for="service in services"></service-square>
-        </div>
-        <loading :loading="loading" v-show="showLoading"></loading>
+    <section class="demo-wrap">
+        <error v-if="reqError"></error>
+        <section class="gm-content" v-else>
+            <a href="javascript:;" class="button" @click="showAlert">点我</a>
+            <div class="topic-detail">
+                <div class="content" v-html="topicDetail.content"></div>
+                <img :src="item.image" v-for="item in topicDetail.images" />
+            </div>
+            <div class="service-list gm-clear">
+                <service-square
+                    :data="service"
+                    :key="service.id"
+                    v-for="service in services"></service-square>
+            </div>
+            <loading :loading="loading" v-show="showLoading"></loading>
+        </section>
     </section>
 </template>
 
@@ -19,13 +22,15 @@
 import Loadmore from '@/utils/loadmore'
 import ServiceSquare from '@/templates/ServiceSquare'
 import Loading from '@/components/Loading'
+import Error from '@/components/Error'
 
 export default {
     name: 'Demo',
 
     components: {
         ServiceSquare,
-        Loading
+        Loading,
+        Error
     },
 
     data () {
@@ -35,7 +40,8 @@ export default {
             topicDetail: {},
             services: [],
             showLoading: false,
-            loading: true
+            loading: true,
+            reqError: true
         }
     },
 

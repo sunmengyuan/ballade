@@ -14,7 +14,6 @@ body {
     text-align: left;
     color: $fClrMain;
     min-width: 320px;
-    padding-bottom: 1rem;
     background-color: $bgClr;
     outline: 0;
     -webkit-text-size-adjust: none;
@@ -61,7 +60,6 @@ img {
 }
 
 .gm-content {
-    min-height: 100%;
     padding-bottom: 1rem;
 }
 .gm-block {
