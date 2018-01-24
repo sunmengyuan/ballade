@@ -105,9 +105,9 @@ export default {
             /* eslint-disable no-undef */
             if ((typeof gmclient !== 'undefined') && (typeof gmclient.showAlert !== 'undefined')) {
                 gmclient.showAlert(JSON.stringify({
-                    title: 'Native Alert',
-                    content: '我是客户端弹窗',
-                    confirm_text: '知道了',
+                    title: '提示',
+                    content: '我是 Native Alert',
+                    confirm_text: '确定',
                     confirm_callback: 'window.gmJS.showAlert()'
                 }))
             }
@@ -117,6 +117,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../assets/vars";
+
 .topic-detail {
     padding: 0.3rem;
     background-color: #FFF;
@@ -136,6 +138,6 @@ export default {
     line-height: 0.8rem;
     text-align: center;
     color: #FFF;
-    background-color: rebeccapurple;
+    background-color: $clrLight;
 }
 </style>
