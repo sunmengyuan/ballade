@@ -132,7 +132,7 @@ export default {
 .service-list {
     padding: 0.2rem;
 }
-.demo-wrap .button {
+.button {
     display: block;
     font-size: 0.3rem;
     line-height: 0.8rem;
