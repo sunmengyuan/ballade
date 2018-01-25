@@ -57,7 +57,6 @@ export default {
         this.topic_id = this.$router.query('topic_id')
         this.service_id = this.$router.query('service_id')
         this.loadTopicDetail()
-        this.loadRelatedServices()
         this.clientJS()
         /* eslint-disable no-undef */
         if ((typeof gmclient !== 'undefined') && (typeof gmclient.showToast !== 'undefined')) {
@@ -80,6 +79,7 @@ export default {
                     this.topicDetail = detail.topic
                     this.showLoading = true
                     this.showWhirl = false
+                    this.loadRelatedServices()
                     /* eslint-disable no-undef */
                     if (typeof gmclient !== 'undefined') {
                         if (typeof gmclient.setPageData !== 'undefined') {
