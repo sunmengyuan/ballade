@@ -1,5 +1,7 @@
 <template>
-    <a href="javascript:;" class="gm-btn"></a>
+    <a href="javascript:;" class="gm-btn">
+        <slot></slot>
+    </a>
 </template>
 
 <script>
@@ -101,7 +103,7 @@ $btns: (
             bdClr: #D5D5D5,
             background: transparent
         )
-    )
+    ),
     /* 线框灰 */
     bdGrey: (
         normal: (
@@ -210,7 +212,7 @@ $btns: (
             background: #D5D5D5
         )
     )
-)
+);
 @mixin btnStyle ($fClr, $bdClr, $background) {
     color: $fClr;
     border-color: $bdClr;
@@ -229,5 +231,11 @@ $btns: (
             @include btnStyle(map-values($disable)...);
         }
     }
+}
+
+.gm-btn {
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
 }
 </style>

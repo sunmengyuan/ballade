@@ -3,7 +3,7 @@
         <whirl v-if="showWhirl"></whirl>
         <error v-if="showError"></error>
         <section class="gm-content" v-else>
-            <a href="javascript:;" class="button" @click="showAlert">点我</a>
+            <btn class="button" @click="showAlert">点我</btn>
             <div class="topic-detail" v-if="topicDetail.content">
                 <div class="content" v-html="topicDetail.content"></div>
                 <img :src="item.image" v-for="item in topicDetail.images" />
@@ -27,6 +27,7 @@ import Loading from '@/components/Loading'
 import Error from '@/components/Error'
 import Nodata from '@/components/Nodata'
 import Whirl from '@/components/Whirl'
+import Btn from '@/components/Btn'
 
 export default {
     name: 'Demo',
@@ -36,7 +37,8 @@ export default {
         Loading,
         Error,
         Nodata,
-        Whirl
+        Whirl,
+        Btn
     },
 
     data () {
@@ -157,12 +159,9 @@ export default {
 .service-list {
     padding: 0.2rem;
 }
-.button {
+.button.gm-btn {
     display: block;
     font-size: 0.3rem;
     line-height: 0.8rem;
-    text-align: center;
-    color: #FFF;
-    background-color: $clrLight;
 }
 </style>
