@@ -260,6 +260,7 @@ $btns: (
 .gm-btn {
     display: inline-block;
     text-align: center;
+    border: 1px solid transparent;
     box-sizing: border-box;
 }
 </style>
