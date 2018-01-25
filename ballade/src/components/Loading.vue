@@ -5,6 +5,7 @@
             <span>正在加载...</span>
         </div>
         <div class="complete" v-if="loading === false">我们是有底线的</div>
+        <div class="error" v-if="loading === 'error'">网络竟然崩溃了</div>
     </div>
 </template>
 
@@ -27,7 +28,7 @@ export default {
     color: $fClrWeaker;
     margin: 0.5rem 0.8rem;
     overflow: hidden;
-    .complete {
+    .complete, .error {
         position: relative;
         &:before, &:after {
             content: "";

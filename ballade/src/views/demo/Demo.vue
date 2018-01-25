@@ -77,9 +77,9 @@ export default {
                 successFn: (data) => {
                     var detail = data.data.detail
                     this.topicDetail = detail.topic
-                    this.showLoading = true
                     this.showWhirl = false
                     this.loadRelatedServices()
+                    this.showLoading = true
                     /* eslint-disable no-undef */
                     if (typeof gmclient !== 'undefined') {
                         if (typeof gmclient.setPageData !== 'undefined') {
@@ -109,12 +109,16 @@ export default {
                     var list = this.services
                     list = list.concat(data)
                     this.services = list
+                    this.loading = true
                 },
                 completeFn: (data) => {
                     this.loading = false
                 },
                 nodataFn: (data) => {
                     this.showEmpty = true
+                },
+                errorFn: (data) => {
+                    this.loading = 'error'
                 }
             })
         },
