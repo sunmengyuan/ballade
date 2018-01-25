@@ -1,5 +1,10 @@
 <template>
-    <a href="javascript:;" class="gm-btn" :class="'btn-' + type">
+    <a
+        href="javascript:;"
+        class="gm-btn"
+        :class="{active: isActive}"
+        :type="type"
+        @click="onTap">
         <slot></slot>
     </a>
 </template>
@@ -10,6 +15,18 @@ export default {
         type: {
             type: String,
             default: 'pureGreen'
+        }
+    },
+
+    data () {
+        return {
+            isActive: false
+        }
+    },
+
+    methods: {
+        onTap: function () {
+            this.isActive = true
         }
     }
 }
@@ -222,7 +239,7 @@ $btns: (
     background: $background;
 }
 @each $type, $status in $btns {
-    .btn-#{$type} {
+    .gm-btn[type=#{$type}] {
         $normal: map-get($status, normal);
         $active: map-get($status, active);
         $disable: map-get($status, disable);
