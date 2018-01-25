@@ -143,17 +143,17 @@ $btns: (
         normal: (
             font: #FFF,
             border: none,
-            background: ,
+            background: linear-gradient(-120deg, #45E7DE 0%, #58CBEF 100%)
         ),
         active: (
             font: #FFF,
             border: none,
-            background: ,
+            background: linear-gradient(-120deg, #2ECCC4 0%, #42B8DD 100%)
         ),
         disable: (
             font: #FFF,
             border: none,
-            background: ,
+            background: #D5D5D5
         )
     ),
     /* 渐变粉-跑道圆 */
@@ -161,17 +161,17 @@ $btns: (
         normal: (
             font: #FFF,
             border: none,
-            background: ,
+            background: linear-gradient(59deg, #FF5963 0%, #FF7096 100%)
         ),
         active: (
             font: #FFF,
             border: none,
-            background: ,
+            background: linear-gradient(59deg, #E74751 0%, #F4547E 100%)
         ),
         disable: (
             font: #FFF,
             border: none,
-            background: ,
+            background: #D5D5D5
         )
     ),
     /* 渐变绿 */
@@ -179,17 +179,17 @@ $btns: (
         normal: (
             font: #FFF,
             border: none,
-            background: ,
+            background: linear-gradient(-131deg, #3CE6D9 0%, #51D3E7 100%)
         ),
         active: (
             font: #FFF,
             border: none,
-            background: ,
+            background: linear-gradient(-131deg, #34D1C5 0%, #45BCCF 100%)
         ),
         disable: (
             font: #FFF,
             border: none,
-            background: ,
+            background: #D5D5D5
         )
     ),
     /* 渐变粉 */
@@ -197,17 +197,17 @@ $btns: (
         normal: (
             font: #FFF,
             border: none,
-            background: ,
+            background: linear-gradient(48deg, #FF5963 0%, #FF7096 100%)
         ),
         active: (
             font: #FFF,
             border: none,
-            background: ,
+            background: linear-gradient(46deg, #E74751 0%, #F4547E 100%)
         ),
         disable: (
             font: #FFF,
             border: none,
-            background: ,
+            background: #D5D5D5
         )
     )
 )
