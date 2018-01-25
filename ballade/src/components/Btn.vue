@@ -27,6 +27,10 @@ export default {
     methods: {
         onTap: function () {
             this.isActive = true
+            let t = setTimeout(() => {
+                this.isActive = false
+                clearTimeout(t)
+            }, 100)
         }
     }
 }
