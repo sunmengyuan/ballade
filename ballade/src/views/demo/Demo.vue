@@ -1,6 +1,6 @@
 <template>
     <section class="demo-wrap">
-        <whirl></whirl>
+        <whirl v-if="showWhirl"></whirl>
         <error v-if="reqError"></error>
         <section class="gm-content" v-else>
             <a href="javascript:;" class="button" @click="showAlert">点我</a>
@@ -48,6 +48,7 @@ export default {
             showLoading: false,
             loading: true,
             showEmpty: false,
+            showWhirl: true,
             reqError: false
         }
     },
@@ -78,6 +79,7 @@ export default {
                     var detail = data.data.detail
                     this.topicDetail = detail.topic
                     this.showLoading = true
+                    this.showWhirl = false
                     /* eslint-disable no-undef */
                     if (typeof gmclient !== 'undefined') {
                         if (typeof gmclient.setPageData !== 'undefined') {
@@ -93,6 +95,7 @@ export default {
                 },
                 errorFn: () => {
                     this.reqError = true
+                    this.showWhirl = false
                 }
             })
         },
