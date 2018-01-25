@@ -50,7 +50,7 @@ $btns: (
             bdClr: none,
             background: #1FB2A7
         ),
-        disable: (
+        disabled: (
             fClr: #FFF,
             bdClr: none,
             background: #D5D5D5
@@ -68,7 +68,7 @@ $btns: (
             bdClr: none,
             background: #E75873
         ),
-        disable: (
+        disabled: (
             fClr: #FFF,
             bdClr: none,
             background: #D5D5D5
@@ -86,7 +86,7 @@ $btns: (
             bdClr: #E5E5E5,
             background: #E5E5E5
         ),
-        disable: (
+        disabled: (
             fClr: #FFF,
             bdClr: #D5D5D5,
             background: #D5D5D5
@@ -104,7 +104,7 @@ $btns: (
             bdClr: #3ADBD2,
             background: transparent
         ),
-        disable: (
+        disabled: (
             fClr: #D5D5D5,
             bdClr: #D5D5D5,
             background: transparent
@@ -122,7 +122,7 @@ $btns: (
             bdClr: #FF7690,
             background: transparent
         ),
-        disable: (
+        disabled: (
             fClr: #D5D5D5,
             bdClr: #D5D5D5,
             background: transparent
@@ -140,7 +140,7 @@ $btns: (
             bdClr: #666,
             background: transparent
         ),
-        disable: (
+        disabled: (
             fClr: #D5D5D5,
             bdClr: #D5D5D5,
             background: transparent
@@ -158,7 +158,7 @@ $btns: (
             bdClr: #CCC,
             background: transparent
         ),
-        disable: (
+        disabled: (
             fClr: #CCC,
             bdClr: #CCC,
             background: transparent
@@ -176,7 +176,7 @@ $btns: (
             bdClr: none,
             background: linear-gradient(-120deg, #2ECCC4 0%, #42B8DD 100%)
         ),
-        disable: (
+        disabled: (
             fClr: #FFF,
             bdClr: none,
             background: #D5D5D5
@@ -194,7 +194,7 @@ $btns: (
             bdClr: none,
             background: linear-gradient(59deg, #E74751 0%, #F4547E 100%)
         ),
-        disable: (
+        disabled: (
             fClr: #FFF,
             bdClr: none,
             background: #D5D5D5
@@ -212,7 +212,7 @@ $btns: (
             bdClr: none,
             background: linear-gradient(-131deg, #34D1C5 0%, #45BCCF 100%)
         ),
-        disable: (
+        disabled: (
             fClr: #FFF,
             bdClr: none,
             background: #D5D5D5
@@ -230,7 +230,7 @@ $btns: (
             bdClr: none,
             background: linear-gradient(46deg, #E74751 0%, #F4547E 100%)
         ),
-        disable: (
+        disabled: (
             fClr: #FFF,
             bdClr: none,
             background: #D5D5D5
@@ -246,13 +246,13 @@ $btns: (
     .gm-btn[type=#{$type}] {
         $normal: map-get($status, normal);
         $active: map-get($status, active);
-        $disable: map-get($status, disable);
+        $disabled: map-get($status, disabled);
         @include btnStyle(map-values($normal)...);
         &.active {
             @include btnStyle(map-values($active)...);
         }
-        &.disable {
-            @include btnStyle(map-values($disable)...);
+        &.disabled {
+            @include btnStyle(map-values($disabled)...);
         }
     }
 }
