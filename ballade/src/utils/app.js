@@ -3,6 +3,7 @@ import Settings from '~/settings.json'
 const App = {
     GLOBAL: {
         src: Settings.source,
+        server: Settings.server,
         winWidth: window.screen.availWidth,
         winHeight: window.screen.availHeight
     },
