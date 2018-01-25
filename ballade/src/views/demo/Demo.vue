@@ -3,7 +3,14 @@
         <whirl v-if="showWhirl"></whirl>
         <error v-if="showError"></error>
         <section class="gm-content" v-else>
-            <btn class="button" :type="'gradPink'" @click="showAlert">点我</btn>
+            <btn
+                class="button"
+                :type="'gradPink'"
+                @click="showAlert">点我</btn>
+            <btn
+                class="button"
+                :type="'gradGreen'"
+                :href="'http://www.baidu.com'">百度一下</btn>
             <div class="topic-detail" v-if="topicDetail.content">
                 <div class="content" v-html="topicDetail.content"></div>
                 <img :src="item.image" v-for="item in topicDetail.images" />

@@ -1,7 +1,7 @@
 <template>
     <a
-        href="javascript:;"
         class="gm-btn"
+        :href="href"
         :class="{active: isActive}"
         :type="type"
         @click="onTap">
@@ -15,6 +15,10 @@ export default {
         type: {
             type: String,
             default: 'pureGreen'
+        },
+        href: {
+            type: String,
+            default: 'javascript:;'
         }
     },
 
@@ -25,11 +29,16 @@ export default {
     },
 
     methods: {
-        onTap: function () {
+        onTap: function (e) {
+            e.preventDefault()
             this.isActive = true
-            let t = setTimeout(() => {
+            let t1 = setTimeout(() => {
                 this.isActive = false
-                clearTimeout(t)
+                let t2 = setTimeout(() => {
+                    window.location.href = e.target.href
+                    clearTimeout(t2)
+                }, 0)
+                clearTimeout(t1)
             }, 100)
         }
     }
