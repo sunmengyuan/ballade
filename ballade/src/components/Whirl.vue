@@ -22,7 +22,8 @@ export default {
     height: 0.4rem;
     border-radius: 50%;
     background-color: $clrLight;
-    animation: whirl 1.04s ease infinite;
+    transform: scale(0);
+    animation: whirl 0.64s ease infinite;
     @keyframes whirl {
         0% {
             transform: scale(1.2);
@@ -35,47 +36,46 @@ export default {
     }
 }
 
-.gm-whirl span {
-    $oOffset: -0.2rem;
-    $eOffset: 0.28rem;
-    @for $index from 1 through 8 {
-        &:nth-child(#{$index}) {
-            animation-delay: $index*0.13s;
-        }
+@for $index from 0 through 7 {
+    .gm-whirl span:nth-child(#{$index}) {
+        animation-delay: $index*0.08s;
     }
-    &:nth-child(1), &:nth-child(5) {
-        margin-top: $oOffset;
-    }
-    &:nth-child(3), &:nth-child(7) {
-        margin-left: $oOffset;
-    }
-    &:nth-child(2), &:nth-child(4) {
-        top: $eOffset;
-    }
-    &:nth-child(2), &:nth-child(8) {
-        left: $eOffset;
-    }
-    &:nth-child(4), &:nth-child(6) {
-        right: $eOffset;
-    }
-    &:nth-child(6), &:nth-child(8) {
-        bottom: $eOffset;
-    }
-    &:nth-child(1) {
-        left: 0;
-        top: 50%;
-    }
-    &:nth-child(3) {
-        left: 50%;
-        top: 0;
-    }
-    &:nth-child(5) {
-        right: 0;
-        top: 50%;
-    }
-    &:nth-child(7) {
-        left: 50%;
-        bottom: 0;
-    }
+}
+
+.gm-whirl span:nth-child(1) {
+    left: 0;
+    top: 50%;
+    margin-top: -0.2rem;
+}
+.gm-whirl span:nth-child(2) {
+    left: 0.28rem;
+    top: 0.28rem;
+}
+.gm-whirl span:nth-child(3) {
+    left: 50%;
+    top: 0;
+    margin-left: -0.2rem;
+}
+.gm-whirl span:nth-child(4) {
+    top: 0.28rem;
+    right: 0.28rem;
+}
+.gm-whirl span:nth-child(5) {
+    right: 0;
+    top: 50%;
+    margin-top: -0.2rem;
+}
+.gm-whirl span:nth-child(6) {
+    right: 0.28rem;
+    bottom: 0.28rem;
+}
+.gm-whirl span:nth-child(7) {
+    bottom: 0;
+    left: 50%;
+    margin-left: -0.2rem;
+}
+.gm-whirl span:nth-child(8) {
+    bottom: 0.28rem;
+    left: 0.28rem;
 }
 </style>
