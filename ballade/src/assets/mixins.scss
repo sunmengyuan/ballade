@@ -118,7 +118,7 @@
 }
 
 /* 箭头 */
-@mixin gm-arrow ($clr: #AAA, $direct: 'right', $size: 9px) {
+@mixin gm-arrow ($clr: #AAA, $direct: 'right', $size: 0.18rem) {
     position: relative;
     i {
         position: absolute !important;

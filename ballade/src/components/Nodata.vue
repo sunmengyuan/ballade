@@ -1,8 +1,8 @@
 <template>
-    <section class="gm-nodata" :style="'height: ' + height + 'px'">
+    <div class="gm-nodata" :style="'height: ' + height + 'px'">
         <img :src="GLOBAL.src + '/holder_' + type + '.png'">
         <p>{{ message }}</p>
-    </section>
+    </div>
 </template>
 
 <script>

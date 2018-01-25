@@ -1,5 +1,6 @@
 <template>
     <section class="demo-wrap">
+        <whirl></whirl>
         <error v-if="reqError"></error>
         <section class="gm-content" v-else>
             <a href="javascript:;" class="button" @click="showAlert">点我</a>
@@ -25,6 +26,7 @@ import ServiceSquare from '@/templates/ServiceSquare'
 import Loading from '@/components/Loading'
 import Error from '@/components/Error'
 import Nodata from '@/components/Nodata'
+import Whirl from '@/components/Whirl'
 
 export default {
     name: 'Demo',
@@ -33,7 +35,8 @@ export default {
         ServiceSquare,
         Loading,
         Error,
-        Nodata
+        Nodata,
+        Whirl
     },
 
     data () {
