@@ -1,5 +1,5 @@
 <template>
-    <a href="javascript:;" class="gm-btn">
+    <a href="javascript:;" class="gm-btn" :class="'btn-' + type">
         <slot></slot>
     </a>
 </template>
@@ -7,7 +7,10 @@
 <script>
 export default {
     props: {
-
+        type: {
+            type: String,
+            default: 'pureGreen'
+        }
     }
 }
 </script>
@@ -216,10 +219,10 @@ $btns: (
 @mixin btnStyle ($fClr, $bdClr, $background) {
     color: $fClr;
     border-color: $bdClr;
-    background-color: $background;
+    background: $background;
 }
 @each $type, $status in $btns {
-    %btn-#{$type} {
+    .btn-#{$type} {
         $normal: map-get($status, normal);
         $active: map-get($status, active);
         $disable: map-get($status, disable);
