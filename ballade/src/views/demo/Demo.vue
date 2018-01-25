@@ -4,7 +4,7 @@
         <error v-if="showError"></error>
         <section class="gm-content" v-else>
             <a href="javascript:;" class="button" @click="showAlert">点我</a>
-            <div class="topic-detail">
+            <div class="topic-detail" v-if="topicDetail.content">
                 <div class="content" v-html="topicDetail.content"></div>
                 <img :src="item.image" v-for="item in topicDetail.images" />
             </div>
