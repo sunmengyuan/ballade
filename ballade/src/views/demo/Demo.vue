@@ -1,7 +1,7 @@
 <template>
     <section class="demo-wrap">
         <whirl v-if="showWhirl"></whirl>
-        <error v-if="reqError"></error>
+        <error v-if="showError"></error>
         <section class="gm-content" v-else>
             <a href="javascript:;" class="button" @click="showAlert">点我</a>
             <div class="topic-detail">
@@ -45,11 +45,11 @@ export default {
             service_id: null,
             topicDetail: {},
             services: [],
-            showLoading: false,
             loading: true,
+            showLoading: false,
             showEmpty: false,
             showWhirl: true,
-            reqError: false
+            showError: false
         }
     },
 
@@ -94,7 +94,7 @@ export default {
                     }
                 },
                 errorFn: () => {
-                    this.reqError = true
+                    this.showError = true
                     this.showWhirl = false
                 }
             })
