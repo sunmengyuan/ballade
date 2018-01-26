@@ -82,12 +82,9 @@ const App = {
         }
     },
     trackEvent: (opts = {}) => {
-        var optsStr = JSON.stringify(opts)
-        if (optsStr !== '{}') {
-            /* eslint-disable no-undef */
-            if ((typeof gmclient !== 'undefined') && (typeof gmclient.trackEvent !== 'undefined')) {
-                gmclient.trackEvent(optsStr)
-            }
+        /* eslint-disable no-undef */
+        if ((typeof gmclient !== 'undefined') && (typeof gmclient.trackEvent !== 'undefined')) {
+            gmclient.trackEvent(JSON.stringify(opts))
         }
     }
 }
