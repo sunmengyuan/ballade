@@ -10,7 +10,6 @@ const App = {
     do: function () {
         window.gmJS = {}
     },
-    $dom: window.document.querySelector,
     $router: {
         query: (key) => {
             var search = window.location.search
@@ -98,7 +97,6 @@ App.install = (Vue, options) => {
         needLogin: App.needLogin,
         trackEvent: App.trackEvent
     }
-    Vue.prototype.$dom = App.$dom
     Vue.prototype.$gmclient = App.$gmclient
     Vue.prototype.$router = App.$router
 }
