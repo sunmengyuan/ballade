@@ -7,6 +7,8 @@ const Server = (process.env.NODE_ENV === 'production') ? Settings.server : ''
 const Request = (opts = {}) => {
     var tracks = {
         t: (new Date()).valueOf(),
+        version: App.$gmclient.version(),
+        hybrid: App.$gmclient.isClient(),
         channel: App.$router.query('channel'),
         current_city_id: App.$router.query('current_city_id'),
         device_id: App.$router.query('device_id'),
