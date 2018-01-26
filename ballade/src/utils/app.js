@@ -74,12 +74,31 @@ const App = {
         if ((typeof gmclient !== 'undefined') && (typeof gmclient.showToast !== 'undefined')) {
             gmclient.showToast(JSON.stringify(opts))
         }
+    },
+    needLogin: () => {
+        /* eslint-disable no-undef */
+        if ((typeof gmclient !== 'undefined') && (typeof gmclient.logout !== 'undefined')) {
+            gmclient.logout()
+        }
+    },
+    trackEvent: (opts = {}) => {
+        var opts = JSON.stringify(opts)
+        if (opts !== '{}') {
+            /* eslint-disable no-undef */
+            if ((typeof gmclient !== 'undefined') && (typeof gmclient.trackEvent !== 'undefined')) {
+                gmclient.trackEvent(opts)
+            }
+        }
     }
 }
 App.install = (Vue, options) => {
     Vue.prototype.GLOBAL = App.GLOBAL
     Vue.prototype.$app = {
-        showToast: App.showToast
+        setPageTitle: App.setPageTitle,
+        setPageData: App.setPageData,
+        showToast: App.showToast,
+        needLogin: App.needLogin,
+        trackEvent: App.trackEvent
     }
     Vue.prototype.$gmclient = App.$gmclient
     Vue.prototype.$router = App.$router
