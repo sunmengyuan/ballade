@@ -29,7 +29,34 @@ const App = {
             return value
         }
     },
-    $gmclient: {}
+    $gmclient: {
+        isClient: () => {
+            var ua = window.navigator.userAgent.toLowerCase()
+            return ua.indexOf('gengmei') > 0
+        },
+        version: () => {
+            var ua = window.navigator.userAgent.toLowerCase()
+            var tmp = ua.split(' ')
+            var gmInfo = tmp[tmp.length - 1].split('/')
+            var version = (gmInfo.length === 2 && gmInfo[0] === 'gengmei') ? gmInfo[1] : ''
+            return version
+        },
+        diffVersion: (curVersion, baseVersion) => {
+            if (!(curVersion && baseVersion)) {
+                return false
+            }
+            var cur = curVersion.split('.')
+            var base = baseVersion.split('.')
+            if (cur[2] === undefined) {
+                cur[2] = '0'
+            }
+            if (base[2] === undefined) {
+                base[2] = '0'
+            }
+            var result = cur[0] * 10000 + cur[1] * 100 + cur[2] - (base[0] * 10000 + base[1] * 100 + base[2])
+            return result
+        }
+    }
 }
 App.install = (Vue, options) => {
     Vue.prototype.GLOBAL = App.GLOBAL
