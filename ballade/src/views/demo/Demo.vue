@@ -86,18 +86,11 @@ export default {
                     this.showWhirl = false
                     this.loadRelatedServices()
                     this.showLoading = true
-                    /* eslint-disable no-undef */
-                    if (typeof gmclient !== 'undefined') {
-                        if (typeof gmclient.setPageData !== 'undefined') {
-                            gmclient.setPageData(JSON.stringify({
-                                page_name: 'demo',
-                                share_data: detail.share_data
-                            }))
-                        }
-                        if (typeof gmclient.setPageTitle !== 'undefined') {
-                            gmclient.setPageTitle(detail.top_title)
-                        }
-                    }
+                    this.$app.setPageTitle(detail.top_title)
+                    this.$app.setPageData({
+                        page_name: 'demo',
+                        share_data: detail.share_data
+                    })
                 },
                 errorFn: () => {
                     this.showError = true

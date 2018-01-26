@@ -57,6 +57,18 @@ const App = {
             return result
         }
     },
+    setPageTitle: (title = '') => {
+        /* eslint-disable no-undef */
+        if ((typeof gmclient !== 'undefined') && (typeof gmclient.setPageTitle !== 'undefined')) {
+            gmclient.setPageTitle(title)
+        }
+    },
+    setPageData: (opts = {}) => {
+        /* eslint-disable no-undef */
+        if ((typeof gmclient !== 'undefined') && (typeof gmclient.setPageData !== 'undefined')) {
+            gmclient.setPageData(JSON.stringify(opts))
+        }
+    },
     showToast: (opts = {}) => {
         /* eslint-disable no-undef */
         if ((typeof gmclient !== 'undefined') && (typeof gmclient.showToast !== 'undefined')) {
