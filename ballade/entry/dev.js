@@ -11,7 +11,7 @@ import '@/assets/app.scss'
 const Pathname = window.location.pathname
 const Page = `<${Routes[Pathname].view} />`
 
-FastClick.attach(window.document.body)
+!window.detachFastclick && FastClick.attach(window.document.body)
 
 Vue.use(Cookie)
 Vue.use(App)

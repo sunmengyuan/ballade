@@ -7,7 +7,7 @@ import Request from '@/utils/request'
 import '@/utils/rem'
 import '@/assets/app.scss'
 
-FastClick.attach(window.document.body)
+!window.detachFastclick && FastClick.attach(window.document.body)
 
 Vue.use(Cookie)
 Vue.use(App)
