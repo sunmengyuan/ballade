@@ -56,12 +56,18 @@ const App = {
             var result = cur[0] * 10000 + cur[1] * 100 + cur[2] - (base[0] * 10000 + base[1] * 100 + base[2])
             return result
         }
+    },
+    showToast: (opts = {}) => {
+        /* eslint-disable no-undef */
+        if ((typeof gmclient !== 'undefined') && (typeof gmclient.showToast !== 'undefined')) {
+            gmclient.showToast(JSON.stringify(opts))
+        }
     }
 }
 App.install = (Vue, options) => {
     Vue.prototype.GLOBAL = App.GLOBAL
     Vue.prototype.$app = {
-
+        showToast: App.showToast
     }
     Vue.prototype.$gmclient = App.$gmclient
     Vue.prototype.$router = App.$router

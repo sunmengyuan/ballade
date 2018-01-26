@@ -67,13 +67,10 @@ export default {
         this.service_id = this.$router.query('service_id')
         this.loadTopicDetail()
         this.clientJS()
-        /* eslint-disable no-undef */
-        if ((typeof gmclient !== 'undefined') && (typeof gmclient.showToast !== 'undefined')) {
-            gmclient.showToast(JSON.stringify({
-                text: '我是 Native Toast',
-                duration: 0
-            }))
-        }
+        this.$app.showToast({
+            text: '我是 Native Toast',
+            duration: 0
+        })
     },
 
     methods: {
