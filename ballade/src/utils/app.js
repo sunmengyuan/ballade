@@ -2,12 +2,15 @@ import Settings from '~/settings.json'
 
 const App = {
     GLOBAL: {
+        // 静态资源
         src: Settings.source,
+        // 生产环境服务
         server: Settings.server,
         winWidth: window.screen.availWidth,
         winHeight: window.screen.availHeight
     },
     do: function () {
+        // 供客户端调用
         window.gmJS = {}
     },
     $router: {
@@ -81,12 +84,14 @@ const App = {
             gmclient.logout()
         }
     },
+    // 埋点
     trackEvent: (opts = {}) => {
         /* eslint-disable no-undef */
         if ((typeof gmclient !== 'undefined') && (typeof gmclient.trackEvent !== 'undefined')) {
             gmclient.trackEvent(JSON.stringify(opts))
         }
     },
+    // 使用方法 <a @click="$app.userSkip(type, id)"></a>
     userSkip: (type, id) => {
         switch (type) {
             case 0:
