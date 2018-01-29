@@ -1,3 +1,8 @@
+<!--
+loading === true: 正在加载当前分页
+loading === false: 全部分页加载完毕
+loading === 'error': 网络崩溃
+-->
 <template>
     <div class="gm-loading">
         <div class="loading" v-if="loading === true">

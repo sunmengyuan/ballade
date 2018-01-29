@@ -9,6 +9,7 @@
 <script>
 export default {
     props: {
+        // 图片 height/width 比例
         ratio: {
             type: Number,
             default: 0.4
