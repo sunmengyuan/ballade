@@ -6,5 +6,9 @@
             "topic_id",
             "service_id"
         ]
+    },
+    "/album": {
+        "view": "Album",
+        "path": "demo/"
     }
 }
