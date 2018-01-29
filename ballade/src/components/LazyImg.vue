@@ -1,7 +1,7 @@
 <template>
-    <div class="gm-lazyimg" :style="'padding-bottom: ' + 100 * ratio + '%'">
+    <div class="gm-lazyimg" :style="'padding-bottom: ' + pdBtom + ';overflow: ' + pdBtom ? 'hidden' : 'visible'">
         <span>更美</span>
-        <img :src="src" />
+        <img :src="src" @load="onload" />
     </div>
 </template>
 
@@ -16,6 +16,18 @@ export default {
             type: String,
             default: ''
         }
+    },
+
+    data () {
+        return {
+            pdBtom: `${100 * this.ratio}%`
+        }
+    },
+
+    methods: {
+        onload: function () {
+            this.pdBtom = 0
+        }
     }
 }
 </script>
@@ -26,6 +38,7 @@ export default {
     z-index: 0;
     display: inline-block;
     font-size: 0;
+    vertical-align: middle;
     background-color: #F7F7F7;
     overflow: hidden;
     span {
@@ -35,6 +48,9 @@ export default {
         color: #E7E7E7;
         text-shadow: 0 2px 2px #FFF;
         @extend %gm-center;
+    }
+    img {
+        width: 100%;
     }
 }
 </style>
