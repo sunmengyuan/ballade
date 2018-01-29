@@ -48,8 +48,6 @@ export default {
     width: 100%;
 }
 .gm-lazyimg > div {
-    position: relative;
-    z-index: 0;
     font-size: 0;
     height: 0;
     display: inline-block;
