@@ -29,8 +29,8 @@ export default {
         style: function () {
             return {
                 'padding-bottom': this.pdBtom,
-                'overflow': this.pdBtom ? 'hidden' : 'visible',
-                'height': this.pdBtom ? 0 : 'auto'
+                'height': this.pdBtom ? 0 : 'auto',
+                'overflow': this.pdBtom ? 'hidden' : 'visible'
             }
         }
     },
