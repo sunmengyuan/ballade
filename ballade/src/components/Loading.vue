@@ -13,7 +13,7 @@
 export default {
     props: {
         loading: {
-            type: Boolean,
+            type: [Boolean, String],
             default: true
         }
     }

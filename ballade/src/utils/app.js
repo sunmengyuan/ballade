@@ -86,6 +86,19 @@ const App = {
         if ((typeof gmclient !== 'undefined') && (typeof gmclient.trackEvent !== 'undefined')) {
             gmclient.trackEvent(JSON.stringify(opts))
         }
+    },
+    userSkip: (type, id) => {
+        switch (type) {
+            case 0:
+                window.location.href = `gengmei://other_homepage?uid=${id}`
+                break
+            case 1:
+                window.location.href = `gengmei://expert?expert_id=${id}`
+                break
+            case 2:
+                window.location.href = `gengmei://organization_detail?organization_id=${id}`
+                break
+        }
     }
 }
 App.install = (Vue, options) => {
@@ -95,7 +108,8 @@ App.install = (Vue, options) => {
         setPageData: App.setPageData,
         showToast: App.showToast,
         needLogin: App.needLogin,
-        trackEvent: App.trackEvent
+        trackEvent: App.trackEvent,
+        userSkip: App.userSkip
     }
     Vue.prototype.$gmclient = App.$gmclient
     Vue.prototype.$router = App.$router
