@@ -1,5 +1,5 @@
 <template>
-    <div class="gm-lazyimg" :style="'padding-bottom: ' + pdBtom + ';overflow: ' + pdBtom ? 'hidden' : 'visible'">
+    <div class="gm-lazyimg" :style="style">
         <span>更美</span>
         <img :src="src" @load="onload" />
     </div>
@@ -24,6 +24,16 @@ export default {
         }
     },
 
+    computed: {
+        style: function () {
+            return {
+                'padding-bottom': this.pdBtom,
+                'overflow': this.pdBtom ? 'hidden' : 'visible',
+                'height': this.pdBtom ? 0 : 'auto'
+            }
+        }
+    },
+
     methods: {
         onload: function () {
             this.pdBtom = 0
@@ -39,6 +49,7 @@ export default {
     display: inline-block;
     font-size: 0;
     vertical-align: middle;
+    height: 0;
     background-color: #F7F7F7;
     overflow: hidden;
     span {
