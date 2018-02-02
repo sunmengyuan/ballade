@@ -36,6 +36,8 @@
 
 /* 单排横划 */
 %gm-horizontal-scroll {
+    font-size: 0;
+    vertical-align: middle;
     white-space: nowrap;
     overflow-x: scroll;
     overflow-y: hidden;
