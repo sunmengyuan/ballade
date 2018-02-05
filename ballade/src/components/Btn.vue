@@ -1,8 +1,3 @@
-<!--
-normal: 常态
-class="active": 点击态
-class="disabled": 失效态
--->
 <template>
     <a
         class="gm-btn"
@@ -17,7 +12,6 @@ class="disabled": 失效态
 <script>
 export default {
     props: {
-        // type 请参照 /assets/btns.scss
         type: {
             type: String,
             default: ''
@@ -38,10 +32,8 @@ export default {
         onTap: function (e) {
             e.preventDefault()
             this.isActive = true
-            // 模拟 click active 状态
             let t1 = setTimeout(() => {
                 this.isActive = false
-                // active 状态消失后执行跳转
                 let t2 = setTimeout(() => {
                     window.location.href = e.target.href
                     clearTimeout(t2)

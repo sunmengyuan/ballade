@@ -12,12 +12,10 @@ export default {
             type: String,
             default: '暂无相关信息'
         },
-        // 支持 common、coupon...
         type: {
             type: String,
             default: 'common'
         },
-        // 传入 GLOBAL.winHeight - 内容最小高度
         height: {
             type: Number,
             default: 300
