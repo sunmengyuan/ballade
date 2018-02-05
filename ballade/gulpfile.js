@@ -8,6 +8,7 @@ const del = require('del')
 const settings = require('./settings')
 const routes = require('./src/routes')
 
+// 生成生产环境入口文件
 gulp.task('entries', () => {
     var flag = true
     for (let key in routes) {
@@ -35,6 +36,7 @@ gulp.task('entries', () => {
     }
 })
 
+// 为 html 打 hash 并生成 routes.json
 gulp.task('stamps', () => {
     var count = 1
     var length = Object.keys(routes).length
@@ -77,6 +79,7 @@ gulp.task('stamps', () => {
         })
 })
 
+// inline 静态资源
 gulp.task('inline', () => {
     gulp.src('../dist/**/*-*.html')
         .pipe(inline())
@@ -87,6 +90,7 @@ gulp.task('delete', () => {
     del(['../dist/*'], {force: true})
 })
 
+// 清理静态资源
 gulp.task('clear', () => {
     del([
         '../dist/static',
@@ -95,6 +99,7 @@ gulp.task('clear', () => {
     ], {force: true})
 })
 
+// 压缩 build 文件
 gulp.task('zip', () => {
     gulp.src('../dist/**/*')
         .pipe(zip('dist.zip'))
