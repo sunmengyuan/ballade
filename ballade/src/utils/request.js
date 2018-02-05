@@ -20,9 +20,13 @@ const Request = (opts = {}) => {
         os_version: App.$router.query('os_version'),
         json: ''
     }
+    // 请求成功回调
     var successFn = opts.successFn || function () {}
+    // 请求失败回调
     var failFn = opts.failFn || function () {}
+    // 请求完成回调
     var completeFn = opts.completeFn || function () {}
+    // 网络错误回调
     var errorFn = () => {
         if (opts.errorFn) {
             opts.errorFn()

@@ -2,12 +2,15 @@ import Settings from '~/settings.json'
 
 const App = {
     GLOBAL: {
+        // 静态资源地址
         src: Settings.source,
+        // 生产环境服务
         server: Settings.server,
         winWidth: window.screen.availWidth,
         winHeight: window.screen.availHeight
     },
     do: function () {
+        // 供 Native 调用的 Js Function
         window.gmJS = {}
     },
     $router: {
@@ -81,6 +84,7 @@ const App = {
             gmclient.logout()
         }
     },
+    // 埋点
     trackEvent: (opts = {}) => {
         /* eslint-disable no-undef */
         if ((typeof gmclient !== 'undefined') && (typeof gmclient.trackEvent !== 'undefined')) {

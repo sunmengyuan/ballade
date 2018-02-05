@@ -10,16 +10,28 @@ const Loadmore = {
         this.view._Loadmore = view._Loadmore || {}
         this.opts = {
             url: opts.url,
+            // 列表数据字段名
             key: opts.key,
             params: opts.params || {},
+            // 每一分页数据加载条数
             count: opts.count || 10,
+            // 每一分页请求成功回调
             callbackFn: opts.callbackFn || function () {},
+            // 所有分页数据加载完毕回调
             completeFn: opts.completeFn || function () {},
+            // 无相关数据回调
             nodataFn: opts.nodataFn || function () {},
+            // 请求失败回调（error 值非零情况，非真正网络错误）
             failFn: opts.failFn || function () {},
+            // 网络错误回调
             errorFn: opts.errorFn || function () {}
         }
         this.loadData()
+        /**
+         * @type
+         *     scroll: 上拉加载更多
+         *     click: 点击加载更多
+         */
         var type = opts.type || 'scroll'
         if (type === 'scroll') this.listenScroll()
     },
