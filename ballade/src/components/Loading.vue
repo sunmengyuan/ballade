@@ -10,6 +10,12 @@
 </template>
 
 <script>
+/**
+ * @loading
+ *     true: 正在加载
+ *     false: 全部分页数据加载完成
+ *     error: 网络错误
+ */
 export default {
     props: {
         loading: {

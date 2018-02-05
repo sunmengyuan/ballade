@@ -7,6 +7,10 @@
 </template>
 
 <script>
+/**
+ * @ratio
+ *     图片 height/width
+ */
 export default {
     props: {
         ratio: {

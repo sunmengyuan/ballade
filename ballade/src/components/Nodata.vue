@@ -6,6 +6,13 @@
 </template>
 
 <script>
+/**
+ * @type
+ *     common: 通用
+ *     coupon: 无美券
+ * @height
+ *     this.GLOBAL.winHeight - 页面内容最小高度
+ */
 export default {
     props: {
         message: {

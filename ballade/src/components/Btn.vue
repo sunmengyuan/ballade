@@ -10,6 +10,14 @@
 </template>
 
 <script>
+/**
+ * @class
+ *     默认: 常态
+ *     active: 点击态
+ *     disabled: 失效态
+ * @type
+ *     请查看 /assets/btns
+ */
 export default {
     props: {
         type: {

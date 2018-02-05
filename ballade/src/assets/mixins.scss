@@ -101,7 +101,7 @@
 @mixin gm-tab ($fSize: 0.28rem, $lineHeight: 0.8rem) {
     border-bottom: 1px solid $bdClr;
     background-color: #FFF;
-    li {
+    .gm-item {
         font-size: $fSize;
         line-height: $lineHeight;
         text-align: center;
