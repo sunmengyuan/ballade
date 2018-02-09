@@ -6,7 +6,7 @@
             <btn
                 class="button"
                 :type="'gradPink'"
-                @click="showAlert">点我</btn>
+                :callback="showAlert">点我</btn>
             <btn
                 class="button"
                 :type="'gradGreen'"
@@ -127,6 +127,7 @@ export default {
             }
         },
         showAlert: function () {
+            console.log('gmclient.showAlert')
             /* eslint-disable no-undef */
             if ((typeof gmclient !== 'undefined') && (typeof gmclient.showAlert !== 'undefined')) {
                 gmclient.showAlert(JSON.stringify({

@@ -27,6 +27,10 @@ export default {
         href: {
             type: String,
             default: 'javascript:;'
+        },
+        callback: {
+            type: Function,
+            default: () => {}
         }
     },
 
@@ -40,6 +44,7 @@ export default {
         onTap: function (e) {
             e.preventDefault()
             this.isActive = true
+            this.callback()
             let t1 = setTimeout(() => {
                 this.isActive = false
                 let t2 = setTimeout(() => {
