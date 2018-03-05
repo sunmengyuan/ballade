@@ -10,5 +10,12 @@
     "/album": {
         "view": "Album",
         "path": "demo/"
+    },
+    "/article/detail": {
+        "view": "ArticleDetail",
+        "path": "post/",
+        "query": [
+            "article_id"
+        ]
     }
 }
