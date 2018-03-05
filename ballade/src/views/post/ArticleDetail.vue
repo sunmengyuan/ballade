@@ -1,8 +1,8 @@
 <template>
     <section class="gm-content">
-        <section class="common">
-            <img src="http://hera.s.igengmei.com/2016/05/12/f7714d5dbd" class="banner" />
-            <div class="bar-placeholder" :style="{ height: barHeight + 'px' }"></div>
+        <section class="common" v-if="articleType == 6">
+            <img class="banner" :src="articleDetail.banner[0]" v-if="articleDetail.banner" />
+            <div class="bar-placeholder" :style="{ height: barHeight + 'px' }" v-else></div>
             <div class="article-detail">
                 <div class="author">
                     <img src="http://pic.igengmei.com/2017/07/03/1034/41699b881fc0-thumb" />
@@ -22,15 +22,34 @@ export default {
 
     data () {
         return {
-            barHeight: 0
+            barHeight: 0,
+            article_id: null,
+            articleType: null,
+            articleDetail: {}
         }
     },
 
     created () {
         this.barHeight = this.$router.query('title_bar_height')
+        this.article_id = this.$router.query('article_id')
+        this.loadArticleDetail()
     },
 
-    methods: {}
+    methods: {
+        loadArticleDetail () {
+            this.$request({
+                url: `/hybrid/article/${this.article_id}/_data`,
+                successFn: (data) => {
+                    var detail = data.data
+                    this.articleDetail = detail
+                    this.articleType = detail.article_type
+                },
+                errorFn: () => {
+
+                }
+            })
+        }
+    }
 }
 </script>
 
