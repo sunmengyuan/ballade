@@ -11,14 +11,21 @@
                 <h3>{{ articleDetail.title }}</h3>
                 <p class="article-desc" v-if="articleDetail.desc">{{ articleDetail.desc }}</p>
                 <div class="author-desc" v-if="articleDetail.author.desc"><span>个人自述</span>{{ articleDetail.author.desc }}</div>
+                <fixed-richtext :data="articleDetail.richtext"></fixed-richtext>
             </div>
         </section>
     </section>
 </template>
 
 <script>
+import FixedRichtext from '@/templates/FixedRichtext'
+
 export default {
     name: 'ArticleDetail',
+
+    components: {
+        FixedRichtext
+    },
 
     data () {
         return {
