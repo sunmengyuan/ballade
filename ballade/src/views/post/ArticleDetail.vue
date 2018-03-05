@@ -5,12 +5,12 @@
             <div class="bar-placeholder" :style="{ height: barHeight + 'px' }" v-else></div>
             <div class="article-detail">
                 <div class="author">
-                    <img src="http://pic.igengmei.com/2017/07/03/1034/41699b881fc0-thumb" />
-                    <span>阿茶茶</span>
+                    <img :src="articleDetail.author.portrait" />
+                    <span>{{ articleDetail.author.nickname }}</span>
                 </div>
-                <h3>这里是标题</h3>
-                <p class="article-desc">这里是文章描述</p>
-                <div class="author-desc"><span>个人自述</span>作者自述作者自述作者自述</div>
+                <h3>{{ articleDetail.title }}</h3>
+                <p class="article-desc" v-if="articleDetail.desc">{{ articleDetail.desc }}</p>
+                <div class="author-desc" v-if="articleDetail.author.desc"><span>个人自述</span>{{ articleDetail.author.desc }}</div>
             </div>
         </section>
     </section>
