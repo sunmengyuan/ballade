@@ -38,6 +38,44 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "../assets/richtext";
+
+.gm-fixed-richtext {
+    div[data-type][data-info] {
+        margin: .3rem 0;
+    }
+    div[data-type][data-info]:first-child,
+    p:first-child {
+        margin-top: 0;
+    }
+    div[data-type][data-info]:last-child,
+    p:last-child {
+        margin-bottom: 0;
+    }
+    .tag {
+        position: absolute;
+        right: 0;
+        bottom: 8px;
+        font-size: 14px;
+        line-height: 26px;
+        color: #FFF;
+        padding: 0 12px 0 15px;
+        border-top-left-radius: 13px;
+        border-bottom-left-radius: 13px;
+        background-color: $fClr7690;
+        &:before {
+            content: "";
+            position: absolute;
+            right: -3px;
+            bottom: 26px;
+            width: 0;
+            height: 0;
+            border: 3px solid transparent;
+            border-left-color: #D22143;
+            border-top-width: 2px;
+            border-bottom-width: 0;
+        }
+    }
+}
 </style>
