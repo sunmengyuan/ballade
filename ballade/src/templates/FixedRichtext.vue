@@ -41,9 +41,6 @@ export default {
 <style lang="scss">
 @import "../assets/richtext";
 
-.gm-fixed-richtext .gm-tiny-scale {
-    @extend %gm-tiny-scale;
-}
 .gm-fixed-richtext {
     div[data-type][data-info] {
         margin: .3rem 0;
@@ -55,6 +52,9 @@ export default {
     div[data-type][data-info]:last-child,
     p:last-child {
         margin-bottom: 0;
+    }
+    .gm-tiny-scale {
+        @extend %gm-tiny-scale;
     }
 }
 .gm-fixed-richtext .tag {
@@ -124,6 +124,32 @@ export default {
         font-size: .6rem;
         line-height: .78rem;
         margin-top: -.1rem;
+    }
+}
+
+/* 美购卡片 */
+.gm-fixed-richtext .service-card {
+    .price {
+        font-size: .36rem;
+        line-height: .6rem;
+        color: $fClr7690;
+        margin-top: .26rem;
+        span {
+            font-size: .6rem;
+        }
+        &:first-letter {
+            font-size: .4rem;
+        }
+    }
+    .bio {
+        font-size: .52rem;
+        line-height: .76rem;
+        color: $fClrWeak;
+        height: .76rem;
+        margin-top: .12rem;
+        span + span {
+            padding-left: .52rem;
+        }
     }
 }
 </style>
