@@ -70,6 +70,13 @@
                 <div class="bio gm-tiny-scale">浏览 {%=o.view_count%} · 评论 {%=o.comment_count%} · 赞 {%=o.vote_count%}</div>
             </a>
         </script>
+        <script type="text/x-tmpl" id="tmpl_service_list">
+            <a href="gengmei://service_list?tag_ids=[{%=o.tag_ids%}]&type=normal" class="card service-list-card">
+                <h4 class="gm-ellipsis-row1">{%=o.tags[0].name%}项目</h4>
+                <h5 class="gm-ellipsis-row1">{%=o.subtitle%}</h5>
+                <span class="tag">立即进入</span>
+            </a>
+        </script>
     </div>
 </template>
 
@@ -89,11 +96,13 @@ export default {
         for (let i = 0; i < cards.length; i++) {
             var type = cards[i].getAttribute('data-type')
             var info = JSON.parse(cards[i].getAttribute('data-info'))
-            info.server = this.GLOBAL.server
-            if (type == 'diary') {
-                var innerHTML = Tmpl('tmpl_diary', info)
-                cards[i].innerHTML = innerHTML
+            if (type === 'service_list') {
+                var tag_ids = []
+                for (let j = 0; j < info.tags.length; j++) tag_ids.push(info.tags[j].id)
+                info.tag_ids = tag_ids
             }
+            info.server = this.GLOBAL.server
+            cards[i].innerHTML = Tmpl(`tmpl_${type}`, info)
         }
     }
 }
@@ -375,6 +384,29 @@ export default {
         line-height: .68rem;
         color: $fClrWeaker;
         margin: -.16rem -50%;
+    }
+}
+
+/* 美购列表卡片 */
+.gm-fixed-richtext a.service-list-card {
+    position: relative;
+    padding: .2rem .38rem .22rem;
+    border: 1px solid $bdClr;
+    border-radius: 3px;
+    background-size: 100% 1.48rem;
+    h4 {
+        font-size: .34rem;
+        line-height: .58rem;
+        color: $clr7690;
+    }
+    h5 {
+        font-size: .28rem;
+        line-height: .48rem;
+        color: #565F82;
+        padding-right: 1.38rem;
+    }
+    .tag {
+        right: -4px;
     }
 }
 </style>
