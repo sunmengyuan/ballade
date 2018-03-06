@@ -393,6 +393,7 @@ export default {
     padding: .2rem .38rem .22rem;
     border: 1px solid $bdClr;
     border-radius: 3px;
+    background: url("#{$src}/post/bg_service_list_card_article.png") no-repeat 0 0;
     background-size: 100% 1.48rem;
     h4 {
         font-size: .34rem;
