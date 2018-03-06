@@ -29,6 +29,12 @@
                 <span class="tag">关注</span>
             </a>
         </script>
+        <script type="text/x-tmpl" id="tmpl_rank">
+            <a href="gengmei://common_webview?url={%=o.server%}/hybrid/rank_list/{%=o.id%}" class="card rank-card gm-block">
+                <img src="{%=o.banner%}" />
+                <h4 class="gm-center gm-ellipsis-row1"><span>{%=o.title%}</span></h4>
+            </a>
+        </script>
     </div>
 </template>
 
@@ -47,9 +53,10 @@ export default {
         var cards = document.querySelectorAll('div[data-type][data-info]')
         for (let i = 0; i < cards.length; i++) {
             var type = cards[i].getAttribute('data-type')
-            var info = cards[i].getAttribute('data-info')
-            if (type == 'expert') {
-                var innerHTML = Tmpl('tmpl_expert', JSON.parse(info))
+            var info = JSON.parse(cards[i].getAttribute('data-info'))
+            info.server = this.GLOBAL.server
+            if (type == 'rank') {
+                var innerHTML = Tmpl('tmpl_rank', info)
                 cards[i].innerHTML = innerHTML
             }
         }
@@ -190,6 +197,55 @@ export default {
         margin: 0 .1rem;
         border-radius: 6px;
         background-color: #F0F0F0;
+    }
+}
+
+/* 榜单卡片 */
+.gm-fixed-richtext a.rank-card {
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden;
+    .gm-center {
+        @extend %gm-center;
+    }
+    img {
+        width: 100%;
+    }
+    h4 {
+        position: relative;
+        position: absolute !important;
+        max-width: 80%;
+        font-size: .36rem;
+        line-height: .8rem;
+        color: #FFF;
+        white-space: nowrap;
+        padding: 0 .24rem;
+        border-top: 2px solid #FFF;
+        border-bottom: 2px solid #FFF;
+        border-radius: 2px;
+    }
+    h4:before, h4:after, span:before, span:after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 6px;
+        background-color: #FFF;
+    }
+    h4:before {
+        right: 0;
+        top: 0;
+    }
+    h4:after {
+        left: 0;
+        top: 0;
+    }
+    span:before {
+        right: 0;
+        bottom: 0;
+    }
+    span:after {
+        left: 0;
+        bottom: 0;
     }
 }
 </style>
