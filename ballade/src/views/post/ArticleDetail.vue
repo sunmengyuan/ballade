@@ -26,6 +26,18 @@
                 </li>
             </ul>
         </div>
+        <div class="footer-bar">
+            <ul class="gm-clear">
+                <li class="vote">
+                    <span>赞<em v-if="articleDetail.vote_count">·</em></span>
+                    <span>{{ articleDetail.vote_count }}</span>
+                </li>
+                <li class="comment">
+                    <span>评论<em v-if="articleDetail.comment_count">·</em></span>
+                    <span>{{ articleDetail.comment_count }}</span>
+                </li>
+            </ul>
+        </div>
     </section>
 </template>
 
@@ -185,6 +197,45 @@ export default {
         span + span {
             margin-left: .5rem;
         }
+    }
+}
+
+.footer-bar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 13px;
+    line-height: 1.1rem;
+    text-align: center;
+    color: #FFF;
+    background-color: #333;
+    li {
+        position: relative;
+        float: left;
+        width: 50%;
+        span:first-child {
+            padding-left: 20px;
+        }
+        &:first-child:after {
+            content: "";
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 1px;
+            height: .3rem;
+            margin-top: -.15rem;
+            background-color: #999;
+        }
+    }
+    .vote span:first-child {
+        background: url("#{$src}/post/icon_vote_footer.png") no-repeat 0 0;
+        background-size: auto 13px;
+    }
+    .comment span:first-child {
+        background: url("#{$src}/post/icon_comment_footer.png") no-repeat 0 0;
+        background-size: auto 13px;
     }
 }
 </style>
