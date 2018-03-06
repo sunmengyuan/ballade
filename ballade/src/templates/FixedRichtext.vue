@@ -35,6 +35,15 @@
                 <h4 class="gm-center gm-ellipsis-row1"><span>{%=o.title%}</span></h4>
             </a>
         </script>
+        <script type="text/x-tmpl" id="tmpl_qa">
+            <a href="gengmei://answer_detail?answer_id={%=o.answer_id%}&from=article_detail" class="card qa-card gm-block">
+                <div>
+                    <h4 class="gm-ellipsis-row1">{%=o.question%}</h4>
+                    <p class="gm-ellipsis-row2">{%=o.answer%}</p>
+                    <span class="tag">去看看</span>
+                </div>
+            </a>
+        </script>
     </div>
 </template>
 
@@ -55,8 +64,8 @@ export default {
             var type = cards[i].getAttribute('data-type')
             var info = JSON.parse(cards[i].getAttribute('data-info'))
             info.server = this.GLOBAL.server
-            if (type == 'rank') {
-                var innerHTML = Tmpl('tmpl_rank', info)
+            if (type == 'qa') {
+                var innerHTML = Tmpl('tmpl_qa', info)
                 cards[i].innerHTML = innerHTML
             }
         }
@@ -246,6 +255,44 @@ export default {
     span:after {
         left: 0;
         bottom: 0;
+    }
+}
+
+/* 问答卡片 */
+.gm-fixed-richtext a.qa-card {
+    padding-right: 3px;
+    margin-right: -3px;
+    & > div {
+        position: relative;
+        padding: .16rem 1.48rem .24rem .24rem;
+        border: 1px solid $bdClr;
+        border-radius: 3px;
+    }
+    h4 {
+        font-size: .28rem;
+        line-height: .44rem;
+        margin-right: -1.38rem;
+        &:before {
+            content: "问答";
+            display: inline-block;
+            vertical-align: 1px;
+            font-size: .24rem;
+            line-height: .32rem;
+            color: #FFF;
+            padding: 0 .08rem;
+            margin-right: .2rem;
+            border-radius: 2px;
+            background-color: #FFA7A2;
+        }
+    }
+    p.gm-ellipsis-row2 {
+        font-size: .26rem;
+        line-height: .38rem;
+        color: $fClrWeak;
+        height: auto;
+    }
+    .tag {
+        right: -3px;
     }
 }
 </style>
