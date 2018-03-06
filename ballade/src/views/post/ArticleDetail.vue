@@ -13,19 +13,19 @@
                 <div class="author-desc" v-if="articleDetail.author.desc"><span>个人自述</span>{{ articleDetail.author.desc }}</div>
                 <fixed-richtext :data="articleDetail.richtext"></fixed-richtext>
             </div>
-            <div class="related-article" v-if="relatedArticles.length">
-                <h4>相关专栏</h4>
-                <ul>
-                    <li v-for="article in relatedArticles">
-                        <a :href="'gengmei://article?article_id=' + article.id" class="gm-block">
-                            <h3 class="gm-ellipsis-row1">{{ article.title }}</h3>
-                            <p class="gm-ellipsis-row3">{{ article.desc }}</p>
-                            <div class="stat"><span>赞 · {{ article.vote_count }}</span><span>评论 · {{ article.comment_count }}</span></div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
         </section>
+        <div class="related-article" v-if="relatedArticles.length">
+            <h4>相关专栏</h4>
+            <ul>
+                <li v-for="article in relatedArticles">
+                    <a :href="'gengmei://article?article_id=' + article.id" class="gm-block">
+                        <h3 class="gm-ellipsis-row1">{{ article.title }}</h3>
+                        <p class="gm-ellipsis-row3">{{ article.desc }}</p>
+                        <div class="stat"><span>赞 · {{ article.vote_count }}</span><span>评论 · {{ article.comment_count }}</span></div>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </section>
 </template>
 
