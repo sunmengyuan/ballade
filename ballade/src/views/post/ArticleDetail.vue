@@ -13,6 +13,18 @@
                 <div class="author-desc" v-if="articleDetail.author.desc"><span>个人自述</span>{{ articleDetail.author.desc }}</div>
                 <fixed-richtext :data="articleDetail.richtext"></fixed-richtext>
             </div>
+            <div class="related-article" v-if="relatedArticles.length">
+                <h4>相关专栏</h4>
+                <ul>
+                    <li v-for="article in relatedArticles">
+                        <a :href="'gengmei://article?article_id=' + article.id" class="gm-block">
+                            <h3 class="gm-ellipsis-row1">{{ article.title }}</h3>
+                            <p class="gm-ellipsis-row3">{{ article.desc }}</p>
+                            <div class="stat"><span>赞 · {{ article.vote_count }}</span><span>评论 · {{ article.comment_count }}</span></div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </section>
     </section>
 </template>
@@ -32,7 +44,8 @@ export default {
             barHeight: 0,
             article_id: null,
             articleType: null,
-            articleDetail: {}
+            articleDetail: {},
+            relatedArticles: []
         }
     },
 
@@ -50,6 +63,7 @@ export default {
                     var detail = data.data
                     this.articleDetail = detail
                     this.articleType = detail.article_type
+                    this.relatedArticles = detail.related_article
                 },
                 errorFn: () => {
 
@@ -114,6 +128,62 @@ export default {
                 padding: 0 .18rem;
                 background-color: #FFF;
             }
+        }
+    }
+}
+
+.gm-fixed-richtext {
+    margin-top: .5rem;
+}
+
+.related-article {
+    margin: .28rem 0 1rem;
+    h4 {
+        font-size: .28rem;
+        line-height: .68rem;
+        padding: 0 .3rem;
+    }
+    ul {
+        padding: 0 .3rem;
+        background-color: #FFF;
+    }
+    li {
+        padding: .3rem 0;
+        border-bottom: 1px solid $bdClr;
+        &:last-child {
+            border-bottom: none;
+        }
+        h3 {
+            font-size: .32rem;
+            line-height: .52rem;
+            margin-top: -.1rem;
+            &:before {
+                content: "专栏";
+                display: inline-block;
+                vertical-align: 1px;
+                font-size: .24rem;
+                line-height: .32rem;
+                text-align: center;
+                color: #FFF;
+                width: .6rem;
+                margin-right: .2rem;
+                border-radius: 3px;
+                background-color: #37BBF7;
+            }
+        }
+        p.gm-ellipsis-row3 {
+            font-size: .28rem;
+            line-height: .4rem;
+            color: $fClrWeak;
+        }
+    }
+    .stat {
+        font-size: .24rem;
+        line-height: .24rem;
+        color: $fClrWeaker;
+        margin-top: .2rem;
+        span + span {
+            margin-left: .5rem;
         }
     }
 }

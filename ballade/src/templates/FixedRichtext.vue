@@ -97,9 +97,9 @@ export default {
             var type = cards[i].getAttribute('data-type')
             var info = JSON.parse(cards[i].getAttribute('data-info'))
             if (type === 'service_list') {
-                var tag_ids = []
-                for (let j = 0; j < info.tags.length; j++) tag_ids.push(info.tags[j].id)
-                info.tag_ids = tag_ids
+                var tagIds = []
+                for (let j = 0; j < info.tags.length; j++) tagIds.push(info.tags[j].id)
+                info.tag_ids = tagIds
             }
             info.server = this.GLOBAL.server
             cards[i].innerHTML = Tmpl(`tmpl_${type}`, info)
@@ -328,7 +328,6 @@ export default {
         font-size: .26rem;
         line-height: .38rem;
         color: $fClrWeak;
-        height: auto;
     }
     .tag {
         right: -3px;
