@@ -2,7 +2,7 @@
     <div class="gm-richtext gm-fixed-richtext">
         <div v-html="data"></div>
         <script type="text/x-tmpl" id="tmpl_service">
-            <a href="gengmei://service?service_id={%=o.id%}" class="card service-card gm-block">
+            <a href="gengmei://service?service_id={%=o.id%}" class="card service-card">
                 <div class="gm-tiny-scale">
                     <img src="{%=o.image%}" />
                     <h4 class="gm-ellipsis-row1">{%=o.short_desc%}</h4>
@@ -13,7 +13,7 @@
             </a>
         </script>
         <script type="text/x-tmpl" id="tmpl_expert">
-            <a href="{% if (o.type == 1) { %}gengmei://expert?expert_id={%=o.id%}{% } %}{% if (o.type == 2) { %}gengmei://organization_detail?organization_id={%=o.id%}{% } %}" class="card expert-card gm-block">
+            <a href="{% if (o.type == 1) { %}gengmei://expert?expert_id={%=o.id%}{% } %}{% if (o.type == 2) { %}gengmei://organization_detail?organization_id={%=o.id%}{% } %}" class="card expert-card">
                 <div class="gm-tiny-scale">
                     <img src="{%=o.portrait%}" />
                     <h4 class="gm-ellipsis-row1">{%=o.name%}</h4>
@@ -30,13 +30,13 @@
             </a>
         </script>
         <script type="text/x-tmpl" id="tmpl_rank">
-            <a href="gengmei://common_webview?url={%=o.server%}/hybrid/rank_list/{%=o.id%}" class="card rank-card gm-block">
+            <a href="gengmei://common_webview?url={%=o.server%}/hybrid/rank_list/{%=o.id%}" class="card rank-card">
                 <img src="{%=o.banner%}" />
                 <h4 class="gm-center gm-ellipsis-row1"><span>{%=o.title%}</span></h4>
             </a>
         </script>
         <script type="text/x-tmpl" id="tmpl_qa">
-            <a href="gengmei://answer_detail?answer_id={%=o.answer_id%}&from=article_detail" class="card qa-card gm-block">
+            <a href="gengmei://answer_detail?answer_id={%=o.answer_id%}&from=article_detail" class="card qa-card">
                 <div>
                     <h4 class="gm-ellipsis-row1">{%=o.question%}</h4>
                     <p class="gm-ellipsis-row2">{%=o.answer%}</p>
@@ -91,6 +91,9 @@ export default {
     .gm-tiny-scale {
         @extend %gm-tiny-scale;
     }
+    .gm-center {
+        @extend %gm-center;
+    }
 }
 .gm-fixed-richtext .tag {
     position: absolute;
@@ -117,6 +120,7 @@ export default {
     }
 }
 .gm-fixed-richtext a.card {
+    display: block;
     text-decoration: none;
     color: $fClrTitle;
     ul, li {
@@ -214,9 +218,6 @@ export default {
     position: relative;
     border-radius: 3px;
     overflow: hidden;
-    .gm-center {
-        @extend %gm-center;
-    }
     img {
         width: 100%;
     }

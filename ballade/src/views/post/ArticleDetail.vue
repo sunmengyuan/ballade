@@ -4,7 +4,7 @@
             <img class="banner" :src="articleDetail.banner[0]" v-if="articleDetail.banner" />
             <div class="bar-placeholder" :style="{ height: barHeight + 'px' }" v-else></div>
             <div class="article-detail">
-                <div class="author">
+                <div class="author gm-ellipsis-row1">
                     <img :src="articleDetail.author.portrait" />
                     <span>{{ articleDetail.author.nickname }}</span>
                 </div>
