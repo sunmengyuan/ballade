@@ -44,6 +44,32 @@
                 </div>
             </a>
         </script>
+        <script type="text/x-tmpl" id="tmpl_diary">
+            <a href="gengmei://diary?diary_id={%=o.id%}" class="card diary-card">
+                {% if (o.before_img || o.after_img) { %}
+                <ul class="gm-clear">
+                    {% if (o.before_img) { %}
+                    <li>
+                        <div class="gm-nothumb">
+                            <img src="{%=o.before_img%}" />
+                        </div>
+                        <span class="gm-tiny-scale">Before</span>
+                    </li>
+                    {% } %}
+                    {% if (o.after_img) { %}
+                    <li>
+                        <div class="gm-nothumb">
+                            <img src="{%=o.after_img%}" />
+                        </div>
+                        <span class="gm-tiny-scale">After</span>
+                    </li>
+                    {% } %}
+                </ul>
+                {% } %}
+                <h4>{% if (o.area) { %}{%=o.area%} · {% } %}{% if (o.tag != null) { %}{%=o.tag.tag_name%}{% } %}日记本</h4>
+                <div class="bio gm-tiny-scale">浏览 {%=o.view_count%} · 评论 {%=o.comment_count%} · 赞 {%=o.vote_count%}</div>
+            </a>
+        </script>
     </div>
 </template>
 
@@ -64,8 +90,8 @@ export default {
             var type = cards[i].getAttribute('data-type')
             var info = JSON.parse(cards[i].getAttribute('data-info'))
             info.server = this.GLOBAL.server
-            if (type == 'qa') {
-                var innerHTML = Tmpl('tmpl_qa', info)
+            if (type == 'diary') {
+                var innerHTML = Tmpl('tmpl_diary', info)
                 cards[i].innerHTML = innerHTML
             }
         }
@@ -93,6 +119,9 @@ export default {
     }
     .gm-center {
         @extend %gm-center;
+    }
+    .gm-nothumb {
+        @include gm-nothumb();
     }
 }
 .gm-fixed-richtext .tag {
@@ -294,6 +323,58 @@ export default {
     }
     .tag {
         right: -3px;
+    }
+}
+
+/* 日记本卡片 */
+.gm-fixed-richtext a.diary-card {
+    padding: .3rem .24rem .2rem;
+    border: 1px solid $bdClr;
+    border-radius: 3px;
+    overflow: hidden;
+    ul {
+        margin: 0 -.1rem;
+    }
+    li {
+        position: relative;
+        float: left;
+        width: 50%;
+        padding: 0 .1rem;
+        box-sizing: border-box;
+        span {
+            position: absolute;
+            left: .1rem;
+            bottom: 0;
+            font-size: .44rem;
+            line-height: .72rem;
+            text-align: center;
+            color: #FFF;
+            width: 1.84rem;
+            margin: -.18rem -.46rem;
+            border-top-right-radius: .32rem;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+    }
+    .gm-nothumb {
+        border-radius: 3px;
+        overflow: hidden;
+    }
+    h4 {
+        font-size: .3rem;
+        line-height: .46rem;
+        margin-top: -.08rem;
+    }
+    ul + h4 {
+        margin-top: .18rem;
+    }
+    img {
+        width: 100%;
+    }
+    .bio {
+        font-size: .44rem;
+        line-height: .68rem;
+        color: $fClrWeaker;
+        margin: -.16rem -50%;
     }
 }
 </style>
