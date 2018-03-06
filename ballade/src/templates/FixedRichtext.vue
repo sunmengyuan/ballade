@@ -12,6 +12,23 @@
                 <span class="tag">去购买</span>
             </a>
         </script>
+        <script type="text/x-tmpl" id="tmpl_expert">
+            <a href="{% if (o.type == 1) { %}gengmei://expert?expert_id={%=o.id%}{% } %}{% if (o.type == 2) { %}gengmei://organization_detail?organization_id={%=o.id%}{% } %}" class="card expert-card gm-block">
+                <div class="gm-tiny-scale">
+                    <img src="{%=o.portrait%}" />
+                    <h4 class="gm-ellipsis-row1">{%=o.name%}</h4>
+                    <div class="title gm-ellipsis-row1">{% if (o.title) { %}<span>{%=o.title%}</span>{% } %}<span>{%=o.hospital%}</span></div>
+                    {% if (o.tags.length) { %}
+                    <ul class="gm-clear">
+                        {% for (var i = 0;i < o.tags.length;i++) { %}
+                        <li>{%=o.tags[i]%}</li>
+                        {% } %}
+                    </ul>
+                    {% } %}
+                </div>
+                <span class="tag">关注</span>
+            </a>
+        </script>
     </div>
 </template>
 
@@ -31,8 +48,10 @@ export default {
         for (let i = 0; i < cards.length; i++) {
             var type = cards[i].getAttribute('data-type')
             var info = cards[i].getAttribute('data-info')
-            var innerHTML = Tmpl('tmpl_service', JSON.parse(info))
-            cards[i].innerHTML = innerHTML
+            if (type == 'expert') {
+                var innerHTML = Tmpl('tmpl_expert', JSON.parse(info))
+                cards[i].innerHTML = innerHTML
+            }
         }
     }
 }
@@ -92,17 +111,14 @@ export default {
         margin: 0;
     }
 }
-.gm-fixed-richtext {
-    a.service-card,
-    a.expert-card {
-        position: relative;
-        height: 1.72rem;
-        padding-right: 3px;
-        margin-right: -3px;
-        overflow: hidden;
-    }
-    .service-card > div,
-    .expert-card > div {
+.gm-fixed-richtext a.service-card,
+.gm-fixed-richtext a.expert-card {
+    position: relative;
+    height: 1.72rem;
+    padding-right: 3px;
+    margin-right: -3px;
+    overflow: hidden;
+    & > div {
         position: relative;
         height: 3.44rem;
         padding: .48rem .48rem .48rem 3.28rem;
@@ -110,8 +126,7 @@ export default {
         border: 2px solid #F0F0F0;
         border-radius: 6px;
     }
-    .service-card img,
-    .expert-card img {
+    img {
         position: absolute;
         left: .48rem;
         top: .48rem;
@@ -119,16 +134,27 @@ export default {
         height: 2.4rem;
         border-radius: 6px;
     }
-    .service-card h4,
-    .expert-card h4 {
+    h4 {
         font-size: .6rem;
         line-height: .78rem;
         margin-top: -.1rem;
     }
+    .bio, .title {
+        font-size: .52rem;
+        color: $fClrWeak;
+        span + span {
+            padding-left: .52rem;
+        }
+    }
 }
 
 /* 美购卡片 */
-.gm-fixed-richtext .service-card {
+.gm-fixed-richtext a.service-card {
+    .bio {
+        line-height: .76rem;
+        height: .76rem;
+        margin-top: .12rem;
+    }
     .price {
         font-size: .36rem;
         line-height: .6rem;
@@ -141,15 +167,29 @@ export default {
             font-size: .4rem;
         }
     }
-    .bio {
-        font-size: .52rem;
-        line-height: .76rem;
-        color: $fClrWeak;
-        height: .76rem;
-        margin-top: .12rem;
-        span + span {
-            padding-left: .52rem;
-        }
+}
+
+/* 专家机构卡片 */
+.gm-fixed-richtext a.expert-card {
+    .title {
+        line-height: .78rem;
+        height: .78rem;
+    }
+    ul {
+        height: .68rem;
+        margin: .26rem -.1rem 0;
+        padding-right: 2rem;
+        overflow: hidden;
+    }
+    li {
+        float: left;
+        font-size: .44rem;
+        line-height: .68rem;
+        color: $fClrWeaker;
+        padding: 0 .22rem;
+        margin: 0 .1rem;
+        border-radius: 6px;
+        background-color: #F0F0F0;
     }
 }
 </style>
