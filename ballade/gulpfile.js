@@ -92,11 +92,16 @@ gulp.task('delete', () => {
 
 // 清理静态资源
 gulp.task('clear', () => {
-    del([
-        '../dist/static',
-        '../dist/**/*.html',
-        '!../dist/**/*-*.html'
-    ], {force: true})
+    gulp.src('../dist/assets/**/*.*')
+        .pipe(gulp.dest('../assets/'))
+        .on('end', () => {
+            del([
+                '../dist/assets',
+                '../dist/static',
+                '../dist/**/*.html',
+                '!../dist/**/*-*.html'
+            ], {force: true})
+        })
 })
 
 // 压缩 build 文件
