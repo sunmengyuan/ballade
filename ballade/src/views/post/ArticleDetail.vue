@@ -127,10 +127,14 @@ export default {
                             id: this.article_id
                         },
                         successFn: () => {
-
+                            this.voted = false
+                            this.voteCount--
                         },
-                        errorFn: () => {
-
+                        errorFn: (data) => {
+                            this.$app.showToast({
+                                text: data.message,
+                                duration: 0
+                            })
                         }
                     })
                     break
@@ -142,10 +146,18 @@ export default {
                             id: this.article_id
                         },
                         successFn: () => {
-
+                            this.voted = true
+                            this.voteCount++
                         },
-                        errorFn: () => {
-
+                        errorFn: (data) => {
+                            if (data.error === 1001) {
+                                this.$app.needLogin()
+                            } else {
+                                this.$app.showToast({
+                                    text: data.message,
+                                    duration: 0
+                                })
+                            }
                         }
                     })
                     break
