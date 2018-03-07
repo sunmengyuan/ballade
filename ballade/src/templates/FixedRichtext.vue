@@ -71,7 +71,11 @@
             </a>
         </script>
         <script type="text/x-tmpl" id="tmpl_service_list">
-            <a href="gengmei://service_list?tag_ids=[{%=o.tag_ids%}]&type=normal" class="card service-list-card">
+            {% var tag_ids = []; %}
+            {% for (var i = 0;i < o.tags.length;i++) {
+                tag_ids.push(o.tags[i].id);
+            } %}
+            <a href="gengmei://service_list?tag_ids=[{%=tag_ids%}]&type=normal" class="card service-list-card">
                 <h4 class="gm-ellipsis-row1">{%=o.tags[0].name%}项目</h4>
                 <h5 class="gm-ellipsis-row1">{%=o.subtitle%}</h5>
                 <span class="tag">立即进入</span>
@@ -96,11 +100,6 @@ export default {
         for (let i = 0; i < cards.length; i++) {
             var type = cards[i].getAttribute('data-type')
             var info = JSON.parse(cards[i].getAttribute('data-info'))
-            if (type === 'service_list') {
-                var tagIds = []
-                for (let j = 0; j < info.tags.length; j++) tagIds.push(info.tags[j].id)
-                info.tag_ids = tagIds
-            }
             info.server = this.GLOBAL.server
             cards[i].innerHTML = Tmpl(`tmpl_${type}`, info)
         }
@@ -168,40 +167,40 @@ export default {
     img {
         margin: 0;
     }
-}
-.gm-fixed-richtext a.service-card,
-.gm-fixed-richtext a.expert-card {
-    position: relative;
-    height: 1.72rem;
-    padding-right: 3px;
-    margin-right: -3px;
-    overflow: hidden;
-    & > div {
+
+    &.service-card, &.expert-card {
         position: relative;
-        height: 3.44rem;
-        padding: .48rem .48rem .48rem 3.28rem;
-        margin: -.86rem -50%;
-        border: 2px solid #F0F0F0;
-        border-radius: 6px;
-    }
-    img {
-        position: absolute;
-        left: .48rem;
-        top: .48rem;
-        width: 2.4rem;
-        height: 2.4rem;
-        border-radius: 6px;
-    }
-    h4 {
-        font-size: .6rem;
-        line-height: .78rem;
-        margin-top: -.1rem;
-    }
-    .bio, .title {
-        font-size: .52rem;
-        color: $fClrWeak;
-        span + span {
-            padding-left: .52rem;
+        height: 1.72rem;
+        padding-right: 3px;
+        margin-right: -3px;
+        overflow: hidden;
+        & > div {
+            position: relative;
+            height: 3.44rem;
+            padding: .48rem .48rem .48rem 3.28rem;
+            margin: -.86rem -50%;
+            border: 2px solid $bdClr;
+            border-radius: 6px;
+        }
+        img {
+            position: absolute;
+            left: .48rem;
+            top: .48rem;
+            width: 2.4rem;
+            height: 2.4rem;
+            border-radius: 6px;
+        }
+        h4 {
+            font-size: .6rem;
+            line-height: .78rem;
+            margin-top: -.1rem;
+        }
+        .bio, .title {
+            font-size: .52rem;
+            color: $fClrWeak;
+            span + span {
+                padding-left: .52rem;
+            }
         }
     }
 }

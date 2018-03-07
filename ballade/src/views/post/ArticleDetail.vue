@@ -1,8 +1,8 @@
 <template>
     <section class="gm-content">
-        <section class="common" v-if="articleType == 6">
+        <div class="common" v-if="articleType == 7">
             <img class="banner" :src="articleDetail.banner[0]" v-if="articleDetail.banner" />
-            <div class="bar-placeholder" :style="{ height: barHeight + 'px' }" v-else></div>
+            <div class="bar-placeholder" :style="{ height: titleBarHeight + 'px' }" v-else></div>
             <div class="article-detail">
                 <div class="author gm-ellipsis-row1">
                     <img :src="articleDetail.author.portrait" />
@@ -13,7 +13,7 @@
                 <div class="author-desc" v-if="articleDetail.author.desc"><span>个人自述</span>{{ articleDetail.author.desc }}</div>
                 <fixed-richtext :data="articleDetail.richtext"></fixed-richtext>
             </div>
-        </section>
+        </div>
         <div class="related-article" v-if="relatedArticles.length">
             <h4>相关专栏</h4>
             <ul>
@@ -53,7 +53,7 @@ export default {
 
     data () {
         return {
-            barHeight: 0,
+            titleBarHeight: 0,
             article_id: null,
             articleType: null,
             articleDetail: {},
@@ -62,7 +62,7 @@ export default {
     },
 
     created () {
-        this.barHeight = this.$router.query('title_bar_height')
+        this.titleBarHeight = this.$router.query('title_bar_height')
         this.article_id = this.$router.query('article_id')
         this.loadArticleDetail()
     },
@@ -147,7 +147,6 @@ export default {
 .gm-fixed-richtext {
     margin-top: .5rem;
 }
-
 .related-article {
     margin: .28rem 0 1rem;
     h4 {
@@ -199,7 +198,6 @@ export default {
         }
     }
 }
-
 .footer-bar {
     position: fixed;
     left: 0;
@@ -216,6 +214,8 @@ export default {
         width: 50%;
         span:first-child {
             padding-left: 20px;
+            background: transparent no-repeat 0 0;
+            background-size: auto 13px;
         }
         &:first-child:after {
             content: "";
@@ -230,12 +230,13 @@ export default {
         }
     }
     .vote span:first-child {
-        background: url("#{$src}/post/icon_vote_footer.png") no-repeat 0 0;
-        background-size: auto 13px;
+        background-image: url("#{$src}/post/icon_vote_footer.png");
+    }
+    .voted span:first-child {
+        background-image: url("#{$src}/post/icon_voted_footer.png");
     }
     .comment span:first-child {
-        background: url("#{$src}/post/icon_comment_footer.png") no-repeat 0 0;
-        background-size: auto 13px;
+        background-image: url("#{$src}/post/icon_comment_footer.png");
     }
 }
 </style>
