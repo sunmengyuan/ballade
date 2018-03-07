@@ -294,7 +294,7 @@ export default {
         width: 50%;
         span:first-child {
             padding-left: 20px;
-            background: transparent no-repeat 0 0;
+            background: transparent no-repeat 0 2px;
             background-size: auto 13px;
         }
         &:first-child:after {
