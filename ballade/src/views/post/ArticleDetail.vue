@@ -130,7 +130,7 @@ export default {
                             this.voted = false
                             this.voteCount--
                         },
-                        errorFn: (data) => {
+                        failFn: (data) => {
                             this.$app.showToast({
                                 text: data.message,
                                 duration: 0
@@ -149,7 +149,7 @@ export default {
                             this.voted = true
                             this.voteCount++
                         },
-                        errorFn: (data) => {
+                        failFn: (data) => {
                             if (data.error === 1001) {
                                 this.$app.needLogin()
                             } else {
