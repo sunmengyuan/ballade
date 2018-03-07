@@ -1,7 +1,11 @@
 <template>
     <section class="gm-content">
         <div class="common" v-if="articleType == 7">
-            <img class="banner" :src="articleDetail.banner[0]" v-if="articleDetail.banner" />
+            <img
+                class="banner"
+                :src="articleDetail.banner[0]"
+                v-if="articleDetail.banner"
+                @load="bannerLoaded($event)" />
             <div class="bar-placeholder" :style="{ height: titleBarHeight + 'px' }" v-else></div>
             <div class="article-detail">
                 <div class="author gm-ellipsis-row1">
@@ -55,6 +59,7 @@ export default {
 
     data () {
         return {
+            pageData: {},
             titleBarHeight: 0,
             article_id: null,
             articleType: null,
@@ -83,12 +88,19 @@ export default {
 
                 }
             })
+        },
+        bannerLoaded (e) {
+            this.pageData['header_height'] = e.target.height
+            console.log(this.pageData)
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
+.gm-content {
+    padding-bottom: 1.5rem;
+}
 .bar-placeholder {
     background-color: #FFF;
 }
