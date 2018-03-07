@@ -69,6 +69,7 @@ export default {
     },
 
     created () {
+        this.$app.setPageTitle('专栏')
         this.titleBarHeight = this.$router.query('title_bar_height')
         this.article_id = this.$router.query('article_id')
         this.loadArticleDetail()
@@ -83,6 +84,12 @@ export default {
                     this.articleDetail = detail
                     this.articleType = detail.article_type
                     this.relatedArticles = detail.related_article
+                    this.pageData = {
+                        page_name: 'article_detail',
+                        business_id: detail.article_id,
+                        share_data: detail.share_data,
+                        hide_share: false
+                    }
                 },
                 errorFn: () => {
 
@@ -90,8 +97,8 @@ export default {
             })
         },
         bannerLoaded (e) {
-            this.pageData['header_height'] = e.target.height
-            console.log(this.pageData)
+            this.pageData.header_height = e.target.height
+            this.$app.setPageData(this.pageData)
         }
     }
 }
