@@ -1,49 +1,51 @@
 <template>
-    <section class="gm-content">
+    <section class="article-wrap">
         <whirl v-if="showWhirl"></whirl>
         <error v-if="showError"></error>
-        <div class="common" v-if="articleType == 7">
-            <img
-                class="banner"
-                :src="articleDetail.banner[0]"
-                v-if="articleDetail.banner"
-                @load="bannerLoaded($event)" />
-            <div class="bar-placeholder" :style="{ height: titleBarHeight + 'px' }" v-else></div>
-            <div class="article-detail">
-                <div class="author gm-ellipsis-row1">
-                    <img :src="articleDetail.author.portrait" />
-                    <span>{{ articleDetail.author.nickname }}</span>
+        <section class="gm-content" v-else>
+            <div class="common" v-if="articleType == 7">
+                <img
+                    class="banner"
+                    :src="articleDetail.banner[0]"
+                    v-if="articleDetail.banner"
+                    @load="bannerLoaded($event)" />
+                <div class="bar-placeholder" :style="{ height: titleBarHeight + 'px' }" v-else></div>
+                <div class="article-detail">
+                    <div class="author gm-ellipsis-row1">
+                        <img :src="articleDetail.author.portrait" />
+                        <span>{{ articleDetail.author.nickname }}</span>
+                    </div>
+                    <h3>{{ articleDetail.title }}</h3>
+                    <p class="article-desc" v-if="articleDetail.desc">{{ articleDetail.desc }}</p>
+                    <div class="author-desc" v-if="articleDetail.author.desc"><span>个人自述</span>{{ articleDetail.author.desc }}</div>
+                    <fixed-richtext :data="articleDetail.richtext"></fixed-richtext>
                 </div>
-                <h3>{{ articleDetail.title }}</h3>
-                <p class="article-desc" v-if="articleDetail.desc">{{ articleDetail.desc }}</p>
-                <div class="author-desc" v-if="articleDetail.author.desc"><span>个人自述</span>{{ articleDetail.author.desc }}</div>
-                <fixed-richtext :data="articleDetail.richtext"></fixed-richtext>
             </div>
-        </div>
-        <div class="related-article" v-if="relatedArticles.length">
-            <h4>相关专栏</h4>
-            <ul>
-                <li v-for="article in relatedArticles">
-                    <a :href="'gengmei://article?article_id=' + article.id" class="gm-block">
-                        <h3 class="gm-ellipsis-row1">{{ article.title }}</h3>
-                        <p class="gm-ellipsis-row3">{{ article.desc }}</p>
-                        <div class="stat"><span>赞 · {{ article.vote_count }}</span><span>评论 · {{ article.comment_count }}</span></div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <footer-bar>
-            <ul class="gm-clear">
-                <li class="vote">
-                    <span>赞<em v-if="articleDetail.vote_count">·</em></span>
-                    <span>{{ articleDetail.vote_count }}</span>
-                </li>
-                <li class="comment">
-                    <span>评论<em v-if="articleDetail.comment_count">·</em></span>
-                    <span>{{ articleDetail.comment_count }}</span>
-                </li>
-            </ul>
-        </footer-bar>
+            <div class="related-article" v-if="relatedArticles.length">
+                <h4>相关专栏</h4>
+                <ul>
+                    <li v-for="article in relatedArticles">
+                        <a :href="'gengmei://article?article_id=' + article.id" class="gm-block">
+                            <h3 class="gm-ellipsis-row1">{{ article.title }}</h3>
+                            <p class="gm-ellipsis-row3">{{ article.desc }}</p>
+                            <div class="stat"><span>赞 · {{ article.vote_count }}</span><span>评论 · {{ article.comment_count }}</span></div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <footer-bar>
+                <ul class="gm-clear">
+                    <li class="vote">
+                        <span>赞<em v-if="articleDetail.vote_count">·</em></span>
+                        <span>{{ articleDetail.vote_count }}</span>
+                    </li>
+                    <li class="comment">
+                        <span>评论<em v-if="articleDetail.comment_count">·</em></span>
+                        <span>{{ articleDetail.comment_count }}</span>
+                    </li>
+                </ul>
+            </footer-bar>
+        </section>
     </section>
 </template>
 
