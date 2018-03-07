@@ -1,7 +1,7 @@
 <template>
     <div class="gm-loading">
         <div class="loading" v-if="loading === true">
-            <img :src="GLOBAL.src + '/icon_loading.png'" />
+            <img src="../assets/imgs/icon_loading.png" />
             <span>正在加载...</span>
         </div>
         <div class="complete" v-if="loading === false">我们是有底线的</div>

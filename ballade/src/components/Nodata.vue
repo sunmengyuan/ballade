@@ -1,6 +1,6 @@
 <template>
     <div class="gm-nodata" :style="'height: ' + height + 'px'">
-        <img :src="GLOBAL.src + '/holder_' + type + '.png'">
+        <img :src="'../assets/imgs/holder_' + type + '.png'">
         <p>{{ message }}</p>
     </div>
 </template>

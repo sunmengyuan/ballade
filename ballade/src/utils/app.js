@@ -2,8 +2,6 @@ import Settings from '~/settings.json'
 
 const App = {
     GLOBAL: {
-        // 静态资源地址
-        src: Settings.source,
         // 生产环境服务
         server: Settings.server,
         winWidth: window.screen.availWidth,

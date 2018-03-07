@@ -1,6 +1,6 @@
 <template>
     <section class="gm-error">
-        <img :src="GLOBAL.src + '/holder_error.png'">
+        <img src="../assets/imgs/holder_error.png">
         <p>{{ message }}</p>
         <a href="javascript:;" @click="reload">重新加载</a>
     </section>

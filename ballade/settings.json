@@ -1,6 +1,5 @@
 {
     "project": "ballade",
     "cdn": "http://p2znmi5xx.bkt.clouddn.com",
-    "source": "http://p2znmi5xx.bkt.clouddn.com/source",
     "server": "https://backend.igengmei.com"
 }
