@@ -35,8 +35,8 @@
             </div>
             <footer-bar>
                 <ul class="gm-clear">
-                    <li class="vote" :class="{voted: voted}">
-                        <span>赞<em v-if="articleDetail.vote_count">·</em></span>
+                    <li class="vote" :class="{voted: voted}" @click="triggerVote">
+                        <span>赞<em v-if="voteCount">·</em></span>
                         <span>{{ voteCount }}</span>
                     </li>
                     <li class="comment">
@@ -54,7 +54,6 @@ import FixedRichtext from '@/templates/FixedRichtext'
 import FooterBar from '@/components/FooterBar'
 import Whirl from '@/components/Whirl'
 import Error from '@/components/Error'
-import Vote from '@/utils/vote'
 
 export default {
     name: 'ArticleDetail',
@@ -66,8 +65,6 @@ export default {
         Error
     },
 
-    mixins: [Vote.mixin],
-
     data () {
         return {
             pageData: {},
@@ -77,7 +74,9 @@ export default {
             articleDetail: {},
             relatedArticles: [],
             showWhirl: true,
-            showError: false
+            showError: false,
+            voted: false,
+            voteCount: 0
         }
     },
 
@@ -97,8 +96,6 @@ export default {
                     this.articleDetail = detail
                     this.articleType = detail.article_type
                     this.relatedArticles = detail.related_article
-                    this.voted = detail.is_liked
-                    this.voteCount = detail.vote_count
                     this.pageData = {
                         page_name: 'article_detail',
                         business_id: detail.article_id,
@@ -106,6 +103,9 @@ export default {
                         hide_share: false
                     }
                     this.showWhirl = false
+                    // 点赞
+                    this.voted = detail.is_liked
+                    this.voteCount = detail.vote_count
                 },
                 errorFn: () => {
                     this.showError = true
@@ -116,6 +116,40 @@ export default {
         bannerLoaded (e) {
             this.pageData.header_height = e.target.height
             this.$app.setPageData(this.pageData)
+        },
+        triggerVote () {
+            switch (this.voted) {
+                case true:
+                    this.$request({
+                        url: '/hybrid/api/topic/cancel_vote/_data',
+                        method: 'POST',
+                        data: {
+                            id: this.article_id
+                        },
+                        successFn: () => {
+
+                        },
+                        errorFn: () => {
+
+                        }
+                    })
+                    break
+                case false:
+                    this.$request({
+                        url: '/hybrid/api/topic/vote/_data',
+                        method: 'POST',
+                        data: {
+                            id: this.article_id
+                        },
+                        successFn: () => {
+
+                        },
+                        errorFn: () => {
+
+                        }
+                    })
+                    break
+            }
         }
     }
 }
