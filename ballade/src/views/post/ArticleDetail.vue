@@ -230,13 +230,13 @@ export default {
         }
     }
     .vote span:first-child {
-        background-image: url("#{$src}/post/icon_vote_footer.png");
+        background-image: url("../../assets/imgs/post/icon_vote_footer.png");
     }
     .voted span:first-child {
-        background-image: url("#{$src}/post/icon_voted_footer.png");
+        background-image: url("../../assets/imgs/post/icon_voted_footer.png");
     }
     .comment span:first-child {
-        background-image: url("#{$src}/post/icon_comment_footer.png");
+        background-image: url("../../assets/imgs/post/icon_comment_footer.png");
     }
 }
 </style>
