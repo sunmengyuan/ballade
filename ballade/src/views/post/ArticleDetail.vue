@@ -26,7 +26,7 @@
                 </li>
             </ul>
         </div>
-        <div class="footer-bar">
+        <footer-bar>
             <ul class="gm-clear">
                 <li class="vote">
                     <span>赞<em v-if="articleDetail.vote_count">·</em></span>
@@ -37,18 +37,20 @@
                     <span>{{ articleDetail.comment_count }}</span>
                 </li>
             </ul>
-        </div>
+        </footer-bar>
     </section>
 </template>
 
 <script>
 import FixedRichtext from '@/templates/FixedRichtext'
+import FooterBar from '@/components/FooterBar'
 
 export default {
     name: 'ArticleDetail',
 
     components: {
-        FixedRichtext
+        FixedRichtext,
+        FooterBar
     },
 
     data () {
@@ -198,11 +200,7 @@ export default {
         }
     }
 }
-.footer-bar {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+.gm-footer {
     font-size: 13px;
     line-height: 1.1rem;
     text-align: center;
