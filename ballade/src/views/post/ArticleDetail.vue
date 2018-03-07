@@ -35,9 +35,9 @@
             </div>
             <footer-bar>
                 <ul class="gm-clear">
-                    <li class="vote">
+                    <li class="vote" :class="{voted: voted}">
                         <span>赞<em v-if="articleDetail.vote_count">·</em></span>
-                        <span>{{ articleDetail.vote_count }}</span>
+                        <span>{{ voteCount }}</span>
                     </li>
                     <li class="comment">
                         <span>评论<em v-if="articleDetail.comment_count">·</em></span>
@@ -54,6 +54,7 @@ import FixedRichtext from '@/templates/FixedRichtext'
 import FooterBar from '@/components/FooterBar'
 import Whirl from '@/components/Whirl'
 import Error from '@/components/Error'
+import Vote from '@/utils/vote'
 
 export default {
     name: 'ArticleDetail',
@@ -64,6 +65,8 @@ export default {
         Whirl,
         Error
     },
+
+    mixins: [Vote.mixin],
 
     data () {
         return {
@@ -94,6 +97,8 @@ export default {
                     this.articleDetail = detail
                     this.articleType = detail.article_type
                     this.relatedArticles = detail.related_article
+                    this.voted = detail.is_liked
+                    this.voteCount = detail.vote_count
                     this.pageData = {
                         page_name: 'article_detail',
                         business_id: detail.article_id,
