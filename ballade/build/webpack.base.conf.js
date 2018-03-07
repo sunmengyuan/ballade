@@ -64,7 +64,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 1,
-                    name: utils.assetsPath('[path][name].[ext]')
+                    name: '[path][name].[ext]'
                 }
             },
             {

@@ -3,6 +3,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
+const settings = require('../settings')
 const proxyTable = require('../proxy/proxy')
 
 module.exports = {
@@ -56,7 +57,7 @@ module.exports = {
         // Paths
         assetsRoot: path.resolve(__dirname, '../../dist'),
         assetsSubDirectory: 'static',
-        assetsPublicPath: '../',
+        assetsPublicPath: settings.cdn,
 
         /**
          * Source Maps
