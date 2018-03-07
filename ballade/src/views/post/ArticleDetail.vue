@@ -1,5 +1,7 @@
 <template>
     <section class="gm-content">
+        <whirl v-if="showWhirl"></whirl>
+        <error v-if="showError"></error>
         <div class="common" v-if="articleType == 7">
             <img
                 class="banner"
@@ -48,13 +50,17 @@
 <script>
 import FixedRichtext from '@/templates/FixedRichtext'
 import FooterBar from '@/components/FooterBar'
+import Whirl from '@/components/Whirl'
+import Error from '@/components/Error'
 
 export default {
     name: 'ArticleDetail',
 
     components: {
         FixedRichtext,
-        FooterBar
+        FooterBar,
+        Whirl,
+        Error
     },
 
     data () {
@@ -64,7 +70,9 @@ export default {
             article_id: null,
             articleType: null,
             articleDetail: {},
-            relatedArticles: []
+            relatedArticles: [],
+            showWhirl: true,
+            showError: false
         }
     },
 
@@ -90,9 +98,11 @@ export default {
                         share_data: detail.share_data,
                         hide_share: false
                     }
+                    this.showWhirl = false
                 },
                 errorFn: () => {
-
+                    this.showError = true
+                    this.showWhirl = false
                 }
             })
         },
