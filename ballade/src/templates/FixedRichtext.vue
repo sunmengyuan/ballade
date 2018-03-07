@@ -2,7 +2,7 @@
     <div class="gm-richtext gm-fixed-richtext">
         <div v-html="data"></div>
         <script type="text/x-tmpl" id="tmpl_service">
-            <a href="gengmei://service?service_id={%=o.id%}" class="card service-card">
+            <a href="gengmei://service?service_id={%=o.id%}" class="card service-card" data-type="service" data-id="{%=o.id%}">
                 <div class="gm-tiny-scale">
                     <img src="{%=o.image%}" />
                     <h4 class="gm-ellipsis-row1">{%=o.short_desc%}</h4>
@@ -13,7 +13,7 @@
             </a>
         </script>
         <script type="text/x-tmpl" id="tmpl_expert">
-            <a href="{% if (o.type == 1) { %}gengmei://expert?expert_id={%=o.id%}{% } %}{% if (o.type == 2) { %}gengmei://organization_detail?organization_id={%=o.id%}{% } %}" class="card expert-card">
+            <a href="{% if (o.type == 1) { %}gengmei://expert?expert_id={%=o.id%}{% } %}{% if (o.type == 2) { %}gengmei://organization_detail?organization_id={%=o.id%}{% } %}" class="card expert-card" data-type="{% if (o.type == 1) { %}doctor{% } %}{% if (o.type == 2) { %}hospital{% } %}" data-id="{%=o.id%}">
                 <div class="gm-tiny-scale">
                     <img src="{%=o.portrait%}" />
                     <h4 class="gm-ellipsis-row1">{%=o.name%}</h4>
@@ -30,13 +30,13 @@
             </a>
         </script>
         <script type="text/x-tmpl" id="tmpl_rank">
-            <a href="gengmei://common_webview?url={%=o.server%}/hybrid/rank_list/{%=o.id%}" class="card rank-card">
+            <a href="gengmei://common_webview?url={%=o.server%}/hybrid/rank_list/{%=o.id%}" class="card rank-card" data-type="rank" data-id="{%=o.id%}">
                 <img src="{%=o.banner%}" />
                 <h4 class="gm-center gm-ellipsis-row1"><span>{%=o.title%}</span></h4>
             </a>
         </script>
         <script type="text/x-tmpl" id="tmpl_qa">
-            <a href="gengmei://answer_detail?answer_id={%=o.answer_id%}&from=article_detail" class="card qa-card">
+            <a href="gengmei://answer_detail?answer_id={%=o.answer_id%}&from=article_detail" class="card qa-card" data-type="answer" data-id="{%=o.answer_id%}">
                 <div>
                     <h4 class="gm-ellipsis-row1">{%=o.question%}</h4>
                     <p class="gm-ellipsis-row2">{%=o.answer%}</p>
@@ -45,7 +45,7 @@
             </a>
         </script>
         <script type="text/x-tmpl" id="tmpl_diary">
-            <a href="gengmei://diary?diary_id={%=o.id%}" class="card diary-card">
+            <a href="gengmei://diary?diary_id={%=o.id%}" class="card diary-card" data-type="diary" data-id="{%=o.id%}">
                 {% if (o.before_img || o.after_img) { %}
                 <ul class="gm-clear">
                     {% if (o.before_img) { %}
@@ -75,7 +75,7 @@
             {% for (var i = 0;i < o.tags.length;i++) {
                 tag_ids.push(o.tags[i].id);
             } %}
-            <a href="gengmei://service_list?tag_ids=[{%=tag_ids%}]&type=normal" class="card service-list-card">
+            <a href="gengmei://service_list?tag_ids=[{%=tag_ids%}]&type=normal" class="card service-list-card" data-type="service_list" data-id="{%=tag_ids%}">
                 <h4 class="gm-ellipsis-row1">{%=o.tags[0].name%}项目</h4>
                 <h5 class="gm-ellipsis-row1">{%=o.subtitle%}</h5>
                 <span class="tag">立即进入</span>
@@ -102,6 +102,16 @@ export default {
             var info = JSON.parse(cards[i].getAttribute('data-info'))
             info.server = this.GLOBAL.server
             cards[i].innerHTML = Tmpl(`tmpl_${type}`, info)
+            cards[i].addEventListener('click', () => {
+                var target = cards[i].querySelector('a')
+                this.$app.trackEvent({
+                    type: 'article_detail_click_related_item',
+                    params: {
+                        item_type: target.getAttribute('data-type'),
+                        business_id: target.getAttribute('data-id')
+                    }
+                })
+            })
         }
     }
 }
