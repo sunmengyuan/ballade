@@ -35,12 +35,12 @@
             </div>
             <footer-bar>
                 <ul class="gm-clear">
-                    <li class="vote" :class="{voted: vote.voted}" @click="triggerVote">
-                        <span>赞<em v-if="vote.count">·</em></span>
-                        <span>{{ vote.count }}</span>
+                    <li class="vote" :class="{ voted: vote.voted }" @click="triggerVote">
+                        <span>赞<em v-if="vote.count">&nbsp;·&nbsp;</em></span>
+                        <span v-if="vote.count">{{ vote.count }}</span>
                     </li>
                     <li class="comment">
-                        <span>评论<em v-if="articleDetail.comment_count">·</em></span>
+                        <span>评论<em v-if="articleDetail.comment_count">&nbsp;·&nbsp;</em></span>
                         <span>{{ articleDetail.comment_count }}</span>
                     </li>
                 </ul>
@@ -246,7 +246,7 @@ export default {
     }
 }
 .gm-footer {
-    font-size: 13px;
+    font-size: 0;
     line-height: 1.1rem;
     text-align: center;
     color: #FFF;
@@ -255,10 +255,15 @@ export default {
         position: relative;
         float: left;
         width: 50%;
+        span, em {
+            display: inline-block;
+            font-size: 13px;
+            line-height: 15px;
+        }
         span:first-child {
             padding-left: 20px;
-            background: transparent no-repeat 0 2px;
-            background-size: auto 13px;
+            background: transparent no-repeat 0 0;
+            background-size: auto 14px;
         }
         &:first-child:after {
             content: "";
