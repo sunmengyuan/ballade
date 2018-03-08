@@ -40,8 +40,13 @@
                         <span v-if="vote.count">{{ vote.count }}</span>
                     </li>
                     <li class="comment">
-                        <span>评论<em v-if="articleDetail.comment_count">&nbsp;·&nbsp;</em></span>
-                        <span>{{ articleDetail.comment_count }}</span>
+                        <a
+                            class="gm-block"
+                            :href="'gengmei://add_comment?topic_id=' + article_id"
+                            @click.prevent="triggerComment($event)">
+                            <span>评论<em v-if="articleDetail.comment_count">&nbsp;·&nbsp;</em></span>
+                            <span>{{ articleDetail.comment_count }}</span>
+                        </a>
                     </li>
                 </ul>
             </footer-bar>
@@ -125,6 +130,11 @@ export default {
                 addUrl: '/hybrid/api/topic/vote/_data',
                 cancelUrl: '/hybrid/api/topic/cancel_vote/_data'
             })
+        },
+        triggerComment (e) {
+            this.GLOBAL.curUser.id
+                ? (window.location.href = e.currentTarget.href)
+                : this.$app.needLogin()
         }
     }
 }
@@ -250,6 +260,9 @@ export default {
     text-align: center;
     color: #FFF;
     background-color: #333;
+    a {
+        color: #FFF;
+    }
     li {
         position: relative;
         float: left;
