@@ -1,15 +1,21 @@
 import Settings from '~/settings.json'
+import Request from '@/utils/request'
 
 const App = {
     GLOBAL: {
         // 生产环境服务
         server: Settings.server,
         winWidth: window.screen.availWidth,
-        winHeight: window.screen.availHeight
+        winHeight: window.screen.availHeight,
+        curUser: {
+            id: null,
+            portrait: ''
+        }
     },
     do: function () {
         // 供 Native 调用的 Js Function
         window.gmJS = {}
+        this.checkLogin()
     },
     $router: {
         query: (key) => {
@@ -101,6 +107,16 @@ const App = {
                 window.location.href = `gengmei://organization_detail?organization_id=${id}`
                 break
         }
+    },
+    checkLogin: function () {
+        Request({
+            url: '/hybrid/get_current_user/',
+            method: 'GET',
+            successFn: (data) => {
+                this.GLOBAL.curUser.id = data.data.current_user
+                this.GLOBAL.curUser.portrait = data.data.current_user_portrait
+            }
+        })
     }
 }
 App.install = (Vue, options) => {
