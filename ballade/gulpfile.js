@@ -87,7 +87,10 @@ gulp.task('inline', () => {
 })
 
 gulp.task('delete', () => {
-    del(['../dist/*'], {force: true})
+    del([
+        '../dist/*',
+        '../assets/*'
+    ], {force: true})
 })
 
 // 清理静态资源
