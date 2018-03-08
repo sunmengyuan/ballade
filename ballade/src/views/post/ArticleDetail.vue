@@ -108,7 +108,7 @@ export default {
         this.loadArticleDetail()
     },
 
-    mounted () {
+    updated () {
         /* eslint-disable no-new */
         new Swiper('.swiper-container', {
             loop: true,
