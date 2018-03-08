@@ -3,7 +3,7 @@
         <whirl v-if="showWhirl"></whirl>
         <error v-if="showError"></error>
         <section class="gm-content" v-else>
-            <div class="common" v-if="articleType == 6">
+            <div class="common" v-if="articleDetail.article_type == 6">
                 <img
                     class="banner"
                     :src="articleDetail.banner[0]"
@@ -21,7 +21,7 @@
                     <fixed-richtext :data="articleDetail.richtext"></fixed-richtext>
                 </div>
             </div>
-            <div class="star" v-if="articleType == 7">
+            <div class="star" v-if="articleDetail.article_type == 7">
                 <div class="banner-swiper">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
@@ -87,7 +87,6 @@ export default {
     data () {
         return {
             article_id: null,
-            articleType: 7,
             articleDetail: {},
             relatedArticles: [],
             vote: {
@@ -126,7 +125,6 @@ export default {
                 successFn: (data) => {
                     var detail = data.data
                     this.articleDetail = detail
-                    this.articleType = detail.article_type
                     this.relatedArticles = detail.related_article
                     this.pageData = {
                         page_name: 'article_detail',
