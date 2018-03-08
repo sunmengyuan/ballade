@@ -3,7 +3,7 @@
         <whirl v-if="showWhirl"></whirl>
         <error v-if="showError"></error>
         <section class="gm-content" v-else>
-            <div class="common" v-if="articleDetail.article_type == 7">
+            <div class="common" v-if="articleDetail.article_type == 6">
                 <img
                     class="banner"
                     :src="articleDetail.banner[0]"
