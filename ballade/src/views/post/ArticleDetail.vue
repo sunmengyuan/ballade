@@ -73,7 +73,7 @@ export default {
             relatedArticles: [],
             vote: {
                 voted: false,
-                count: 0,
+                count: 0
             },
             titleBarHeight: 0,
             showWhirl: true,
