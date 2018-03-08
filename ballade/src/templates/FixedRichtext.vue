@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import Tmpl from '@/utils/libs/tmpl.min'
+import Tmpl from '~/static/libs/tmpl.min'
 
 export default {
     props: {
