@@ -35,9 +35,9 @@
             </div>
             <footer-bar>
                 <ul class="gm-clear">
-                    <li class="vote" :class="{voted: voted}" @click="triggerVote">
-                        <span>赞<em v-if="voteCount">·</em></span>
-                        <span>{{ voteCount }}</span>
+                    <li class="vote" :class="{voted: vote.voted}" @click="triggerVote">
+                        <span>赞<em v-if="vote.count">·</em></span>
+                        <span>{{ vote.count }}</span>
                     </li>
                     <li class="comment">
                         <span>评论<em v-if="articleDetail.comment_count">·</em></span>
@@ -54,6 +54,7 @@ import FixedRichtext from '@/templates/FixedRichtext'
 import FooterBar from '@/components/FooterBar'
 import Whirl from '@/components/Whirl'
 import Error from '@/components/Error'
+import Vote from '@/utils/vote'
 
 export default {
     name: 'ArticleDetail',
@@ -70,8 +71,10 @@ export default {
             article_id: null,
             articleDetail: {},
             relatedArticles: [],
-            voted: false,
-            voteCount: 0,
+            vote: {
+                voted: false,
+                count: 0,
+            },
             titleBarHeight: 0,
             showWhirl: true,
             showError: false,
@@ -102,8 +105,8 @@ export default {
                     }
                     this.showWhirl = false
                     // 点赞
-                    this.voted = detail.is_liked
-                    this.voteCount = detail.vote_count
+                    this.vote.voted = detail.is_liked
+                    this.vote.count = detail.vote_count
                 },
                 errorFn: () => {
                     this.showWhirl = false
@@ -116,50 +119,12 @@ export default {
             this.$app.setPageData(this.pageData)
         },
         triggerVote () {
-            switch (this.voted) {
-                case true:
-                    this.$request({
-                        url: '/hybrid/api/topic/cancel_vote/_data',
-                        method: 'POST',
-                        data: {
-                            id: this.article_id
-                        },
-                        successFn: () => {
-                            this.voted = false
-                            this.voteCount--
-                        },
-                        failFn: (data) => {
-                            this.$app.showToast({
-                                text: data.message,
-                                duration: 0
-                            })
-                        }
-                    })
-                    break
-                case false:
-                    this.$request({
-                        url: '/hybrid/api/topic/vote/_data',
-                        method: 'POST',
-                        data: {
-                            id: this.article_id
-                        },
-                        successFn: () => {
-                            this.voted = true
-                            this.voteCount++
-                        },
-                        failFn: (data) => {
-                            if (data.error === 1001) {
-                                this.$app.needLogin()
-                            } else {
-                                this.$app.showToast({
-                                    text: data.message,
-                                    duration: 0
-                                })
-                            }
-                        }
-                    })
-                    break
-            }
+            Vote.do({
+                id: this.article_id,
+                status: this.vote,
+                addUrl: '/hybrid/api/topic/vote/_data',
+                cancelUrl: '/hybrid/api/topic/cancel_vote/_data'
+            })
         }
     }
 }
