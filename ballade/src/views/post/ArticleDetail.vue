@@ -3,7 +3,7 @@
         <whirl v-if="showWhirl"></whirl>
         <error v-if="showError"></error>
         <section class="gm-content" v-else>
-            <div class="common" v-if="articleDetail.article_type == 6">
+            <div class="common" v-if="articleType == 6">
                 <img
                     class="banner"
                     :src="articleDetail.banner[0]"
@@ -19,6 +19,18 @@
                     <p class="article-desc" v-if="articleDetail.desc">{{ articleDetail.desc }}</p>
                     <div class="author-desc" v-if="articleDetail.author.desc"><span>个人自述</span>{{ articleDetail.author.desc }}</div>
                     <fixed-richtext :data="articleDetail.richtext"></fixed-richtext>
+                </div>
+            </div>
+            <div class="star" v-if="articleType == 7">
+                <div class="banner-swiper">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" v-for="image in articleDetail.banner">
+                                <img :src="image" class="gm-vertical-center" />
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
                 </div>
             </div>
             <div class="related-article" v-if="relatedArticles.length">
@@ -60,6 +72,7 @@ import FooterBar from '@/components/FooterBar'
 import Whirl from '@/components/Whirl'
 import Error from '@/components/Error'
 import Vote from '@/utils/vote'
+import Swiper from '~/static/libs/swiper.min'
 
 export default {
     name: 'ArticleDetail',
@@ -74,6 +87,7 @@ export default {
     data () {
         return {
             article_id: null,
+            articleType: 7,
             articleDetail: {},
             relatedArticles: [],
             vote: {
@@ -94,6 +108,17 @@ export default {
         this.loadArticleDetail()
     },
 
+    mounted () {
+        /* eslint-disable no-new */
+        new Swiper('.swiper-container', {
+            loop: true,
+            pagination: '.swiper-pagination',
+            paginationType: 'fraction',
+            observer: true,
+            observeParents: true
+        })
+    },
+
     methods: {
         loadArticleDetail () {
             this.$request({
@@ -101,6 +126,7 @@ export default {
                 successFn: (data) => {
                     var detail = data.data
                     this.articleDetail = detail
+                    this.articleType = detail.article_type
                     this.relatedArticles = detail.related_article
                     this.pageData = {
                         page_name: 'article_detail',
@@ -141,16 +167,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../assets/libs/swiper.min.css";
+
 .gm-content {
     padding-bottom: 1.5rem;
 }
 .bar-placeholder {
     background-color: #FFF;
 }
+img.banner, .banner-swiper img {
+    width: 100%;
+}
 .common {
-    .banner {
-        width: 100%;
-    }
     .author {
         position: relative;
         font-size: .26rem;
