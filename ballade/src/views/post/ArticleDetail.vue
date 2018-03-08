@@ -247,7 +247,6 @@ export default {
 }
 .gm-footer {
     font-size: 0;
-    line-height: 1.1rem;
     text-align: center;
     color: #FFF;
     background-color: #333;
@@ -258,11 +257,11 @@ export default {
         span, em {
             display: inline-block;
             font-size: 13px;
-            line-height: 15px;
+            line-height: 55px;
         }
         span:first-child {
             padding-left: 20px;
-            background: transparent no-repeat 0 0;
+            background: transparent no-repeat 0 20px;
             background-size: auto 14px;
         }
         &:first-child:after {
@@ -272,8 +271,8 @@ export default {
             right: 0;
             top: 50%;
             width: 1px;
-            height: .3rem;
-            margin-top: -.15rem;
+            height: 16px;
+            margin-top: -8px;
             background-color: #999;
         }
     }
