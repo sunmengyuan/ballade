@@ -3,7 +3,7 @@
         <whirl v-if="showWhirl"></whirl>
         <error v-if="showError"></error>
         <section class="gm-content" v-else>
-            <div class="common" v-if="articleType == 7">
+            <div class="common" v-if="articleDetail.article_type == 7">
                 <img
                     class="banner"
                     :src="articleDetail.banner[0]"
@@ -67,23 +67,22 @@ export default {
 
     data () {
         return {
-            pageData: {},
-            titleBarHeight: 0,
             article_id: null,
-            articleType: null,
             articleDetail: {},
             relatedArticles: [],
+            voted: false,
+            voteCount: 0,
+            titleBarHeight: 0,
             showWhirl: true,
             showError: false,
-            voted: false,
-            voteCount: 0
+            pageData: {}
         }
     },
 
     created () {
         this.$app.setPageTitle('专栏')
-        this.titleBarHeight = this.$router.query('title_bar_height')
         this.article_id = this.$router.query('article_id')
+        this.titleBarHeight = this.$router.query('title_bar_height')
         this.loadArticleDetail()
     },
 
@@ -94,7 +93,6 @@ export default {
                 successFn: (data) => {
                     var detail = data.data
                     this.articleDetail = detail
-                    this.articleType = detail.article_type
                     this.relatedArticles = detail.related_article
                     this.pageData = {
                         page_name: 'article_detail',
@@ -108,8 +106,8 @@ export default {
                     this.voteCount = detail.vote_count
                 },
                 errorFn: () => {
-                    this.showError = true
                     this.showWhirl = false
+                    this.showError = true
                 }
             })
         },
