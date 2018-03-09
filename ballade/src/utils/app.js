@@ -83,7 +83,6 @@ const App = {
         }
     },
     needLogin: () => {
-        console.log('登录')
         /* eslint-disable no-undef */
         if ((typeof gmclient !== 'undefined') && (typeof gmclient.logout !== 'undefined')) {
             gmclient.logout()
@@ -91,7 +90,6 @@ const App = {
     },
     // 埋点
     trackEvent: (opts = {}) => {
-        console.log(opts)
         /* eslint-disable no-undef */
         if ((typeof gmclient !== 'undefined') && (typeof gmclient.trackEvent !== 'undefined')) {
             gmclient.trackEvent(JSON.stringify(opts))

@@ -47,7 +47,10 @@
             </div>
             <footer-bar>
                 <ul class="gm-clear">
-                    <li class="vote" :class="{ voted: vote.voted }">
+                    <li
+                        class="vote"
+                        :class="{ voted: vote.voted }"
+                        @click="triggerVote">
                         <vote
                             :id="article_id"
                             :voted.sync="vote.voted"
@@ -157,6 +160,14 @@ export default {
         bannerLoaded (e) {
             this.pageData.header_height = e.target.height
             this.$app.setPageData(this.pageData)
+        },
+        triggerVote () {
+            this.$app.trackEvent({
+                type: 'topic_detail_click_vote',
+                params: {
+                    business_id: this.article_id
+                }
+            })
         },
         triggerComment (e) {
             this.GLOBAL.curUser.id
