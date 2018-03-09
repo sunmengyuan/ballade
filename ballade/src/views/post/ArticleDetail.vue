@@ -50,7 +50,7 @@
                     <fixed-richtext :data="articleDetail.richtext"></fixed-richtext>
                 </div>
             </div>
-            <nodata></nodata>
+            <nodata :type="'comment'" :message="'暂无评论，快来发表你的评论吧~'"></nodata>
             <div class="related-article" v-if="relatedArticles.length">
                 <h4>相关专栏</h4>
                 <ul>

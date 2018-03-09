@@ -25,7 +25,7 @@ export default {
         },
         height: {
             type: Number,
-            default: 300
+            default: 250
         }
     }
 }
@@ -35,7 +35,7 @@ export default {
 .gm-nodata {
     position: relative;
     width: 100%;
-    min-height: 6rem;
+    min-height: 5rem;
     text-align: center;
     background-color: #FFF;
     .img, p {
@@ -50,6 +50,16 @@ export default {
         background-size: 3.49rem auto;
         &.coupon {
             background-image: url("../assets/imgs/holder_coupon.png");
+        }
+        &.comment {
+            height: 2.5rem;
+            background-image: url("../assets/imgs/holder_comment.png");
+            background-size: 1.6rem auto;
+            & + p {
+                font-size: .26rem;
+                color: $fClrWeaker;
+                margin-top: 0.7rem;
+            }
         }
     }
     p {
