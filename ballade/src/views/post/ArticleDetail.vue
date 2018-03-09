@@ -23,7 +23,7 @@
             </div>
             <div class="star" v-if="articleDetail.article_type == 7">
                 <div class="banner-swiper">
-                    <swiper :opts="swiperOpts">
+                    <swiper :opts="swiper">
                         <div class="swiper-slide" v-for="image in articleDetail.banner">
                             <img :src="image" class="gm-vertical-center" />
                         </div>
@@ -101,6 +101,9 @@ export default {
             vote: {
                 voted: false,
                 count: 0
+            },
+            swiper: {
+                loop: true
             }
         }
     },
@@ -114,8 +117,8 @@ export default {
             add: '/hybrid/api/topic/vote/_data',
             cancel: '/hybrid/api/topic/cancel_vote/_data'
         }
-        this.swiperOpts = {
-            loop: true,
+        this.swiper = {
+            ...this.swiper,
             pagination: '.swiper-pagination',
             paginationType: 'fraction'
         }
@@ -139,6 +142,8 @@ export default {
                     // 点赞
                     this.vote.voted = detail.is_liked
                     this.vote.count = detail.vote_count
+                    // 轮播图
+                    this.swiper.loop = (detail.banner.length > 1) ? 1 : 0
                 },
                 errorFn: () => {
                     this.showWhirl = false
