@@ -1,5 +1,6 @@
 import Axios from 'axios'
 import Cookie from 'vue-cookie'
+import Qs from 'qs'
 import Settings from '~/settings.json'
 import App from '@/utils/app'
 
@@ -45,7 +46,7 @@ const Request = (opts = {}) => {
             ...opts.params,
             ...tracks
         },
-        data: opts.data || {}
+        data: Qs.stringify(opts.data || {})
     }).then((res) => {
         if (res.status === 200) {
             (res.data.error === 0) ? successFn(res.data) : failFn(res.data)
