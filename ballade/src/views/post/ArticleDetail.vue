@@ -24,9 +24,12 @@
             <div class="star" v-if="articleDetail.article_type == 7">
                 <div class="banner-swiper">
                     <swiper :opts="swiper">
-                        <div class="swiper-slide" v-for="image in articleDetail.banner">
-                            <img :src="image" class="gm-vertical-center" />
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" v-for="image in articleDetail.banner">
+                                <img :src="image" class="gm-vertical-center" />
+                            </div>
                         </div>
+                        <div class="swiper-pagination"></div>
                     </swiper>
                 </div>
             </div>
@@ -224,7 +227,34 @@ img.banner, .banner-swiper img {
         }
     }
 }
+.star {
+    .banner-swiper {
+        overflow: hidden;
+        background-color: #E5E5E5;
+        .swiper-container, .swiper-slide {
+            height: 0;
+            padding-bottom: 56%;
+        }
+        .swiper-slide img {
+            position: absolute;
+        }
+        .swiper-pagination {
+            position: absolute;
+            left: auto;
+            right: .26rem;
+            bottom: .26rem;
+            width: auto;
+            font-size: .28rem;
+            line-height: .36rem;
+            color: #FFF;
+            text-shadow: 0 0 .14rem rgba(0, 0, 0, 0.5);
+        }
+    }
+}
 
+.gm-vertical-center {
+    @extend %gm-vertical-center;
+}
 .gm-fixed-richtext {
     margin-top: .5rem;
 }

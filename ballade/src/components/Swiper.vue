@@ -1,9 +1,6 @@
 <template>
     <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <slot></slot>
-        </div>
-        <div class="swiper-pagination"></div>
+        <slot></slot>
     </div>
 </template>
 
