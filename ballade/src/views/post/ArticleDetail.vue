@@ -72,7 +72,7 @@ import FooterBar from '@/components/FooterBar'
 import Whirl from '@/components/Whirl'
 import Error from '@/components/Error'
 import Vote from '@/utils/vote'
-import Swiper from '~/static/libs/swiper.min'
+import Swiper from '~/static/libs/swiper'
 
 export default {
     name: 'ArticleDetail',
