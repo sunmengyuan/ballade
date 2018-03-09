@@ -162,6 +162,12 @@ export default {
             this.GLOBAL.curUser.id
                 ? (window.location.href = e.currentTarget.href)
                 : this.$app.needLogin()
+            this.$app.trackEvent({
+                type: 'topic_detail_click_bottom_comment',
+                params: {
+                    business_id: this.article_id
+                }
+            })
         }
     }
 }
