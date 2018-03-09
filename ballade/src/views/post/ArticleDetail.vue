@@ -257,13 +257,6 @@ img.banner, .banner-swiper img {
 }
 .gm-fixed-richtext {
     margin-top: .5rem;
-    p {
-        font-size: .3rem;
-        line-height: .46rem;
-    }
-    p, img {
-        margin: .2rem 0;
-    }
 }
 .related-article {
     margin: .28rem 0 1rem;

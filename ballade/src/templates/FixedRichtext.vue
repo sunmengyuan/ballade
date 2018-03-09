@@ -132,6 +132,13 @@ export default {
     p:last-child {
         margin-bottom: 0;
     }
+    p {
+        font-size: .3rem;
+        line-height: .46rem;
+    }
+    p, img {
+        margin: .2rem 0;
+    }
     .gm-tiny-scale {
         @extend %gm-tiny-scale;
     }
