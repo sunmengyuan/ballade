@@ -312,11 +312,11 @@ img.banner, .banner-swiper img {
                     position: absolute;
                     bottom: .26rem;
                     left: .24rem;
-                    font-size: .26rem;
-                    line-height: .3rem;
-                    padding-left: .54rem;
+                    font-size: 13px;
+                    line-height: 15px;
+                    padding-left: 27px;
                     background: url("../../assets/imgs/post/icon_location.png") no-repeat 2px 50%;
-                    background-size: auto .3rem;
+                    background-size: auto 15px;
                 }
             }
             .portrait, .btn-attention {
