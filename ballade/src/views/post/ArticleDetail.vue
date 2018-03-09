@@ -47,9 +47,15 @@
             </div>
             <footer-bar>
                 <ul class="gm-clear">
-                    <li class="vote" :class="{ voted: vote.voted }" @click="triggerVote">
-                        <span>赞<em v-if="vote.count">&nbsp;·&nbsp;</em></span>
-                        <span v-if="vote.count">{{ vote.count }}</span>
+                    <li class="vote" :class="{ voted: vote.voted }">
+                        <vote
+                            :id="article_id"
+                            :voted.sync="vote.voted"
+                            :count.sync="vote.count"
+                            :request="vote.request">
+                            <span>赞<em v-if="vote.count">&nbsp;·&nbsp;</em></span>
+                            <span v-if="vote.count">{{ vote.count }}</span>
+                        </vote>
                     </li>
                     <li class="comment">
                         <a
@@ -71,7 +77,7 @@ import FixedRichtext from '@/templates/FixedRichtext'
 import FooterBar from '@/components/FooterBar'
 import Whirl from '@/components/Whirl'
 import Error from '@/components/Error'
-import Vote from '@/utils/vote'
+import Vote from '@/components/Vote'
 import Swiper from '~/static/libs/swiper'
 
 export default {
@@ -81,7 +87,8 @@ export default {
         FixedRichtext,
         FooterBar,
         Whirl,
-        Error
+        Error,
+        Vote
     },
 
     data () {
@@ -89,14 +96,18 @@ export default {
             article_id: null,
             articleDetail: {},
             relatedArticles: [],
-            vote: {
-                voted: false,
-                count: 0
-            },
             titleBarHeight: 0,
             showWhirl: true,
             showError: false,
-            pageData: {}
+            pageData: {},
+            vote: {
+                voted: false,
+                count: 0,
+                request: {
+                    add: '/hybrid/api/topic/vote/_data',
+                    cancel: '/hybrid/api/topic/cancel_vote/_data'
+                }
+            }
         }
     },
 
@@ -146,14 +157,6 @@ export default {
         bannerLoaded (e) {
             this.pageData.header_height = e.target.height
             this.$app.setPageData(this.pageData)
-        },
-        triggerVote () {
-            Vote.do({
-                id: this.article_id,
-                status: this.vote,
-                addUrl: '/hybrid/api/topic/vote/_data',
-                cancelUrl: '/hybrid/api/topic/cancel_vote/_data'
-            })
         },
         triggerComment (e) {
             this.GLOBAL.curUser.id
