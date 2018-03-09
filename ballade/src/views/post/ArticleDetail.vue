@@ -23,7 +23,7 @@
             </div>
             <div class="star" v-if="articleDetail.article_type == 7">
                 <div class="banner-swiper">
-                    <swiper>
+                    <swiper :opts="swiperOpts">
                         <div class="swiper-slide" v-for="image in articleDetail.banner">
                             <img :src="image" class="gm-vertical-center" />
                         </div>
@@ -100,11 +100,7 @@ export default {
             pageData: {},
             vote: {
                 voted: false,
-                count: 0,
-                request: {
-                    add: '/hybrid/api/topic/vote/_data',
-                    cancel: '/hybrid/api/topic/cancel_vote/_data'
-                }
+                count: 0
             }
         }
     },
@@ -114,6 +110,15 @@ export default {
         this.article_id = this.$router.query('article_id')
         this.titleBarHeight = this.$router.query('title_bar_height')
         this.loadArticleDetail()
+        this.vote.request = {
+            add: '/hybrid/api/topic/vote/_data',
+            cancel: '/hybrid/api/topic/cancel_vote/_data'
+        }
+        this.swiperOpts = {
+            loop: true,
+            pagination: '.swiper-pagination',
+            paginationType: 'fraction'
+        }
     },
 
     methods: {

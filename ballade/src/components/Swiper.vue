@@ -11,12 +11,17 @@
 import '@/utils/swiper'
 
 export default {
+    props: {
+        opts: {
+            type: Object,
+            default: {}
+        }
+    },
+
     mounted () {
         /* eslint-disable no-new */
         new window.Swiper('.swiper-container', {
-            loop: true,
-            pagination: '.swiper-pagination',
-            paginationType: 'fraction',
+            ...this.opts,
             observer: true,
             observeParents: true
         })
