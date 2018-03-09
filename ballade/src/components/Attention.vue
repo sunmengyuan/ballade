@@ -57,8 +57,18 @@ export default {
                             user_id: this.strid ? this.id : this.strid,
                             type: this.type
                         },
-                        successFn: () => {
+                        successFn: (data) => {
                             this.$emit('update:followed', true)
+                            /* eslint-disable no-undef */
+                            if ((typeof gmclient !== 'undefined') && (typeof gmclient.diaryDetailShowNotificationAlert !== 'undefined')) {
+                                gmclient.diaryDetailShowNotificationAlert()
+                            }
+                            if (JSON.stringify(data.extra) !== '{}') {
+                                /* eslint-disable no-undef */
+                                if ((typeof gmclient !== 'undefined') && (typeof gmclient.showTaskAlert !== 'undefined')) {
+                                    gmclient.showTaskAlert(JSON.stringify(data.extra))
+                                }
+                            }
                         },
                         failFn: (data) => {
                             if (data.error === 1001) {
