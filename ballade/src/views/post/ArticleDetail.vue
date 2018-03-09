@@ -41,6 +41,7 @@
                         </div>
                         <img :src="articleDetail.author.portrait" class="portrait" />
                     </div>
+                    <fixed-richtext :data="articleDetail.richtext"></fixed-richtext>
                 </div>
             </div>
             <div class="related-article" v-if="relatedArticles.length">
