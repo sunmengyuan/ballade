@@ -85,8 +85,7 @@
 </template>
 
 <script>
-let Tmpl = null
-import('~/node_modules/blueimp-tmpl').then(module => { Tmpl = module })
+import Tmpl from '~/static/libs/tmpl.min'
 
 export default {
     props: {
