@@ -25,21 +25,9 @@ export default {
         }
     },
 
-    data () {
-        return {
-            dVoted: false,
-            dCount: 0
-        }
-    },
-
-    created () {
-        this.dVoted = this.voted
-        this.dCount = this.count
-    },
-
     methods: {
         triggerVote () {
-            switch (this.dVoted) {
+            switch (this.voted) {
                 case true:
                     this.$request({
                         url: this.request.cancel,
@@ -48,10 +36,8 @@ export default {
                             id: this.id
                         },
                         successFn: () => {
-                            this.dVoted = false
-                            this.dCount--
-                            this.$emit('update:voted', this.dVoted)
-                            this.$emit('update:count', this.dCount)
+                            this.$emit('update:voted', false)
+                            this.$emit('update:count', this.count - 1)
                         },
                         failFn: (data) => {
                             this.$app.showToast({
@@ -69,10 +55,8 @@ export default {
                             id: this.id
                         },
                         successFn: () => {
-                            this.dVoted = true
-                            this.dCount++
-                            this.$emit('update:voted', this.dVoted)
-                            this.$emit('update:count', this.dCount)
+                            this.$emit('update:voted', true)
+                            this.$emit('update:count', this.count + 1)
                         },
                         failFn: (data) => {
                             if (data.error === 1001) {
