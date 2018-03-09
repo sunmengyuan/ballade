@@ -165,7 +165,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/libs/swiper.min.css";
+@import "../../assets/libs/swiper.css";
 
 .gm-content {
     padding-bottom: 1.5rem;
