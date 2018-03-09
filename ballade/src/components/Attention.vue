@@ -22,11 +22,27 @@ export default {
         followed: {
             type: Boolean,
             default: false
+        },
+        track: {
+            type: Object,
+            default: {
+                from: ''
+            }
         }
     },
 
     methods: {
         triggerAttention () {
+            var trackParams = {
+                ...this.track,
+                type: this.type,
+                business_id: (this.type === 1 || this.type === 2) ? this.strid : this.id,
+                action: this.followed ? 'undo' : 'do'
+            }
+            this.$app.trackEvent({
+                type: 'attention_click',
+                params: trackParams
+            })
             switch (this.followed) {
                 case true:
                     this.$request({
