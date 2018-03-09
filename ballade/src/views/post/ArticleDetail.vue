@@ -40,6 +40,7 @@
                             <span class="location gm-block" v-if="articleDetail.author.area">{{ articleDetail.author.area }}</span>
                         </div>
                         <img :src="articleDetail.author.portrait" class="portrait" />
+                        <attention class="btn-attention">关注</attention>
                     </div>
                     <fixed-richtext :data="articleDetail.richtext"></fixed-richtext>
                 </div>
@@ -92,6 +93,7 @@ import FooterBar from '@/components/FooterBar'
 import Whirl from '@/components/Whirl'
 import Error from '@/components/Error'
 import Vote from '@/components/Vote'
+import Attention from '@/components/Attention'
 import Swiper from '@/components/Swiper'
 
 export default {
@@ -103,6 +105,7 @@ export default {
         Whirl,
         Error,
         Vote,
+        Attention,
         Swiper
     },
 
@@ -329,6 +332,18 @@ img.banner, .banner-swiper img {
                 top: .26rem;
                 height: 1.5rem;
                 border-radius: 50%;
+            }
+            .btn-attention {
+                top: 1.96rem;
+                font-size: .26rem;
+                line-height: .38rem;
+                text-align: center;
+                color: $fClrLink;
+                padding: 15px;
+                margin: -15px;
+            }
+            .btn-attention.dis {
+                color: $clrDis;
             }
         }
     }
