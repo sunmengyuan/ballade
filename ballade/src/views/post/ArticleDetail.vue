@@ -23,14 +23,11 @@
             </div>
             <div class="star" v-if="articleDetail.article_type == 7">
                 <div class="banner-swiper">
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide" v-for="image in articleDetail.banner">
-                                <img :src="image" class="gm-vertical-center" />
-                            </div>
+                    <swiper>
+                        <div class="swiper-slide" v-for="image in articleDetail.banner">
+                            <img :src="image" class="gm-vertical-center" />
                         </div>
-                        <div class="swiper-pagination"></div>
-                    </div>
+                    </swiper>
                 </div>
             </div>
             <div class="related-article" v-if="relatedArticles.length">
@@ -78,7 +75,7 @@ import FooterBar from '@/components/FooterBar'
 import Whirl from '@/components/Whirl'
 import Error from '@/components/Error'
 import Vote from '@/components/Vote'
-import Swiper from '~/static/libs/swiper'
+import Swiper from '@/components/Swiper'
 
 export default {
     name: 'ArticleDetail',
@@ -88,7 +85,8 @@ export default {
         FooterBar,
         Whirl,
         Error,
-        Vote
+        Vote,
+        Swiper
     },
 
     data () {
@@ -116,17 +114,6 @@ export default {
         this.article_id = this.$router.query('article_id')
         this.titleBarHeight = this.$router.query('title_bar_height')
         this.loadArticleDetail()
-    },
-
-    updated () {
-        /* eslint-disable no-new */
-        new Swiper('.swiper-container', {
-            loop: true,
-            pagination: '.swiper-pagination',
-            paginationType: 'fraction',
-            observer: true,
-            observeParents: true
-        })
     },
 
     methods: {
@@ -168,8 +155,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/libs/swiper.css";
-
 .gm-content {
     padding-bottom: 1.5rem;
 }
