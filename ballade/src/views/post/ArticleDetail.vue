@@ -50,6 +50,7 @@
                     <fixed-richtext :data="articleDetail.richtext"></fixed-richtext>
                 </div>
             </div>
+            <nodata></nodata>
             <div class="related-article" v-if="relatedArticles.length">
                 <h4>相关专栏</h4>
                 <ul>
@@ -97,6 +98,7 @@ import FixedRichtext from '@/templates/FixedRichtext'
 import FooterBar from '@/components/FooterBar'
 import Whirl from '@/components/Whirl'
 import Error from '@/components/Error'
+import Nodata from '@/components/Nodata'
 import Vote from '@/components/Vote'
 import Attention from '@/components/Attention'
 import Swiper from '@/components/Swiper'
@@ -109,6 +111,7 @@ export default {
         FooterBar,
         Whirl,
         Error,
+        Nodata,
         Vote,
         Attention,
         Swiper

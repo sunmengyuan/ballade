@@ -1,6 +1,6 @@
 <template>
     <div class="gm-nodata" :style="'height: ' + height + 'px'">
-        <img :src="'../assets/imgs/holder_' + type + '.png'">
+        <span class="img" :class="type"></span>
         <p>{{ message }}</p>
     </div>
 </template>
@@ -38,12 +38,19 @@ export default {
     min-height: 6rem;
     text-align: center;
     background-color: #FFF;
-    img, p {
+    .img, p {
         position: absolute;
         @extend %gm-center;
     }
-    img {
+    .img {
+        display: inline-block;
         width: 3.49rem;
+        height: 3.96rem;
+        background: url("../assets/imgs/holder_common.png") no-repeat 50% 0;
+        background-size: 3.49rem auto;
+        &.coupon {
+            background-image: url("../assets/imgs/holder_coupon.png");
+        }
     }
     p {
         font-size: 0.3rem;
