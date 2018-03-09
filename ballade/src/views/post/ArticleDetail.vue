@@ -44,7 +44,7 @@
                             class="btn-attention"
                             :id="articleDetail.author.id"
                             :type="articleDetail.author.type"
-                            :followed="articleDetail.author.is_followed">{{ articleDetail.author.is_followed ? '已关注' : '关注TA' }}</attention>
+                            :followed.sync="articleDetail.author.is_followed">{{ articleDetail.author.is_followed ? '已关注' : '关注TA' }}</attention>
                     </div>
                     <fixed-richtext :data="articleDetail.richtext"></fixed-richtext>
                 </div>
