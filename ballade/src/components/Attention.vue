@@ -11,6 +11,10 @@ export default {
             type: [String, Number],
             default: ''
         },
+        strid: {
+            type: [String, Number],
+            default: ''
+        },
         type: {
             type: [String, Number],
             default: 0
@@ -25,12 +29,48 @@ export default {
         triggerAttention () {
             switch (this.followed) {
                 case true:
-                    console.log('取消')
-                    this.$emit('update:followed', false)
+                    this.$request({
+                        url: '/hybrid/user/del_follow/_data',
+                        method: 'POST',
+                        data: {
+                            id: this.strid || this.id,
+                            user_id: this.strid ? this.id : this.strid,
+                            type: this.type
+                        },
+                        successFn: () => {
+                            this.$emit('update:followed', false)
+                        },
+                        failFn: (data) => {
+                            this.$app.showToast({
+                                text: data.message,
+                                duration: 0
+                            })
+                        }
+                    })
                     break
                 case false:
-                    console.log('添加')
-                    this.$emit('update:followed', true)
+                    this.$request({
+                        url: '/hybrid/user/add_follow/_data',
+                        method: 'POST',
+                        data: {
+                            id: this.strid || this.id,
+                            user_id: this.strid ? this.id : this.strid,
+                            type: this.type
+                        },
+                        successFn: () => {
+                            this.$emit('update:followed', true)
+                        },
+                        failFn: (data) => {
+                            if (data.error === 1001) {
+                                this.$app.needLogin()
+                            } else {
+                                this.$app.showToast({
+                                    text: data.message,
+                                    duration: 0
+                                })
+                            }
+                        }
+                    })
                     break
             }
         }
