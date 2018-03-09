@@ -32,6 +32,16 @@
                         <div class="swiper-pagination"></div>
                     </swiper>
                 </div>
+                <div class="star-detail">
+                    <div class="author">
+                        <div class="info">
+                            <h3>{{ articleDetail.author.nickname }}<span v-if="articleDetail.author.profession">{{ articleDetail.author.profession }}</span></h3>
+                            <p>{{ articleDetail.author.desc }}</p>
+                            <span class="location gm-block" v-if="articleDetail.author.area">{{ articleDetail.author.area }}</span>
+                        </div>
+                        <img :src="articleDetail.author.portrait" class="portrait" />
+                    </div>
+                </div>
             </div>
             <div class="related-article" v-if="relatedArticles.length">
                 <h4>相关专栏</h4>
@@ -265,6 +275,50 @@ img.banner, .banner-swiper img {
             line-height: .36rem;
             color: #FFF;
             text-shadow: 0 0 .14rem rgba(0, 0, 0, 0.5);
+        }
+    }
+    .star-detail {
+        padding: .3rem;
+        background-color: #FFF;
+        overflow: hidden;
+        .author {
+            position: relative;
+            padding: .2rem 2rem .76rem .24rem;
+            min-height: 1.56rem;
+            border: 1px solid $bdClr;
+            border-radius: 3px;
+            .info {
+                h3 {
+                    font-size: .32rem;
+                    line-height: .44rem;
+                    span {
+                        display: inline-block;
+                        vertical-align: 1px;
+                        font-size: .26rem;
+                        &:before {
+                            content: "·";
+                            font-size: .32rem;
+                            margin: 0 .02rem;
+                        }
+                    }
+                }
+                p {
+                    font-size: .26rem;
+                    line-height: .38rem;
+                    color: $fClrWeaker;
+                    margin: .06rem 0;
+                }
+                .location {
+                    position: absolute;
+                    bottom: .26rem;
+                    left: .24rem;
+                    font-size: .26rem;
+                    line-height: .3rem;
+                    padding-left: .54rem;
+                    background: url("../../assets/imgs/post/icon_location.png") no-repeat 2px 50%;
+                    background-size: auto .3rem;
+                }
+            }
         }
     }
 }
