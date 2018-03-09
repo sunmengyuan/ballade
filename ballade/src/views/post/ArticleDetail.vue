@@ -319,6 +319,16 @@ img.banner, .banner-swiper img {
                     background-size: auto .3rem;
                 }
             }
+            .portrait, .btn-attention {
+                position: absolute;
+                right: .26rem;
+                width: 1.5rem;
+            }
+            .portrait {
+                top: .26rem;
+                height: 1.5rem;
+                border-radius: 50%;
+            }
         }
     }
 }
