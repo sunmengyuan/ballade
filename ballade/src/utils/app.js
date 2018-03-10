@@ -9,7 +9,7 @@ const App = {
         winHeight: window.screen.availHeight,
         curUser: {
             id: null,
-            portrait: ''
+            portrait: 'http://pic.igengmei.com/user/icon@2x.png-w'
         }
     },
     do: function () {

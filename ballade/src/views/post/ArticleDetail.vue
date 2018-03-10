@@ -50,6 +50,9 @@
                     <fixed-richtext :data="articleDetail.richtext"></fixed-richtext>
                 </div>
             </div>
+            <div class="comments">
+                <comment-list :business_id="article_id"></comment-list>
+            </div>
             <nodata :type="'comment'" :message="'暂无评论，快来发表你的评论吧~'"></nodata>
             <div class="related-article" v-if="relatedArticles.length">
                 <h4>相关专栏</h4>
@@ -102,6 +105,7 @@ import Nodata from '@/components/Nodata'
 import Vote from '@/components/Vote'
 import Attention from '@/components/Attention'
 import Swiper from '@/components/Swiper'
+import CommentList from '@/components/Comment/List'
 
 export default {
     name: 'ArticleDetail',
@@ -114,7 +118,8 @@ export default {
         Nodata,
         Vote,
         Attention,
-        Swiper
+        Swiper,
+        CommentList
     },
 
     data () {

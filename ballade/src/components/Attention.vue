@@ -11,6 +11,7 @@ export default {
             type: [String, Number],
             default: ''
         },
+        // 专家、机构 id
         strid: {
             type: [String, Number],
             default: ''
@@ -23,6 +24,7 @@ export default {
             type: Boolean,
             default: false
         },
+        // 埋点
         track: {
             type: Object,
             default: {
