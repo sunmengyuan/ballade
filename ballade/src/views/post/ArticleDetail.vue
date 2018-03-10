@@ -2,7 +2,7 @@
     <section class="article-wrap">
         <whirl v-if="showWhirl"></whirl>
         <error v-if="showError"></error>
-        <section class="gm-content" v-else>
+        <section class="gm-content" v-show="showView" v-else>
             <div class="common" v-if="articleDetail.article_type == 6">
                 <img
                     class="banner"
@@ -84,7 +84,7 @@
                             :count.sync="vote.count"
                             :request="vote.request">
                             <span>赞<em v-if="vote.count">&nbsp;·&nbsp;</em></span>
-                            <span v-if="vote.count">{{ vote.count }}</span>
+                            <span v-if="vote.count">{{ vote.count || '' }}</span>
                         </vote>
                     </li>
                     <li class="comment">
@@ -93,7 +93,7 @@
                             :href="'gengmei://add_comment?topic_id=' + article_id"
                             @click.prevent="triggerComment($event)">
                             <span>评论<em v-if="articleDetail.comment_count">&nbsp;·&nbsp;</em></span>
-                            <span>{{ articleDetail.comment_count }}</span>
+                            <span>{{ articleDetail.comment_count || '' }}</span>
                         </a>
                     </li>
                 </ul>
@@ -138,6 +138,7 @@ export default {
             relatedArticles: [],
             comments: [],
             titleBarHeight: 0,
+            showView: false,
             showWhirl: true,
             showError: false,
             pageData: {},
@@ -183,6 +184,7 @@ export default {
                         hide_share: false
                     }
                     this.showWhirl = false
+                    this.showView = true
                     // 点赞
                     this.vote.voted = detail.is_liked
                     this.vote.count = detail.vote_count
