@@ -55,6 +55,7 @@
                     :business_id="article_id"
                     :type="'article'"
                     :count="articleDetail.comment_count"
+                    :data.sync="comments"
                     :loginUser="loginUser"></comment-list>
             </div>
             <nodata

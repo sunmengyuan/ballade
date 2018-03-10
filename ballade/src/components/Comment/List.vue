@@ -1,5 +1,5 @@
 <template>
-    <div class="comment-list">
+    <div class="comment-container">
         <a
             class="input"
             :href="addCommentUrl"
@@ -29,6 +29,10 @@ export default {
         count: {
             type: Number,
             default: 0
+        },
+        data: {
+            type: Array,
+            default: []
         },
         loginUser: {
             type: Object,
