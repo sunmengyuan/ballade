@@ -1,13 +1,13 @@
 <template>
     <div class="comment-item">
-        <div class="userinfo">
+        <div class="userinfo" @click="$app.userSkip(item.user_type, item.user_id)">
             <img :src="item.user_portrait" />
             <span class="nickname gm-ellipsis-row1">{{ item.user_nickname }}</span>
             <span class="time gm-ellipsis-row1">{{ item.reply_date }}</span>
         </div>
         <div class="comment">{{ item.content }}</div>
         <div class="sub-comment">
-            <div class="reply" v-for="reply in item.replys" :key="reply.comment_id"><a href="javascript:;">{{ reply.nickname }}</a><template v-if="reply.at_nickname">回复了<a href="javascript:;">{{ reply.at_nickname }}</a></template>：{{ reply.content }}</div>
+            <div class="reply" v-for="reply in item.replys" :key="reply.comment_id"><a href="javascript:;" @click="$app.userSkip(reply.comment_user_type, reply.comment_user_id)">{{ reply.nickname }}</a><template v-if="reply.at_nickname">回复了<a href="javascript:;" @click="$app.userSkip(reply.at_user_type, reply.at_user_id)">{{ reply.at_nickname }}</a></template>：{{ reply.content }}</div>
             <div v-if="showMore"><span class="btn-showmore" @click="triggerShowmore">共{{ replyCount }}条回复 ></span></div>
             <div v-if="!showMore && (replyCount > 6)"><span class="btn-showmore" @click="triggerShowmore">收起 ></span></div>
         </div>
