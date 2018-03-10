@@ -8,8 +8,8 @@
         <div class="comment">{{ item.content }}</div>
         <div class="sub-comment">
             <div class="reply" v-for="reply in item.replys" :key="reply.comment_id"><a href="javascript:;" @click="$app.userSkip(reply.comment_user_type, reply.comment_user_id)">{{ reply.nickname }}</a><template v-if="reply.at_nickname">回复了<a href="javascript:;" @click="$app.userSkip(reply.at_user_type, reply.at_user_id)">{{ reply.at_nickname }}</a></template>：{{ reply.content }}</div>
-            <div v-if="showMore"><span class="btn-showmore" @click="triggerShowmore">共{{ replyCount }}条回复 ></span></div>
-            <div v-if="!showMore && (replyCount > 6)"><span class="btn-showmore" @click="triggerShowmore">收起 ></span></div>
+            <div v-if="showmore"><span class="btn-showmore" @click="triggerShowmore">共{{ replyCount }}条回复 ></span></div>
+            <div v-if="!showmore && (replyCount > 6)"><span class="btn-showmore" @click="triggerShowmore">收起 ></span></div>
         </div>
         <div class="btns gm-clear">
             <vote
@@ -49,7 +49,7 @@ export default {
         return {
             item: {},
             replyCount: 0,
-            showMore: false,
+            showmore: false,
             vote: {
                 voted: false,
                 count: 0
@@ -59,7 +59,7 @@ export default {
 
     created () {
         var replys = this.data.comments
-        if (replys.length > 6) this.showMore = true
+        if (replys.length > 6) this.showmore = true
         this.item = this.data
         this.item.replys = replys.slice(0, 6)
         this.replyCount = replys.length
@@ -91,13 +91,13 @@ export default {
     methods: {
         triggerShowmore () {
             var replys = this.data.comments
-            switch (this.showMore) {
+            switch (this.showmore) {
                 case true:
-                    this.showMore = false
+                    this.showmore = false
                     this.item.replys = replys
                     break
                 case false:
-                    this.showMore = true
+                    this.showmore = true
                     this.item.replys = replys.slice(0, 6)
                     break
             }
