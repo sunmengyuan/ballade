@@ -72,12 +72,14 @@ export default {
                     add: '/hybrid/api/topicreply/vote/_data',
                     cancel: '/hybrid/api/topicreply/cancel_vote/_data'
                 }
-           case 'topic':
+                break
+            case 'topic':
                 this.vote.request = {
                     add: '/hybrid/api/topicreply/vote/_data',
                     cancel: '/hybrid/api/topicreply/cancel_vote/_data'
                 }
-           case 'diarybook':
+                break
+            case 'diarybook':
                 this.vote.request = {
                     add: '/hybrid/api/topicreply/vote/_data',
                     cancel: '/hybrid/api/topicreply/cancel_vote/_data'
