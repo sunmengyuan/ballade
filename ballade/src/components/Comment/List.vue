@@ -1,8 +1,11 @@
 <template>
-    <a class="input" :href="addCommentUrl" v-if="showInput">
-        <img :src="loginUser.portrait" />
-        <span>{{ tips }}</span>
-    </a>
+    <div class="comment-list">
+        <a class="input" :href="addCommentUrl" v-if="showInput">
+            <img :src="loginUser.portrait" />
+            <span>{{ tips }}</span>
+        </a>
+        <a class="btn-viewmore" :href="viewmoreUrl" v-if="showViewmore">查看全部{{ count }}条评论</a>
+    </div>
 </template>
 
 <script>
@@ -16,6 +19,10 @@ export default {
             type: String,
             default: 'topic'
         },
+        count: {
+            type: Number,
+            default: 0
+        },
         loginUser: {
             type: Object,
             default: {
@@ -27,7 +34,7 @@ export default {
             type: Boolean,
             default: true
         },
-        showViewMore: {
+        showViewmore: {
             type: Boolean,
             default: true
         }
@@ -37,13 +44,13 @@ export default {
         return {
             tips: '',
             addCommentUrl: '',
-            viewMoreUrl: ''
+            viewmoreUrl: ''
         }
     },
 
     created () {
         var addCommentType = this.type
-        var viewMoreType = this.type
+        var viewmoreType = this.type
         switch (this.type) {
             case 'article':
                 addCommentType = 'topic'
@@ -52,7 +59,7 @@ export default {
                 break
         }
         this.addCommentUrl = `gengmei://add_comment?${addCommentType}_id=${this.business_id}`
-        this.viewMoreUrl = `gengmei://comment_detail?${viewMoreType}_id=${this.business_id}`
+        this.viewmoreUrl = `gengmei://comment_detail?${viewmoreType}_id=${this.business_id}`
         this.randomTips()
     },
 
@@ -98,5 +105,13 @@ a.input {
         background-color: #F5F5F5;
         border-radius: 3px;
     }
+}
+a.btn-viewmore {
+    display: block;
+    font-size: .28rem;
+    line-height: .88rem;
+    text-align: center;
+    color: $fClrLink;
+    background-color: #FFF;
 }
 </style>

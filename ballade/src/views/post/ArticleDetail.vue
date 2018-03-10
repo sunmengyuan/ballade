@@ -53,6 +53,8 @@
             <div class="comments">
                 <comment-list
                     :business_id="article_id"
+                    :type="'article'"
+                    :count="articleDetail.comment_count"
                     :loginUser="loginUser"></comment-list>
             </div>
             <nodata :type="'comment'" :message="'暂无评论，快来发表你的评论吧~'"></nodata>
