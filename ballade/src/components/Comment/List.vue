@@ -1,7 +1,7 @@
 <template>
     <a :href="addCommentUrl" class="input">
         <img :src="GLOBAL.curUser.portrait" />
-        <span></span>
+        <span>{{ tips }}</span>
     </a>
 </template>
 
@@ -20,6 +20,7 @@ export default {
 
     data () {
         return {
+            tips: '',
             addCommentUrl: '',
             viewMoreUrl: ''
         }
@@ -37,6 +38,23 @@ export default {
         }
         this.addCommentUrl = `gengmei://add_comment?${addCommentType}_id=${this.business_id}`
         this.viewMoreUrl = `gengmei://comment_detail?${viewMoreType}_id=${this.business_id}`
+        this.randomTips()
+    },
+
+    methods: {
+        randomTips () {
+            var tips = [
+                '有什么想法，就快来评论吧~',
+                '回个评论再走嘛',
+                '只看不回都是套路，点赞评论才是真爱',
+                'po主写的好努力，快来评论鼓励ta一下',
+                '你都不评论一下吗',
+                '害羞就点赞，胆大就评论',
+                '喜欢也分好多种，敢评论最有种'
+            ]
+            var random = Math.ceil(Math.random() * 7) - 1
+            this.tips = tips[random]
+        }
     }
 }
 </script>
