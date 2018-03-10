@@ -57,7 +57,10 @@
                     :count="articleDetail.comment_count"
                     :loginUser="loginUser"></comment-list>
             </div>
-            <nodata :type="'comment'" :message="'暂无评论，快来发表你的评论吧~'"></nodata>
+            <nodata
+                :type="'comment'"
+                :message="'暂无评论，快来发表你的评论吧~'"
+                v-if="!comments.length"></nodata>
             <div class="related-article" v-if="relatedArticles.length">
                 <h4>相关专栏</h4>
                 <ul>
@@ -134,6 +137,7 @@ export default {
             article_id: null,
             articleDetail: {},
             relatedArticles: [],
+            comments: [],
             titleBarHeight: 0,
             showWhirl: true,
             showError: false,
@@ -172,6 +176,7 @@ export default {
                     var detail = data.data
                     this.articleDetail = detail
                     this.relatedArticles = detail.related_article
+                    this.comments = detail.comment
                     this.pageData = {
                         page_name: 'article_detail',
                         business_id: detail.article_id,

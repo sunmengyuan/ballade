@@ -84,7 +84,7 @@ export default {
             var random = Math.ceil(Math.random() * 7) - 1
             this.tips = tips[random]
         },
-        triggerComment () {
+        triggerComment (e) {
             this.loginUser.id
                 ? (window.location.href = e.currentTarget.href)
                 : this.$app.needLogin()
