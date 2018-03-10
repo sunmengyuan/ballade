@@ -1,6 +1,6 @@
 <template>
     <a :href="addCommentUrl" class="input">
-        <img :src="curUser.portrait" />
+        <img :src="loginUser.portrait" />
         <span>{{ tips }}</span>
     </a>
 </template>
@@ -12,7 +12,7 @@ export default {
             type: [String, Number],
             default: ''
         },
-        curUser: {
+        loginUser: {
             type: Object,
             default: {
                 id: null,

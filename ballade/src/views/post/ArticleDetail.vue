@@ -53,7 +53,7 @@
             <div class="comments">
                 <comment-list
                     :business_id="article_id"
-                    :curUser="GLOBAL.curUser"></comment-list>
+                    :loginUser="loginUser"></comment-list>
             </div>
             <nodata :type="'comment'" :message="'暂无评论，快来发表你的评论吧~'"></nodata>
             <div class="related-article" v-if="relatedArticles.length">
@@ -108,7 +108,7 @@ import Vote from '@/components/Vote'
 import Attention from '@/components/Attention'
 import Swiper from '@/components/Swiper'
 import CommentList from '@/components/Comment/List'
-import { CurUser } from '@/utils/mixins'
+import { LoginUser } from '@/utils/mixins'
 
 export default {
     name: 'ArticleDetail',
@@ -125,7 +125,7 @@ export default {
         CommentList
     },
 
-    mixins: [CurUser],
+    mixins: [LoginUser],
 
     data () {
         return {
@@ -202,7 +202,7 @@ export default {
             })
         },
         triggerComment (e) {
-            this.GLOBAL.curUser.id
+            this.loginUser.id
                 ? (window.location.href = e.currentTarget.href)
                 : this.$app.needLogin()
             this.$app.trackEvent({

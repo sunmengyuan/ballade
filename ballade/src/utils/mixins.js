@@ -1,13 +1,11 @@
 import Request from '@/utils/request'
 
-const CurUser = {
+const LoginUser = {
     data () {
         return {
-            GLOBAL: {
-                curUser: {
-                    id: null,
-                    portrait: ''
-                }
+            loginUser: {
+                id: null,
+                portrait: ''
             }
         }
     },
@@ -17,13 +15,13 @@ const CurUser = {
             url: '/hybrid/get_current_user/',
             method: 'GET',
             successFn: (data) => {
-                this.GLOBAL.curUser.id = data.data.current_user
-                this.GLOBAL.curUser.portrait = data.data.current_user_portrait
+                this.loginUser.id = data.data.current_user
+                this.loginUser.portrait = data.data.current_user_portrait
             }
         })
     }
 }
 
 export {
-    CurUser
+    LoginUser
 }
