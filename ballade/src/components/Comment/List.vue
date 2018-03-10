@@ -8,6 +8,9 @@
             <img :src="loginUser.portrait" />
             <span>{{ tips }}</span>
         </a>
+        <div class="comment-list">
+            <comment v-for="comment in data"></comment>
+        </div>
         <a
             class="btn-viewmore"
             :href="viewmoreUrl"
@@ -16,6 +19,8 @@
 </template>
 
 <script>
+import Comment from '@/components/Comment/Item'
+
 export default {
     props: {
         business_id: {
@@ -49,6 +54,10 @@ export default {
             type: Boolean,
             default: true
         }
+    },
+
+    components: {
+        Comment
     },
 
     data () {
