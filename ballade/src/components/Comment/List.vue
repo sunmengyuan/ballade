@@ -12,6 +12,7 @@
             <comment-item
                 v-for="comment in data"
                 :key="comment.reply_id"
+                :type="type"
                 :data="comment"></comment-item>
         </div>
         <a

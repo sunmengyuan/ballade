@@ -34,6 +34,10 @@ export default {
             default: {
                 comments: []
             }
+        },
+        type: {
+            type: String,
+            default: 'topic'
         }
     },
 
@@ -62,9 +66,23 @@ export default {
         // 点赞
         this.vote.voted = this.data.is_liked
         this.vote.count = this.data.favor_amount
-        this.vote.request = {
-            add: '/hybrid/api/topicreply/vote/_data',
-            cancel: '/hybrid/api/topicreply/cancel_vote/_data'
+        switch (this.type) {
+            case 'article':
+                this.vote.request = {
+                    add: '/hybrid/api/topicreply/vote/_data',
+                    cancel: '/hybrid/api/topicreply/cancel_vote/_data'
+                }
+           case 'topic':
+                this.vote.request = {
+                    add: '/hybrid/api/topicreply/vote/_data',
+                    cancel: '/hybrid/api/topicreply/cancel_vote/_data'
+                }
+           case 'diarybook':
+                this.vote.request = {
+                    add: '/hybrid/api/topicreply/vote/_data',
+                    cancel: '/hybrid/api/topicreply/cancel_vote/_data'
+                }
+                break
         }
     },
 
