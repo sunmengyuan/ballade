@@ -1,10 +1,17 @@
 <template>
     <div class="comment-list">
-        <a class="input" :href="addCommentUrl" v-if="showInput">
+        <a
+            class="input"
+            :href="addCommentUrl"
+            v-if="showInput"
+            @click.prevent="triggerComment($event)">
             <img :src="loginUser.portrait" />
             <span>{{ tips }}</span>
         </a>
-        <a class="btn-viewmore" :href="viewmoreUrl" v-if="showViewmore">查看全部{{ count }}条评论</a>
+        <a
+            class="btn-viewmore"
+            :href="viewmoreUrl"
+            v-if="showViewmore">查看全部{{ count }}条评论</a>
     </div>
 </template>
 
@@ -76,6 +83,11 @@ export default {
             ]
             var random = Math.ceil(Math.random() * 7) - 1
             this.tips = tips[random]
+        },
+        triggerComment () {
+            this.loginUser.id
+                ? (window.location.href = e.currentTarget.href)
+                : this.$app.needLogin()
         }
     }
 }
