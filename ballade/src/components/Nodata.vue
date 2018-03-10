@@ -32,6 +32,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$holderType: common, coupon, comment;
+
 .gm-nodata {
     position: relative;
     width: 100%;
@@ -46,14 +48,15 @@ export default {
         display: inline-block;
         width: 3.49rem;
         height: 3.96rem;
-        background: url("../assets/imgs/holder_common.png") no-repeat 50% 0;
+        background: transparent no-repeat 50% 0;
         background-size: 3.49rem auto;
-        &.coupon {
-            background-image: url("../assets/imgs/holder_coupon.png");
+        @each $type in $holderType {
+            &.#{$type} {
+                background-image: url("../assets/imgs/holder_#{$type}.png");
+            }
         }
         &.comment {
             height: 2.5rem;
-            background-image: url("../assets/imgs/holder_comment.png");
             background-size: 1.6rem auto;
             & + p {
                 font-size: .26rem;
