@@ -1,5 +1,5 @@
 <template>
-    <a :href="addCommentUrl" class="input">
+    <a class="input" :href="addCommentUrl" v-if="showInput">
         <img :src="loginUser.portrait" />
         <span>{{ tips }}</span>
     </a>
@@ -12,6 +12,10 @@ export default {
             type: [String, Number],
             default: ''
         },
+        type: {
+            type: String,
+            default: 'topic'
+        },
         loginUser: {
             type: Object,
             default: {
@@ -19,9 +23,13 @@ export default {
                 portrait: ''
             }
         },
-        type: {
-            type: String,
-            default: 'topic'
+        showInput: {
+            type: Boolean,
+            default: true
+        },
+        showViewMore: {
+            type: Boolean,
+            default: true
         }
     },
 
