@@ -111,7 +111,7 @@ import Nodata from '@/components/Nodata'
 import Vote from '@/components/Vote'
 import Attention from '@/components/Attention'
 import Swiper from '@/components/Swiper'
-import CommentList from '@/components/Comment/List'
+import CommentList from '@/templates/Comment/List'
 import { CheckLogin } from '@/utils/mixins'
 
 export default {

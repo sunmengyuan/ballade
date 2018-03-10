@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import CommentItem from '@/components/Comment/Item'
+import CommentItem from '@/templates/Comment/Item'
 
 export default {
     props: {
