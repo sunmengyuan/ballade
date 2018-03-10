@@ -11,7 +11,7 @@
         <a
             class="btn-viewmore"
             :href="viewmoreUrl"
-            v-if="showViewmore">查看全部{{ count }}条评论</a>
+            v-if="showViewmore && count">查看全部{{ count }}条评论</a>
     </div>
 </template>
 
