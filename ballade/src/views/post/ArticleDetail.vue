@@ -366,6 +366,9 @@ img.banner, .banner-swiper img {
 .gm-fixed-richtext {
     margin-top: .5rem;
 }
+.comments {
+    margin-top: .2rem;
+}
 .related-article {
     margin: .28rem 0 1rem;
     h4 {

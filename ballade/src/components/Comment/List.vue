@@ -64,6 +64,7 @@ a.input {
     display: block;
     position: relative;
     padding: .3rem .3rem .3rem 1.1rem;
+    border-bottom: 1px solid $bdClr;
     background-color: #FFF;
     img {
         position: absolute;
