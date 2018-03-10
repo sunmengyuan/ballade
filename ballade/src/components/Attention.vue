@@ -1,5 +1,5 @@
 <template>
-    <a href="javascript:;" class="gm-attention" @click="triggerAttention">
+    <a href="javascript:;" @click="triggerAttention">
         <slot></slot>
     </a>
 </template>

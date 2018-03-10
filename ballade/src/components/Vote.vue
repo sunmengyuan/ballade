@@ -1,5 +1,5 @@
 <template>
-    <div class="gm-vote" @click="triggerVote">
+    <div @click="triggerVote">
         <slot></slot>
     </div>
 </template>
