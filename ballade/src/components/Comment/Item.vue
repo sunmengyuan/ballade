@@ -32,7 +32,6 @@ export default {
     data () {
         return {
             item: {},
-            replys: [],
             replyCount: 0,
             showMore: false
         }
@@ -60,11 +59,6 @@ export default {
     padding: .35rem .3rem 0;
     background-color: #FFF;
     overflow: hidden;
-    .userinfo span,
-    .sub-comment .reply {
-        display: block;
-        color: $fClrWeaker;
-    }
     .userinfo {
         position: relative;
         width: 60%;
@@ -77,6 +71,10 @@ export default {
             width: .6rem;
             height: .6rem;
             border-radius: 50%;
+        }
+        span {
+            display: block;
+            color: $fClrWeaker;
         }
         .nickname {
             font-size: .28rem;
@@ -97,6 +95,7 @@ export default {
     .sub-comment {
         margin-left: .8rem;
         & > div {
+            color: $fClrWeaker;
             padding: 0 .2rem;
             background-color: #F5F5F5;
         }
