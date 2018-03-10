@@ -32,7 +32,7 @@
         <script type="text/x-tmpl" id="tmpl_rank">
             <a href="gengmei://common_webview?url={%=o.server%}/hybrid/rank_list/{%=o.id%}" class="card rank-card" data-type="rank" data-id="{%=o.id%}">
                 <img src="{%=o.banner%}" />
-                <h4 class="gm-center gm-ellipsis-row1"><span>{%=o.title%}</span></h4>
+                <h4 class="gm-ellipsis-row1"><span>{%=o.title%}</span></h4>
             </a>
         </script>
         <script type="text/x-tmpl" id="tmpl_qa">
@@ -141,12 +141,6 @@ export default {
     }
     .gm-tiny-scale {
         @extend %gm-tiny-scale;
-    }
-    .gm-center {
-        @extend %gm-center;
-    }
-    .gm-nothumb {
-        @include gm-nothumb();
     }
 }
 .gm-fixed-richtext .tag {
@@ -287,6 +281,7 @@ export default {
         border-top: 2px solid #FFF;
         border-bottom: 2px solid #FFF;
         border-radius: 2px;
+        @extend %gm-center;
     }
     h4:before, h4:after, span:before, span:after {
         content: "";
@@ -382,6 +377,7 @@ export default {
     .gm-nothumb {
         border-radius: 3px;
         overflow: hidden;
+        @include gm-nothumb();
     }
     h4 {
         font-size: .3rem;

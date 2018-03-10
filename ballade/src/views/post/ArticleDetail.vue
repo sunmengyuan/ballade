@@ -26,7 +26,7 @@
                     <swiper :opts="swiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide" v-for="image in articleDetail.banner">
-                                <img :src="image" class="gm-vertical-center" />
+                                <img :src="image" />
                             </div>
                         </div>
                         <div class="swiper-pagination"></div>
@@ -281,6 +281,7 @@ img.banner, .banner-swiper img {
         }
         .swiper-slide img {
             position: absolute;
+            @extend %gm-vertical-center;
         }
         .swiper-pagination {
             position: absolute;
@@ -362,9 +363,6 @@ img.banner, .banner-swiper img {
     }
 }
 
-.gm-vertical-center {
-    @extend %gm-vertical-center;
-}
 .gm-fixed-richtext {
     margin-top: .5rem;
 }

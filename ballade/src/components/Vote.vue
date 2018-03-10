@@ -21,7 +21,10 @@ export default {
         },
         request: {
             type: Object,
-            default: {}
+            default: {
+                add: '',
+                cancel: ''
+            }
         }
     },
 
