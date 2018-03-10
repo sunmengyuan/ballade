@@ -1,9 +1,151 @@
 <template>
-    <div class="comment-item">1</div>
+    <div class="comment-item">
+        <div class="userinfo">
+            <img :src="item.user_portrait" />
+            <span class="nickname gm-ellipsis-row1">{{ item.user_nickname }}</span>
+            <span class="time gm-ellipsis-row1">{{ item.reply_date }}</span>
+        </div>
+        <div class="comment">{{ item.content }}</div>
+        <div class="sub-comment">
+            <div class="reply" v-for="reply in item.replys" :key="reply.comment_id"><a href="javascript:;">{{ reply.nickname }}</a><template v-if="reply.at_nickname">回复了<a href="javascript:;">{{ reply.at_nickname }}</a></template>：{{ reply.content }}</div>
+            <div v-if="showMore"><span class="btn-showmore" @click="triggerShowmore">共{{ replyCount }}条回复 ></span></div>
+            <div v-if="!showMore && (replyCount > 6)"><span class="btn-showmore" @click="triggerShowmore">收起 ></span></div>
+        </div>
+        <div class="btns gm-clear">
+            <span class="btn-vote">{{ item.favor_amount }}</span>
+            <span class="btn-reply"></span>
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
+    props: {
+        data: {
+            type: Object,
+            default: {
+                comments: []
+            }
+        }
+    },
 
+    data () {
+        return {
+            item: {},
+            replys: [],
+            replyCount: 0,
+            showMore: false
+        }
+    },
+
+    created () {
+        var replys = this.data.comments
+        if (replys.length > 6) this.showMore = true
+        this.item = this.data
+        this.item.replys = replys.slice(0, 6)
+        this.replyCount = replys.length
+    },
+
+    methods: {
+        triggerShowmore () {
+
+        }
+    }
 }
 </script>
+
+<style lang="scss" scoped>
+.comment-item {
+    position: relative;
+    padding: .35rem .3rem 0;
+    background-color: #FFF;
+    overflow: hidden;
+    .userinfo span,
+    .sub-comment .reply {
+        display: block;
+        color: $fClrWeaker;
+    }
+    .userinfo {
+        position: relative;
+        width: 60%;
+        min-height: .72rem;
+        padding-left: .8rem;
+        img {
+            position: absolute;
+            left: 0;
+            top: .06rem;
+            width: .6rem;
+            height: .6rem;
+            border-radius: 50%;
+        }
+        .nickname {
+            font-size: .28rem;
+            line-height: .4rem;
+        }
+        .time {
+            font-size: .2rem;
+            line-height: .32rem;
+        }
+    }
+    .comment {
+        font-size: .28rem;
+        line-height: .4rem;
+        color: $fClrMain;
+        padding-bottom: .2rem;
+        margin: .08rem 0 0 .8rem;
+    }
+    .sub-comment {
+        margin-left: .8rem;
+        & > div {
+            padding: 0 .2rem;
+            background-color: #F5F5F5;
+        }
+        div:first-child {
+            padding-top: .12rem;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+        div:last-child {
+            padding-bottom: .12rem;
+            margin-bottom: .2rem;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+        .reply, .btn-showmore {
+            font-size: .24rem;
+            line-height: .4rem;
+        }
+        a, .btn-showmore {
+            display: inline-block;
+            color: $fClrLink;
+            padding: 8px;
+            margin: -8px;
+        }
+    }
+    .btns {
+        position: absolute;
+        top: .5rem;
+        right: .3rem;
+        span {
+            float: left;
+            font-size: 12px;
+            line-height: 15px;
+            color: $fClrWeaker;
+            height: 15px;
+            padding: 5px 5px 5px 20px;
+            margin: -5px -5px -5px 0;
+            background: transparent no-repeat 0 0;
+            background-size: 15px auto;
+            &.btn-vote {
+                background-image: url("../../assets/imgs/post/icon_vote_comment.png");
+                background-position: 0 -17px;
+            }
+            &.btn-reply {
+                margin-left: .33rem;
+                background-image: url("../../assets/imgs/post/icon_comment.png");
+                background-position: 0 5px;
+            }
+        }
+    }
+}
+</style>

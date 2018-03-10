@@ -9,7 +9,10 @@
             <span>{{ tips }}</span>
         </a>
         <div class="comment-list">
-            <comment-item v-for="comment in data" :key="comment.reply_id"></comment-item>
+            <comment-item
+                v-for="comment in data"
+                :key="comment.reply_id"
+                :data="comment"></comment-item>
         </div>
         <a
             class="btn-viewmore"
