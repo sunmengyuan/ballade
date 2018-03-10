@@ -51,7 +51,9 @@
                 </div>
             </div>
             <div class="comments">
-                <comment-list :business_id="article_id"></comment-list>
+                <comment-list
+                    :business_id="article_id"
+                    :curUser="GLOBAL.curUser"></comment-list>
             </div>
             <nodata :type="'comment'" :message="'暂无评论，快来发表你的评论吧~'"></nodata>
             <div class="related-article" v-if="relatedArticles.length">
@@ -106,6 +108,7 @@ import Vote from '@/components/Vote'
 import Attention from '@/components/Attention'
 import Swiper from '@/components/Swiper'
 import CommentList from '@/components/Comment/List'
+import { CurUser } from '@/utils/mixins'
 
 export default {
     name: 'ArticleDetail',
@@ -121,6 +124,8 @@ export default {
         Swiper,
         CommentList
     },
+
+    mixins: [CurUser],
 
     data () {
         return {

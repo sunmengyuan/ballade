@@ -1,6 +1,6 @@
 <template>
     <a :href="addCommentUrl" class="input">
-        <img :src="GLOBAL.curUser.portrait" />
+        <img :src="curUser.portrait" />
         <span>{{ tips }}</span>
     </a>
 </template>
@@ -11,6 +11,13 @@ export default {
         business_id: {
             type: [String, Number],
             default: ''
+        },
+        curUser: {
+            type: Object,
+            default: {
+                id: null,
+                portrait: ''
+            }
         },
         type: {
             type: String,
