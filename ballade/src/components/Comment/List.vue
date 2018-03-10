@@ -9,7 +9,7 @@
             <span>{{ tips }}</span>
         </a>
         <div class="comment-list">
-            <comment v-for="comment in data"></comment>
+            <comment-item v-for="comment in data" :key="comment.reply_id"></comment-item>
         </div>
         <a
             class="btn-viewmore"
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import Comment from '@/components/Comment/Item'
+import CommentItem from '@/components/Comment/Item'
 
 export default {
     props: {
@@ -57,7 +57,7 @@ export default {
     },
 
     components: {
-        Comment
+        CommentItem
     },
 
     data () {

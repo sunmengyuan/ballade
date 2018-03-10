@@ -1,5 +1,5 @@
 <template>
-    <div class="comment-item"></div>
+    <div class="comment-item">1</div>
 </template>
 
 <script>

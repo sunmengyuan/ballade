@@ -50,14 +50,12 @@
                     <fixed-richtext :data="articleDetail.richtext"></fixed-richtext>
                 </div>
             </div>
-            <div class="comments">
-                <comment-list
-                    :business_id="article_id"
-                    :type="'article'"
-                    :count="articleDetail.comment_count"
-                    :data.sync="comments"
-                    :loginUser="loginUser"></comment-list>
-            </div>
+            <comment-list
+                :business_id="article_id"
+                :type="'article'"
+                :count="articleDetail.comment_count"
+                :data.sync="comments"
+                :loginUser="loginUser"></comment-list>
             <nodata
                 :type="'comment'"
                 :message="'暂无评论，快来发表你的评论吧~'"
@@ -379,7 +377,7 @@ img.banner, .banner-swiper img {
 .gm-fixed-richtext {
     margin-top: .5rem;
 }
-.comments {
+.comment-container {
     margin-top: .2rem;
 }
 .related-article {
