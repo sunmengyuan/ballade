@@ -47,7 +47,17 @@ export default {
 
     methods: {
         triggerShowmore () {
-
+            var replys = this.data.comments
+            switch (this.showMore) {
+                case true:
+                    this.showMore = false
+                    this.item.replys = replys
+                    break
+                case false:
+                    this.showMore = true
+                    this.item.replys = replys.slice(0, 6)
+                    break
+            }
         }
     }
 }
