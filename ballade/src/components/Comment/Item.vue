@@ -12,13 +12,21 @@
             <div v-if="!showMore && (replyCount > 6)"><span class="btn-showmore" @click="triggerShowmore">收起 ></span></div>
         </div>
         <div class="btns gm-clear">
-            <span class="btn-vote">{{ item.favor_amount }}</span>
+            <vote
+                :id="item.reply_id"
+                :voted.sync="vote.voted"
+                :count.sync="vote.count"
+                :request="vote.request">
+                <span class="btn-vote" :class="{ voted: vote.voted }">{{ vote.count || '' }}</span>
+            </vote>
             <span class="btn-reply"></span>
         </div>
     </div>
 </template>
 
 <script>
+import Vote from '@/components/Vote'
+
 export default {
     props: {
         data: {
@@ -29,11 +37,19 @@ export default {
         }
     },
 
+    components: {
+        Vote
+    },
+
     data () {
         return {
             item: {},
             replyCount: 0,
-            showMore: false
+            showMore: false,
+            vote: {
+                voted: false,
+                count: 0
+            }
         }
     },
 
@@ -43,6 +59,13 @@ export default {
         this.item = this.data
         this.item.replys = replys.slice(0, 6)
         this.replyCount = replys.length
+        // 点赞
+        this.vote.voted = this.data.is_liked
+        this.vote.count = this.data.favor_amount
+        this.vote.request = {
+            add: '/hybrid/api/topicreply/vote/_data',
+            cancel: '/hybrid/api/topicreply/cancel_vote/_data'
+        }
     },
 
     methods: {
@@ -135,6 +158,9 @@ export default {
         position: absolute;
         top: .5rem;
         right: .3rem;
+        .gm-vote {
+            float: left;
+        }
         span {
             float: left;
             font-size: 12px;
@@ -148,6 +174,9 @@ export default {
             &.btn-vote {
                 background-image: url("../../assets/imgs/post/icon_vote_comment.png");
                 background-position: 0 -17px;
+            }
+            &.btn-vote.voted {
+                background-position: 0 4px;
             }
             &.btn-reply {
                 margin-left: .33rem;
