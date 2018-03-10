@@ -112,7 +112,7 @@ import Vote from '@/components/Vote'
 import Attention from '@/components/Attention'
 import Swiper from '@/components/Swiper'
 import CommentList from '@/components/Comment/List'
-import { LoginUser } from '@/utils/mixins'
+import { CheckLogin } from '@/utils/mixins'
 
 export default {
     name: 'ArticleDetail',
@@ -129,7 +129,7 @@ export default {
         CommentList
     },
 
-    mixins: [LoginUser],
+    mixins: [CheckLogin],
 
     data () {
         return {

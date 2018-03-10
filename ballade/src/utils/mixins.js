@@ -1,6 +1,6 @@
 import Request from '@/utils/request'
 
-const LoginUser = {
+const CheckLogin = {
     data () {
         return {
             loginUser: {
@@ -23,5 +23,5 @@ const LoginUser = {
 }
 
 export {
-    LoginUser
+    CheckLogin
 }
