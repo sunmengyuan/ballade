@@ -153,6 +153,7 @@ export default {
     },
 
     created () {
+        window.page_name = 'article_detail'
         this.$app.setPageTitle('专栏')
         this.article_id = this.$router.query('article_id')
         this.titleBarHeight = this.$router.query('title_bar_height')
@@ -178,7 +179,7 @@ export default {
                     this.relatedArticles = detail.related_article
                     this.comments = detail.comment
                     this.pageData = {
-                        page_name: 'article_detail',
+                        page_name: window.page_name,
                         business_id: detail.article_id,
                         share_data: detail.share_data,
                         hide_share: false
