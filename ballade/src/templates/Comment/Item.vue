@@ -91,6 +91,11 @@ export default {
                     add: '/hybrid/api/topicreply/vote/_data',
                     cancel: '/hybrid/api/topicreply/cancel_vote/_data'
                 }
+            case 'answer':
+                this.vote.request = {
+                    add: '/hybrid/answer/answer_reply_vote/_data',
+                    cancel: '/hybrid/answer/answer_reply_cancel_vote/_data'
+                }
                 break
         }
     },
