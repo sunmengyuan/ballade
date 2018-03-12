@@ -10,7 +10,7 @@
         </a>
         <div class="comment-list">
             <comment-item
-                v-for="comment in data"
+                v-for="comment in comments"
                 :key="comment.reply_id"
                 :business_id="business_id"
                 :type="type"
@@ -80,9 +80,13 @@ export default {
         this.addCommentUrl = `gengmei://add_comment?${addCommentType}_id=${this.business_id}`
         this.viewmoreUrl = `gengmei://comment_detail?${viewmoreType}_id=${this.business_id}`
         this.randomTips()
+        this.clientJS()
     },
 
     computed: {
+        comments: function () {
+            return this.data
+        },
         commentCount: function () {
             return this.count
         }
@@ -106,6 +110,12 @@ export default {
             this.loginUser.id
                 ? (window.location.href = e.currentTarget.href)
                 : this.$app.needLogin()
+        },
+        clientJS () {
+            window.gmJS.renderComment = (jsonStr) => {
+                this.comments.unshift(JSON.parse(jsonStr))
+                this.$emit('update:count', this.commentCount + 1)
+            }
         }
     }
 }

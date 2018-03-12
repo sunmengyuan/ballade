@@ -91,6 +91,7 @@ export default {
                     add: '/hybrid/api/topicreply/vote/_data',
                     cancel: '/hybrid/api/topicreply/cancel_vote/_data'
                 }
+                break
             case 'answer':
                 this.vote.request = {
                     add: '/hybrid/answer/answer_reply_vote/_data',
@@ -128,6 +129,7 @@ export default {
             this.isActive = true
             var t = setTimeout(() => {
                 this.isActive = false
+                clearTimeout(t)
             }, 96)
         }
     }
