@@ -10,6 +10,7 @@
  * @type
  *     common: 通用
  *     coupon: 无美券
+ *     comment: 无评论
  * @height
  *     this.GLOBAL.winHeight - 页面内容最小高度
  */
