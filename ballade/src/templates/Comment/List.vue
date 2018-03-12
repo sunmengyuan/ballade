@@ -12,6 +12,7 @@
             <comment-item
                 v-for="comment in data"
                 :key="comment.reply_id"
+                :business_id="business_id"
                 :type="type"
                 :data="comment"></comment-item>
         </div>
@@ -73,15 +74,9 @@ export default {
     },
 
     created () {
-        var addCommentType = this.type
+        // article 属 topic 类
+        var addCommentType = (this.type === 'article') ? 'topic' : this.type
         var viewmoreType = this.type
-        switch (this.type) {
-            case 'article':
-                addCommentType = 'topic'
-                break
-            default:
-                break
-        }
         this.addCommentUrl = `gengmei://add_comment?${addCommentType}_id=${this.business_id}`
         this.viewmoreUrl = `gengmei://comment_detail?${viewmoreType}_id=${this.business_id}`
         this.randomTips()

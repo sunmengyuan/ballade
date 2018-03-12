@@ -5,9 +5,13 @@
             <span class="nickname gm-ellipsis-row1">{{ item.user_nickname }}</span>
             <span class="time gm-ellipsis-row1">{{ item.reply_date }}</span>
         </div>
-        <div class="comment">{{ item.content }}</div>
+        <div class="comment" @click="triggerAlert(item.reply_id, item.user_nickname, item.reply_id)">{{ item.content }}</div>
         <div class="sub-comment">
-            <div class="reply" v-for="reply in item.replys" :key="reply.comment_id"><a href="javascript:;" @click="$app.userSkip(reply.comment_user_type, reply.comment_user_id)">{{ reply.nickname }}</a><template v-if="reply.at_nickname">回复了<a href="javascript:;" @click="$app.userSkip(reply.at_user_type, reply.at_user_id)">{{ reply.at_nickname }}</a></template>：{{ reply.content }}</div>
+            <div
+                class="reply"
+                v-for="reply in item.replys"
+                :key="reply.comment_id"
+                @click="triggerAlert(reply.comment_id, reply.nickname, item.reply_id)"><a href="javascript:;" @click="$app.userSkip(reply.comment_user_type, reply.comment_user_id)">{{ reply.nickname }}</a><template v-if="reply.at_nickname">回复了<a href="javascript:;" @click="$app.userSkip(reply.at_user_type, reply.at_user_id)">{{ reply.at_nickname }}</a></template>：{{ reply.content }}</div>
             <div v-if="showmore"><span class="btn-showmore" @click="triggerShowmore">共{{ replyCount }}条回复 ></span></div>
             <div v-if="!showmore && (replyCount > 6)"><span class="btn-showmore" @click="triggerShowmore">收起 ></span></div>
         </div>
@@ -19,7 +23,7 @@
                 :request="vote.request">
                 <span class="btn-vote" :class="{ voted: vote.voted }">{{ vote.count || '' }}</span>
             </vote>
-            <span class="btn-reply"></span>
+            <span class="btn-reply" @click="addReply(item.reply_id, item.user_nickname, item.reply_id)"></span>
         </div>
     </div>
 </template>
@@ -30,6 +34,10 @@ import Vote from '@/components/Vote'
 
 export default {
     props: {
+        business_id: {
+            type: [String, Number],
+            default: ''
+        },
         data: {
             type: Object,
             default: {
@@ -67,13 +75,10 @@ export default {
         // 点赞
         this.vote.voted = this.data.is_liked
         this.vote.count = this.data.favor_amount
-        switch (this.type) {
-            case 'article':
-                this.vote.request = {
-                    add: '/hybrid/api/topicreply/vote/_data',
-                    cancel: '/hybrid/api/topicreply/cancel_vote/_data'
-                }
-                break
+
+        // article 属 topic 类
+        var type = (this.type === 'article') ? 'topic' : this.type
+        switch (type) {
             case 'topic':
                 this.vote.request = {
                     add: '/hybrid/api/topicreply/vote/_data',
@@ -102,6 +107,24 @@ export default {
                     this.item.replys = replys.slice(0, 6)
                     break
             }
+        },
+        addReply (replyId, replyName, replyParentId) {
+            // article 属 topic 类
+            var type = (this.type === 'article') ? 'topic' : this.type
+            console.log(replyId)
+            console.log(replyName)
+            console.log(replyParentId)
+            console.log(type)
+            console.log(this.business_id)
+        },
+        triggerAlert (replyId, replyName, replyParentId) {
+            // article 属 topic 类
+            var type = (this.type === 'article') ? 'topic' : this.type
+            console.log(replyId)
+            console.log(replyName)
+            console.log(replyParentId)
+            console.log(type)
+            console.log(this.business_id)
         }
     }
 }
