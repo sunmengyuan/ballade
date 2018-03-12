@@ -19,7 +19,7 @@
         <a
             class="btn-viewmore"
             :href="viewmoreUrl"
-            v-if="showViewmore && count">查看全部{{ count }}条评论</a>
+            v-if="showViewmore && commentCount">查看全部{{ commentCount }}条评论</a>
     </div>
 </template>
 
@@ -80,6 +80,12 @@ export default {
         this.addCommentUrl = `gengmei://add_comment?${addCommentType}_id=${this.business_id}`
         this.viewmoreUrl = `gengmei://comment_detail?${viewmoreType}_id=${this.business_id}`
         this.randomTips()
+    },
+
+    computed: {
+        commentCount: function () {
+            return this.count
+        }
     },
 
     methods: {
