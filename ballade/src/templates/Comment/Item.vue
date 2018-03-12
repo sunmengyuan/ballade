@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import Base64 from 'base-64'
 import Vote from '@/components/Vote'
 
 export default {

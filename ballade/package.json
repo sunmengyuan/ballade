@@ -10,7 +10,6 @@
     },
     "dependencies": {
         "axios": "^0.17.1",
-        "base-64": "^0.1.0",
         "blueimp-tmpl": "^3.11.0",
         "fastclick": "^1.0.6",
         "vue": "^2.5.2",
