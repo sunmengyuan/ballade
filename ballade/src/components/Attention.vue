@@ -9,8 +9,12 @@
 
 <script>
 /**
+ * @id
+ *     普通用户 id
  * @strid
  *     专家、机构 id
+ * @type
+ *     用户类型
  * @track
  *     埋点
  */
