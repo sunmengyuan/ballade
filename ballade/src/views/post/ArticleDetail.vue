@@ -52,13 +52,13 @@
             <comment-list
                 :business_id="article_id"
                 :type="'article'"
-                :count="articleDetail.comment_count"
-                :data.sync="comments"
+                :count.sync="articleDetail.comment_count"
+                :data="comments"
                 :loginUser="loginUser"></comment-list>
             <nodata
                 :type="'comment'"
                 :message="'暂无评论，快来发表你的评论吧~'"
-                v-if="!comments.length"></nodata>
+                v-if="!articleDetail.comment_count"></nodata>
             <div class="related-article" v-if="relatedArticles.length">
                 <h4>相关专栏</h4>
                 <ul>
