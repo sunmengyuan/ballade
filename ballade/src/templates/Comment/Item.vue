@@ -5,7 +5,7 @@
             <span class="nickname gm-ellipsis-row1">{{ item.user_nickname }}</span>
             <span class="time gm-ellipsis-row1">{{ item.reply_date }}</span>
         </div>
-        <div class="comment" @click="triggerAlert(item.reply_id, item.user_nickname, item.reply_id)">{{ item.content }}</div>
+        <div class="comment" @click="triggerAlert(item.reply_id, item.user_nickname)">{{ item.content }}</div>
         <div class="sub-comment">
             <div
                 class="reply"
