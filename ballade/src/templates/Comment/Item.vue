@@ -1,5 +1,5 @@
 <template>
-    <div class="comment-item">
+    <div class="comment-item" :class="{ active: isActive }" @click="tapComment">
         <div class="userinfo" @click="$app.userSkip(item.user_type, item.user_id)">
             <img :src="item.user_portrait" />
             <span class="nickname gm-ellipsis-row1">{{ item.user_nickname }}</span>
@@ -56,6 +56,7 @@ export default {
 
     data () {
         return {
+            isActive: false,
             item: {},
             replyCount: 0,
             showmore: false,
@@ -117,6 +118,12 @@ export default {
             // article 属 topic 类
             var type = (this.type === 'article') ? 'topic' : this.type
             window.location.href = `gengmei://topic_comment_alert?reply_id=${replyId}&reply_name=${window.Base64.encodeURI(replyName)}&reply_parent_id=${this.data.reply_id}&belong_id=${this.business_id}&comment_type=${type}`
+        },
+        tapComment () {
+            this.isActive = true
+            var t = setTimeout(() => {
+                this.isActive = false
+            }, 96)
         }
     }
 }
@@ -124,6 +131,9 @@ export default {
 
 <style lang="scss" scoped>
 .comment-item {
+    &.active {
+        background-color: #FAFAFA;
+    }
     position: relative;
     padding: .35rem .3rem 0;
     background-color: #FFF;
