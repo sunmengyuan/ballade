@@ -11,7 +11,7 @@
                 class="reply"
                 v-for="reply in item.replys"
                 :key="reply.comment_id"
-                @click="triggerAlert(reply.comment_id, reply.nickname, item.reply_id)"><a href="javascript:;" @click="$app.userSkip(reply.comment_user_type, reply.comment_user_id)">{{ reply.nickname }}</a><template v-if="reply.at_nickname">回复了<a href="javascript:;" @click="$app.userSkip(reply.at_user_type, reply.at_user_id)">{{ reply.at_nickname }}</a></template>：{{ reply.content }}</div>
+                @click="triggerAlert(reply.comment_id, reply.nickname)"><a href="javascript:;" @click="$app.userSkip(reply.comment_user_type, reply.comment_user_id)">{{ reply.nickname }}</a><template v-if="reply.at_nickname">回复了<a href="javascript:;" @click="$app.userSkip(reply.at_user_type, reply.at_user_id)">{{ reply.at_nickname }}</a></template>：{{ reply.content }}</div>
             <div v-if="showmore"><span class="btn-showmore" @click="triggerShowmore">共{{ replyCount }}条回复 ></span></div>
             <div v-if="!showmore && (replyCount > 6)"><span class="btn-showmore" @click="triggerShowmore">收起 ></span></div>
         </div>
@@ -23,7 +23,7 @@
                 :request="vote.request">
                 <span class="btn-vote" :class="{ voted: vote.voted }">{{ vote.count || '' }}</span>
             </vote>
-            <span class="btn-reply" @click="addReply(item.reply_id, item.user_nickname, item.reply_id)"></span>
+            <span class="btn-reply" @click="addReply(item.reply_id, item.user_nickname)"></span>
         </div>
     </div>
 </template>
@@ -108,23 +108,15 @@ export default {
                     break
             }
         },
-        addReply (replyId, replyName, replyParentId) {
+        addReply (replyId, replyName) {
             // article 属 topic 类
             var type = (this.type === 'article') ? 'topic' : this.type
-            console.log(replyId)
-            console.log(replyName)
-            console.log(replyParentId)
-            console.log(type)
-            console.log(this.business_id)
+            window.location.href = `gengmei://add_comment?reply_id=${replyId}&reply_name=${window.Base64.encodeURI(replyName)}&reply_parent_id=${this.data.reply_id}&belong_id=${this.business_id}&comment_type=${type}`
         },
-        triggerAlert (replyId, replyName, replyParentId) {
+        triggerAlert (replyId, replyName) {
             // article 属 topic 类
             var type = (this.type === 'article') ? 'topic' : this.type
-            console.log(replyId)
-            console.log(replyName)
-            console.log(replyParentId)
-            console.log(type)
-            console.log(this.business_id)
+            window.location.href = `gengmei://topic_comment_alert?reply_id=${replyId}&reply_name=${window.Base64.encodeURI(replyName)}&reply_parent_id=${this.data.reply_id}&belong_id=${this.business_id}&comment_type=${type}`
         }
     }
 }
