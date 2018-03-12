@@ -15,8 +15,6 @@
  *     专家、机构 id
  * @type
  *     用户类型
- * @track
- *     埋点
  */
 export default {
     props: {
@@ -35,19 +33,13 @@ export default {
         followed: {
             type: Boolean,
             default: false
-        },
-        track: {
-            type: Object,
-            default: {
-                from: ''
-            }
         }
     },
 
     methods: {
         triggerAttention () {
             var trackParams = {
-                ...this.track,
+                from: window.page_name,
                 type: this.type,
                 business_id: (this.type === 1 || this.type === 2) ? this.strid : this.id,
                 action: this.followed ? 'undo' : 'do'
