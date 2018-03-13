@@ -111,6 +111,9 @@ export default {
                 this.comments.unshift(JSON.parse(jsonStr))
                 this.$emit('update:count', this.count + 1)
             }
+            window.gmJS.renderReply = (index, jsonStr) => {
+                this.comments[index].comments.push(JSON.parse(jsonStr))
+            }
         }
     }
 }

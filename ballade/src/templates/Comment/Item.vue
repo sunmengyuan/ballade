@@ -57,7 +57,6 @@ export default {
     data () {
         return {
             isActive: false,
-            replyCount: 0,
             showmore: false,
             vote: {
                 voted: false,
@@ -71,11 +70,13 @@ export default {
             return this.showmore
                 ? this.data.comments.slice(0, 6)
                 : this.data.comments
+        },
+        replyCount () {
+            return this.data.comments.length
         }
     },
 
     created () {
-        this.replyCount = this.data.comments.length
         if (this.replyCount > 6) this.showmore = true
 
         // 点赞
