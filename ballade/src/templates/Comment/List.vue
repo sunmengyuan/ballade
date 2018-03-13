@@ -19,7 +19,7 @@
         <a
             class="btn-viewmore"
             :href="viewmoreUrl"
-            v-if="showViewmore && commentCount">查看全部{{ commentCount }}条评论</a>
+            v-if="showViewmore && count">查看全部{{ count }}条评论</a>
     </div>
 </template>
 
@@ -86,9 +86,6 @@ export default {
     computed: {
         comments: function () {
             return this.data
-        },
-        commentCount: function () {
-            return this.count
         }
     },
 
@@ -114,7 +111,7 @@ export default {
         clientJS () {
             window.gmJS.renderComment = (jsonStr) => {
                 this.comments.unshift(JSON.parse(jsonStr))
-                this.$emit('update:count', this.commentCount + 1)
+                this.$emit('update:count', this.count + 1)
             }
         }
     }
