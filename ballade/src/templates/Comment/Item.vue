@@ -1,15 +1,15 @@
 <template>
     <div class="comment-item" :class="{ active: isActive }" @click="tapComment">
-        <div class="userinfo" @click="$app.userSkip(item.user_type, item.user_id)">
-            <img :src="item.user_portrait" />
-            <span class="nickname gm-ellipsis-row1">{{ item.user_nickname }}</span>
-            <span class="time gm-ellipsis-row1">{{ item.reply_date }}</span>
+        <div class="userinfo" @click="$app.userSkip(data.user_type, data.user_id)">
+            <img :src="data.user_portrait" />
+            <span class="nickname gm-ellipsis-row1">{{ data.user_nickname }}</span>
+            <span class="time gm-ellipsis-row1">{{ data.reply_date }}</span>
         </div>
-        <div class="comment" @click="triggerAlert(item.reply_id, item.user_nickname)">{{ item.content }}</div>
+        <div class="comment" @click="triggerAlert(data.reply_id, data.user_nickname)">{{ data.content }}</div>
         <div class="sub-comment">
             <div
                 class="reply"
-                v-for="reply in item.replys"
+                v-for="reply in replys"
                 :key="reply.comment_id"
                 @click="triggerAlert(reply.comment_id, reply.nickname)"><a href="javascript:;" @click="$app.userSkip(reply.comment_user_type, reply.comment_user_id)">{{ reply.nickname }}</a><template v-if="reply.at_nickname">回复了<a href="javascript:;" @click="$app.userSkip(reply.at_user_type, reply.at_user_id)">{{ reply.at_nickname }}</a></template>：{{ reply.content }}</div>
             <div v-if="showmore"><span class="btn-showmore" @click="triggerShowmore">共{{ replyCount }}条回复 ></span></div>
@@ -17,13 +17,13 @@
         </div>
         <div class="btns gm-clear">
             <vote
-                :id="item.reply_id"
+                :id="data.reply_id"
                 :voted.sync="vote.voted"
                 :count.sync="vote.count"
                 :request="vote.request">
                 <span class="btn-vote" :class="{ voted: vote.voted }">{{ vote.count || '' }}</span>
             </vote>
-            <span class="btn-reply" @click="addReply(item.reply_id, item.user_nickname)"></span>
+            <span class="btn-reply" @click="addReply(data.reply_id, data.user_nickname)"></span>
         </div>
     </div>
 </template>
@@ -57,7 +57,6 @@ export default {
     data () {
         return {
             isActive: false,
-            item: {},
             replyCount: 0,
             showmore: false,
             vote: {
@@ -67,12 +66,18 @@ export default {
         }
     },
 
+    computed: {
+        replys () {
+            return this.showmore
+                ? this.data.comments.slice(0, 6)
+                : this.data.comments
+        }
+    },
+
     created () {
-        var replys = this.data.comments
-        if (replys.length > 6) this.showmore = true
-        this.item = this.data
-        this.item.replys = replys.slice(0, 6)
-        this.replyCount = replys.length
+        this.replyCount = this.data.comments.length
+        if (this.replyCount > 6) this.showmore = true
+
         // 点赞
         this.vote.voted = this.data.is_liked
         this.vote.count = this.data.favor_amount
@@ -103,15 +108,12 @@ export default {
 
     methods: {
         triggerShowmore () {
-            var replys = this.data.comments
             switch (this.showmore) {
                 case true:
                     this.showmore = false
-                    this.item.replys = replys
                     break
                 case false:
                     this.showmore = true
-                    this.item.replys = replys.slice(0, 6)
                     break
             }
         },
@@ -138,13 +140,13 @@ export default {
 
 <style lang="scss" scoped>
 .comment-item {
-    &.active {
-        background-color: #FAFAFA;
-    }
     position: relative;
     padding: .35rem .3rem 0;
     background-color: #FFF;
     overflow: hidden;
+    &.active {
+        background-color: #FAFAFA;
+    }
     .userinfo {
         position: relative;
         width: 60%;
