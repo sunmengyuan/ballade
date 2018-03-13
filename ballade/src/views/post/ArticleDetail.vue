@@ -151,15 +151,21 @@ export default {
     },
 
     created () {
+        // pageName
         window.pageName = 'article_detail'
+        // title 供 Native 调用
         this.$app.setPageTitle('专栏')
+
         this.article_id = this.$router.query('article_id')
         this.titleBarHeight = this.$router.query('title_bar_height')
         this.loadArticleDetail()
+
+        // 点赞
         this.vote.request = {
             add: '/hybrid/api/topic/vote/_data',
             cancel: '/hybrid/api/topic/cancel_vote/_data'
         }
+        // 轮播图
         this.swiper = {
             ...this.swiper,
             pagination: '.swiper-pagination',
@@ -175,6 +181,7 @@ export default {
                     var detail = data.data
                     this.articleDetail = detail
                     this.relatedArticles = detail.related_article
+                    // pageData
                     this.pageData = {
                         page_name: window.pageName,
                         business_id: detail.article_id,
@@ -197,6 +204,7 @@ export default {
         },
         bannerLoaded (e) {
             this.pageData.header_height = e.target.height
+            // pageData 供 Native 调用
             this.$app.setPageData(this.pageData)
         },
         triggerVote () {
