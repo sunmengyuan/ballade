@@ -53,8 +53,7 @@
                 :business_id="article_id"
                 :type="'article'"
                 :count.sync="articleDetail.comment_count"
-                :data="articleDetail.comment"
-                :loginUser="loginUser"></comment-list>
+                :data="articleDetail.comment"></comment-list>
             <nodata
                 :type="'comment'"
                 :message="'暂无评论，快来发表你的评论吧~'"
@@ -111,7 +110,7 @@ import Vote from '@/components/Vote'
 import Attention from '@/components/Attention'
 import Swiper from '@/components/Swiper'
 import CommentList from '@/templates/Comment/List'
-import { CheckLogin } from '@/utils/mixins'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name: 'ArticleDetail',
@@ -127,8 +126,6 @@ export default {
         Swiper,
         CommentList
     },
-
-    mixins: [CheckLogin],
 
     data () {
         return {
@@ -148,6 +145,10 @@ export default {
                 loop: true
             }
         }
+    },
+
+    computed: {
+        ...mapGetters(['account'])
     },
 
     created () {
@@ -171,9 +172,12 @@ export default {
             pagination: '.swiper-pagination',
             paginationType: 'fraction'
         }
+        this.checkLogin()
     },
 
     methods: {
+        ...mapActions(['checkLogin']),
+
         loadArticleDetail () {
             this.$request({
                 url: `/hybrid/article/${this.article_id}/_data`,
@@ -216,7 +220,7 @@ export default {
             })
         },
         triggerComment (e) {
-            this.loginUser.id
+            this.account.id
                 ? (window.location.href = e.currentTarget.href)
                 : this.$app.needLogin()
             this.$app.trackEvent({
