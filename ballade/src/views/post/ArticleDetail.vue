@@ -53,7 +53,7 @@
                 :business_id="article_id"
                 :type="'article'"
                 :count.sync="articleDetail.comment_count"
-                :data="comments"
+                :data="articleDetail.comment"
                 :loginUser="loginUser"></comment-list>
             <nodata
                 :type="'comment'"
@@ -135,7 +135,6 @@ export default {
             article_id: null,
             articleDetail: {},
             relatedArticles: [],
-            comments: [],
             titleBarHeight: 0,
             showView: false,
             showWhirl: true,
@@ -176,7 +175,6 @@ export default {
                     var detail = data.data
                     this.articleDetail = detail
                     this.relatedArticles = detail.related_article
-                    this.comments = detail.comment
                     this.pageData = {
                         page_name: window.page_name,
                         business_id: detail.article_id,
