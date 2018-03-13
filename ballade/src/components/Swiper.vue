@@ -11,7 +11,9 @@ export default {
     props: {
         opts: {
             type: Object,
-            default: {}
+            default: () => {
+                return {}
+            }
         }
     },
 
