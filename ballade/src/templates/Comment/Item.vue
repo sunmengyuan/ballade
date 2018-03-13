@@ -38,15 +38,15 @@ export default {
             type: [String, Number],
             default: ''
         },
-        data: {
-            type: Object,
-            default: {
-                comments: []
-            }
-        },
         type: {
             type: String,
             default: 'topic'
+        },
+        data: {
+            type: Object,
+            default: () => {
+                return {}
+            }
         }
     },
 
