@@ -30,7 +30,7 @@ export default {
     },
 
     computed: {
-        style: function () {
+        style () {
             return {
                 'padding-bottom': this.pdBtom,
                 'height': this.pdBtom ? 0 : 'auto',

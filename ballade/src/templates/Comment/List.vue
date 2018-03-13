@@ -72,7 +72,7 @@ export default {
     computed: {
         ...mapGetters(['account']),
 
-        comments: function () {
+        comments () {
             return this.data
         }
     },
