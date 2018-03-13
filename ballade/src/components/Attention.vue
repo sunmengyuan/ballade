@@ -39,7 +39,7 @@ export default {
     methods: {
         triggerAttention () {
             var trackParams = {
-                from: window.page_name,
+                from: window.pageName,
                 type: this.type,
                 business_id: (this.type === 1 || this.type === 2) ? this.strid : this.id,
                 action: this.followed ? 'undo' : 'do'
