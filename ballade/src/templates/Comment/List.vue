@@ -42,7 +42,9 @@ export default {
         },
         data: {
             type: Array,
-            default: []
+            default: () => {
+                return []
+            }
         },
         loginUser: {
             type: Object,
