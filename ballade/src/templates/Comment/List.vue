@@ -5,7 +5,7 @@
             :href="addCommentUrl"
             v-if="showInput"
             @click.prevent="triggerComment($event)">
-            <img :src="loginUser.portrait" />
+            <img :src="account.portrait" />
             <span>{{ tips }}</span>
         </a>
         <div class="comment-list">
@@ -25,6 +25,7 @@
 
 <script>
 import CommentItem from '@/templates/Comment/Item'
+import { mapGetters } from 'vuex'
 
 export default {
     props: {
@@ -44,13 +45,6 @@ export default {
             type: Array,
             default: () => {
                 return []
-            }
-        },
-        loginUser: {
-            type: Object,
-            default: {
-                id: null,
-                portrait: ''
             }
         },
         showInput: {
@@ -75,20 +69,22 @@ export default {
         }
     },
 
+    computed: {
+        ...mapGetters(['account']),
+
+        comments: function () {
+            return this.data
+        }
+    },
+
     created () {
+        this.randomTips()
+        this.clientJS()
         // article 属 topic 类
         var addCommentType = (this.type === 'article') ? 'topic' : this.type
         var viewmoreType = this.type
         this.addCommentUrl = `gengmei://add_comment?${addCommentType}_id=${this.business_id}`
         this.viewmoreUrl = `gengmei://comment_detail?${viewmoreType}_id=${this.business_id}`
-        this.randomTips()
-        this.clientJS()
-    },
-
-    computed: {
-        comments: function () {
-            return this.data
-        }
     },
 
     methods: {
@@ -106,7 +102,7 @@ export default {
             this.tips = tips[random]
         },
         triggerComment (e) {
-            this.loginUser.id
+            this.account.id
                 ? (window.location.href = e.currentTarget.href)
                 : this.$app.needLogin()
         },
