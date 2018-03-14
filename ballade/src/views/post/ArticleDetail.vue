@@ -53,7 +53,8 @@
                 :business_id="article_id"
                 :type="'article'"
                 :count.sync="articleDetail.comment_count"
-                :data="articleDetail.comment"></comment-list>
+                :data="articleDetail.comment"
+                :scrollTop="titleBarHeight >> 0"></comment-list>
             <nodata
                 :type="'comment'"
                 :message="'暂无评论，快来发表你的评论吧~'"
