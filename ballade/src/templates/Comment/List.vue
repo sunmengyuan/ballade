@@ -10,10 +10,11 @@
         </a>
         <div class="comment-list">
             <comment-item
-                v-for="comment in comments"
+                v-for="(comment, index) in comments"
                 :key="comment.reply_id"
                 :business_id="business_id"
                 :type="type"
+                :index="index"
                 :data="comment"></comment-item>
         </div>
         <a
