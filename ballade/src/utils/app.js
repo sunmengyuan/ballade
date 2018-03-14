@@ -84,6 +84,7 @@ const App = {
     },
     // 埋点
     trackEvent: (opts = {}) => {
+        console.log(opts)
         /* eslint-disable no-undef */
         if ((typeof gmclient !== 'undefined') && (typeof gmclient.trackEvent !== 'undefined')) {
             gmclient.trackEvent(JSON.stringify(opts))

@@ -1,6 +1,6 @@
 <template>
     <div class="comment-item" :class="{ active: isActive }" @click="tapComment">
-        <div class="userinfo" @click="$app.userSkip(data.user_type, data.user_id)">
+        <div class="userinfo" @click="tapAvatar">
             <img :src="data.user_portrait" />
             <span class="nickname gm-ellipsis-row1">{{ data.user_nickname }}</span>
             <span class="time gm-ellipsis-row1">{{ data.reply_date }}</span>
@@ -135,6 +135,17 @@ export default {
                 this.isActive = false
                 clearTimeout(t)
             }, 96)
+        },
+        tapAvatar () {
+            this.$app.userSkip(this.data.user_type, this.data.user_id)
+            this.$app.trackEvent({
+                type: 'comment_item_click_avatar',
+                params: {
+                    from: window.pageName,
+                    business_id: this.business_id,
+                    reply_id: this.data.reply_id
+                }
+            })
         }
     }
 }
