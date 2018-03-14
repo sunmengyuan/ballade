@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import Tmpl from '@/utils/tmpl'
+import Tmpl from '@/utils/libs/tmpl'
 
 export default {
     props: {

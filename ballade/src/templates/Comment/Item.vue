@@ -31,7 +31,7 @@
 
 <script>
 import Vote from '@/components/Vote'
-import Base64 from '@/utils/base64'
+import Base64 from '@/utils/libs/base64'
 
 export default {
     props: {

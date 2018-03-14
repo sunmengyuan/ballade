@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Swiper from '@/utils/swiper'
+import Swiper from '@/utils/libs/swiper'
 
 export default {
     props: {
