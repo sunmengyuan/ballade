@@ -102,7 +102,8 @@ export default {
             var info = JSON.parse(cards[i].getAttribute('data-info'))
             info.server = this.GLOBAL.server
             cards[i].innerHTML = Tmpl(`tmpl_${type}`, info)
-            cards[i].addEventListener('click', () => {
+            cards[i].addEventListener('click', (e) => {
+                e.preventDefault()
                 var target = cards[i].querySelector('a')
                 this.$app.trackEvent({
                     type: 'article_detail_click_related_item',
@@ -110,6 +111,8 @@ export default {
                         item_type: target.getAttribute('data-type'),
                         business_id: target.getAttribute('data-id')
                     }
+                }, () => {
+                    window.location.href = target.href
                 })
             })
         }
