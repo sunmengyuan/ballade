@@ -123,6 +123,7 @@ export default {
             window.gmJS.renderReply = (index, jsonStr) => {
                 this.comments[index]['addReplyCount']++
                 this.comments[index].comments.push(JSON.parse(jsonStr))
+                window.scrollTo(0, document.querySelector(`.comment-item${index}`).offsetTop - this.scrollTop)
             }
         }
     }
