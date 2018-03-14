@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Swiper from '@/utils/libs/swiper'
+import '@/utils/libs/swiper'
 
 export default {
     props: {
@@ -19,7 +19,7 @@ export default {
 
     mounted () {
         /* eslint-disable no-new */
-        new Swiper('.swiper-container', {
+        new window.Swiper('.swiper-container', {
             ...this.opts,
             observer: true,
             observeParents: true
