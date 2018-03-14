@@ -73,6 +73,9 @@ export default {
         ...mapGetters(['account']),
 
         comments () {
+            this.data.forEach((value, index) => {
+                this.data[index]['addReplyCount'] = 0
+            })
             return this.data
         }
     },
@@ -112,6 +115,7 @@ export default {
                 this.$emit('update:count', this.count + 1)
             }
             window.gmJS.renderReply = (index, jsonStr) => {
+                this.comments[index]['addReplyCount']++
                 this.comments[index].comments.push(JSON.parse(jsonStr))
             }
         }

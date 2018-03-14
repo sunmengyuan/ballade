@@ -67,9 +67,10 @@ export default {
 
     computed: {
         replys () {
+            var replys = this.data.comments
             return this.showmore
-                ? this.data.comments.slice(0, 6)
-                : this.data.comments
+                ? replys.slice(0, 6).concat(replys.slice(replys.length - this.data.addReplyCount))
+                : replys
         },
         replyCount () {
             return this.data.comments.length
