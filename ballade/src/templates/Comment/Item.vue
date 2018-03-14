@@ -129,6 +129,14 @@ export default {
             if (e.target.tagName !== 'A') {
                 // article 属 topic 类
                 var type = (this.type === 'article') ? 'topic' : this.type
+                this.$app.trackEvent({
+                    type: 'comment_item_click_reply',
+                    params: {
+                        from: window.pageName,
+                        business_id: this.business_id,
+                        click_area: 'text'
+                    }
+                })
                 window.location.href = `gengmei://topic_comment_alert?reply_id=${replyId}&reply_name=${window.Base64.encodeURI(replyName)}&reply_parent_id=${this.data.reply_id}&belong_id=${this.business_id}&comment_type=${type}`
             }
         },
