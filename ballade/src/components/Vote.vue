@@ -27,6 +27,10 @@ export default {
                     cancel: ''
                 }
             }
+        },
+        callback: {
+            type: Function,
+            default: () => {}
         }
     },
 
@@ -76,6 +80,7 @@ export default {
                     })
                     break
             }
+            this.callback()
         }
     }
 }

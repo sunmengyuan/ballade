@@ -20,7 +20,8 @@
                 :id="data.reply_id"
                 :voted.sync="vote.voted"
                 :count.sync="vote.count"
-                :request="vote.request">
+                :request="vote.request"
+                :callback="trackVote">
                 <span class="btn-vote" :class="{ voted: vote.voted }">{{ vote.count || '' }}</span>
             </vote>
             <span class="btn-reply" @click="addReply(data.reply_id, data.user_nickname)"></span>
@@ -142,6 +143,16 @@ export default {
             this.$app.userSkip(this.data.user_type, this.data.user_id)
             this.$app.trackEvent({
                 type: 'comment_item_click_avatar',
+                params: {
+                    from: window.pageName,
+                    business_id: this.business_id,
+                    reply_id: this.data.reply_id
+                }
+            })
+        },
+        trackVote () {
+            this.$app.trackEvent({
+                type: 'comment_item_click_vote',
                 params: {
                     from: window.pageName,
                     business_id: this.business_id,
