@@ -5,13 +5,13 @@
             <span class="nickname gm-ellipsis-row1">{{ data.user_nickname }}</span>
             <span class="time gm-ellipsis-row1">{{ data.reply_date }}</span>
         </div>
-        <div class="comment" @click="triggerAlert(data.reply_id, data.user_nickname)">{{ data.content }}</div>
+        <div class="comment" @click="triggerAlert($event, data.reply_id, data.user_nickname)">{{ data.content }}</div>
         <div class="sub-comment">
             <div
                 class="reply"
                 v-for="reply in replys"
                 :key="reply.comment_id"
-                @click="triggerAlert(reply.comment_id, reply.nickname)"><a href="javascript:;" @click="$app.userSkip(reply.comment_user_type, reply.comment_user_id)">{{ reply.nickname }}</a><template v-if="reply.at_nickname">回复了<a href="javascript:;" @click="$app.userSkip(reply.at_user_type, reply.at_user_id)">{{ reply.at_nickname }}</a></template>：{{ reply.content }}</div>
+                @click="triggerAlert($event, reply.comment_id, reply.nickname)"><a href="javascript:;" @click="$app.userSkip(reply.comment_user_type, reply.comment_user_id)">{{ reply.nickname }}</a><template v-if="reply.at_nickname">回复了<a href="javascript:;" @click="$app.userSkip(reply.at_user_type, reply.at_user_id)">{{ reply.at_nickname }}</a></template>：{{ reply.content }}</div>
             <div v-if="showmore"><span class="btn-showmore" @click="triggerShowmore">共{{ replyCount }}条回复 ></span></div>
             <div v-if="!showmore && (replyCount > 6)"><span class="btn-showmore" @click="triggerShowmore">收起 ></span></div>
         </div>
@@ -124,10 +124,12 @@ export default {
             var type = (this.type === 'article') ? 'topic' : this.type
             window.location.href = `gengmei://add_comment?reply_id=${replyId}&reply_name=${window.Base64.encodeURI(replyName)}&reply_parent_id=${this.data.reply_id}&belong_id=${this.business_id}&comment_type=${type}`
         },
-        triggerAlert (replyId, replyName) {
-            // article 属 topic 类
-            var type = (this.type === 'article') ? 'topic' : this.type
-            window.location.href = `gengmei://topic_comment_alert?reply_id=${replyId}&reply_name=${window.Base64.encodeURI(replyName)}&reply_parent_id=${this.data.reply_id}&belong_id=${this.business_id}&comment_type=${type}`
+        triggerAlert (e, replyId, replyName) {
+            if (e.target.tagName !== 'A') {
+                // article 属 topic 类
+                var type = (this.type === 'article') ? 'topic' : this.type
+                window.location.href = `gengmei://topic_comment_alert?reply_id=${replyId}&reply_name=${window.Base64.encodeURI(replyName)}&reply_parent_id=${this.data.reply_id}&belong_id=${this.business_id}&comment_type=${type}`
+            }
         },
         tapComment () {
             this.isActive = true
