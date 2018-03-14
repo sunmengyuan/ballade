@@ -105,9 +105,6 @@ const App = {
     }
 }
 App.install = (Vue, options) => {
-    Vue.prototype.$window = window
-    Vue.prototype.$document = window.document
-    Vue.prototype.$body = window.document.body
     Vue.prototype.GLOBAL = App.GLOBAL
     Vue.prototype.$app = {
         setPageTitle: App.setPageTitle,

@@ -118,7 +118,7 @@ export default {
             window.gmJS.renderComment = (jsonStr) => {
                 this.comments.unshift(JSON.parse(jsonStr))
                 this.$emit('update:count', this.count + 1)
-                this.$window.scrollTo(0, this.$document.querySelector('.comment-container').offsetTop - this.scrollTop)
+                window.scrollTo(0, document.querySelector('.comment-container').offsetTop - this.scrollTop)
             }
             window.gmJS.renderReply = (index, jsonStr) => {
                 this.comments[index]['addReplyCount']++
