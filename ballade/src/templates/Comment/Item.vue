@@ -1,5 +1,5 @@
 <template>
-    <div class="comment-item" :class="{ active: isActive }" @click="tapComment">
+    <div class="comment-item" :class="[{ active: isActive }, 'comment' + index]" @click="tapComment">
         <div class="userinfo" @click="tapAvatar">
             <img :src="data.user_portrait" />
             <span class="nickname gm-ellipsis-row1">{{ data.user_nickname }}</span>
