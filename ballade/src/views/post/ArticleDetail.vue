@@ -74,13 +74,13 @@
                 <ul class="gm-clear">
                     <li
                         class="vote"
-                        :class="{ voted: vote.voted }"
-                        @click="triggerVote">
+                        :class="{ voted: vote.voted }">
                         <vote
                             :id="article_id"
                             :voted.sync="vote.voted"
                             :count.sync="vote.count"
-                            :request="vote.request">
+                            :request="vote.request"
+                            :callback="trackVote">
                             <span>赞<em v-if="vote.count">&nbsp;·&nbsp;</em></span>
                             <span v-if="vote.count">{{ vote.count || '' }}</span>
                         </vote>
@@ -211,7 +211,7 @@ export default {
             // pageData 供 Native 调用
             this.$app.setPageData(this.pageData)
         },
-        triggerVote () {
+        trackVote () {
             this.$app.trackEvent({
                 type: 'topic_detail_click_vote',
                 params: {
@@ -220,14 +220,15 @@ export default {
             })
         },
         triggerComment (e) {
-            this.account.id
-                ? (window.location.href = e.currentTarget.href)
-                : this.$app.needLogin()
             this.$app.trackEvent({
                 type: 'topic_detail_click_bottom_comment',
                 params: {
                     business_id: this.article_id
                 }
+            }, () => {
+                this.account.id
+                    ? (window.location.href = e.currentTarget.href)
+                    : this.$app.needLogin()
             })
         }
     }

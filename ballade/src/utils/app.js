@@ -83,12 +83,13 @@ const App = {
         }
     },
     // 埋点
-    trackEvent: (opts = {}) => {
+    trackEvent: (opts = {}, callback) => {
         console.log(opts)
         /* eslint-disable no-undef */
         if ((typeof gmclient !== 'undefined') && (typeof gmclient.trackEvent !== 'undefined')) {
             gmclient.trackEvent(JSON.stringify(opts))
         }
+        callback && callback()
     },
     userSkip: (type, id) => {
         switch (type) {
