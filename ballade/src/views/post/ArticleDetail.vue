@@ -24,7 +24,7 @@
             <div class="star" v-if="articleDetail.article_type == 7">
                 <div class="banner-swiper">
                     <swiper :options="swiper">
-                        <swiper-slide v-for="image in articleDetail.banner">
+                        <swiper-slide v-for="(image, index) in articleDetail.banner" :key="index">
                             <img :src="image" />
                         </swiper-slide>
                         <div class="swiper-pagination" slot="pagination"></div>

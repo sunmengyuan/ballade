@@ -135,7 +135,7 @@ export default {
                     click_area: 'icon'
                 }
             }, () => {
-                window.location.href = `gengmei://add_comment?index=${this.index}&reply_id=${replyId}&reply_name=${Base64.encodeURI(replyName)}&reply_parent_id=${this.data.reply_id}&belong_id=${this.business_id}&comment_type=${type}`
+                window.location.href = `gengmei://add_comment?index=${this.index}&reply_id=${replyId}&reply_name=${Base64.encode(replyName)}&reply_parent_id=${this.data.reply_id}&belong_id=${this.business_id}&comment_type=${type}`
             })
         },
         triggerAlert (e, replyId, replyName) {
@@ -150,7 +150,7 @@ export default {
                         click_area: 'text'
                     }
                 }, () => {
-                    window.location.href = `gengmei://topic_comment_alert?index=${this.index}&reply_id=${replyId}&reply_name=${Base64.encodeURI(replyName)}&reply_parent_id=${this.data.reply_id}&belong_id=${this.business_id}&comment_type=${type}`
+                    window.location.href = `gengmei://topic_comment_alert?index=${this.index}&reply_id=${replyId}&reply_name=${Base64.encode(replyName)}&reply_parent_id=${this.data.reply_id}&belong_id=${this.business_id}&comment_type=${type}`
                 })
             }
         },
