@@ -23,13 +23,11 @@
             </div>
             <div class="star" v-if="articleDetail.article_type == 7">
                 <div class="banner-swiper">
-                    <swiper :opts="swiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide" v-for="image in articleDetail.banner">
-                                <img :src="image" />
-                            </div>
-                        </div>
-                        <div class="swiper-pagination"></div>
+                    <swiper :options="swiper">
+                        <swiper-slide v-for="image in articleDetail.banner">
+                            <img :src="image" />
+                        </swiper-slide>
+                        <div class="swiper-pagination" slot="pagination"></div>
                     </swiper>
                 </div>
                 <div class="star-detail">
@@ -109,8 +107,8 @@ import Error from '@/components/Error'
 import Nodata from '@/components/Nodata'
 import Vote from '@/components/Vote'
 import Attention from '@/components/Attention'
-import Swiper from '@/components/Swiper'
 import CommentList from '@/templates/Comment/List'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -124,8 +122,9 @@ export default {
         Nodata,
         Vote,
         Attention,
-        Swiper,
-        CommentList
+        CommentList,
+        swiper,
+        swiperSlide
     },
 
     data () {
@@ -170,10 +169,10 @@ export default {
         // 轮播图
         this.swiper = {
             ...this.swiper,
-            pagination: {
-                el: '.swiper-pagination',
-                type: 'fraction'
-            }
+            pagination: '.swiper-pagination',
+            paginationType: 'fraction',
+            observer: true,
+            observeParents: true
         }
         this.checkLogin()
     },
@@ -239,6 +238,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../assets/swiper.css";
+
 .gm-content {
     padding-bottom: 1.5rem;
 }
