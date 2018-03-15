@@ -4,7 +4,7 @@ import FastClick from 'fastclick'
 import Page from '<%=Page%>'
 import App from '@/utils/app'
 import Request from '@/utils/request'
-import store from '@/store/entry'
+import store from '@/store'
 import '@/utils/rem'
 import '@/assets/app.scss'
 
