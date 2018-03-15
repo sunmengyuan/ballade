@@ -14,7 +14,7 @@
         "fastclick": "^1.0.6",
         "js-base64": "^2.4.3",
         "vue": "^2.5.2",
-        "vue-awesome-swiper": "^2.5.4",
+        "vue-awesome-swiper": "2.5.4",
         "vue-cookie": "^1.1.4",
         "vuex": "^3.0.1"
     },
