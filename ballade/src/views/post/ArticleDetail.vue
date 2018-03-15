@@ -170,8 +170,10 @@ export default {
         // 轮播图
         this.swiper = {
             ...this.swiper,
-            pagination: '.swiper-pagination',
-            paginationType: 'fraction'
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'fraction'
+            }
         }
         this.checkLogin()
     },
