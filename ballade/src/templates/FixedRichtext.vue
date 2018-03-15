@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import Tmpl from '@/utils/libs/tmpl'
+import Tmpl from 'blueimp-tmpl'
 
 export default {
     props: {
