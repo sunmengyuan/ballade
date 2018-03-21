@@ -35,28 +35,53 @@ const Request = (opts = {}) => {
             console.log('网络错误')
         }
     }
-    Axios({
-        url: Server + opts.url,
-        method: opts.method || 'GET',
-        headers: {
-            'Content-type': opts.contentType || 'application/x-www-form-urlencoded',
-            'X-CSRFToken': Cookie.get('csrftoken')
-        },
-        params: {
+    if (process.env.NODE_ENV === 'production') {
+        let paramsStr = '?'
+        let params = {
             ...opts.params,
             ...tracks
-        },
-        data: Qs.stringify(opts.data || {})
-    }).then((res) => {
-        if (res.status === 200) {
-            (res.data.error === 0) ? successFn(res.data) : failFn(res.data)
-            completeFn(res.data)
-        } else {
-            errorFn()
         }
-    }).catch(() => {
-        errorFn()
-    })
+        for (let key in params) paramsStr += `&${key}=${params[key]}`
+        /* eslint-disable no-undef */
+        if ((typeof gmclient !== 'undefined') && (typeof gmclient.request !== 'undefined')) {
+            gmclient.request({
+                url: Server + opts.url + paramsStr,
+                method: opts.method || 'GET',
+                data: JSON.stringify(opts.data),
+                callback: (res) => {
+                    if (res.status === 200) {
+                        (res.data.error === 0) ? successFn(res.data) : failFn(res.data)
+                        completeFn(res.data)
+                    } else {
+                        errorFn()
+                    }
+                }
+            })
+        }
+    } else {
+        Axios({
+            url: Server + opts.url,
+            method: opts.method || 'GET',
+            headers: {
+                'Content-type': opts.contentType || 'application/x-www-form-urlencoded',
+                'X-CSRFToken': Cookie.get('csrftoken')
+            },
+            params: {
+                ...opts.params,
+                ...tracks
+            },
+            data: Qs.stringify(opts.data || {})
+        }).then((res) => {
+            if (res.status === 200) {
+                (res.data.error === 0) ? successFn(res.data) : failFn(res.data)
+                completeFn(res.data)
+            } else {
+                errorFn()
+            }
+        }).catch(() => {
+            errorFn()
+        })
+    }
 }
 Request.install = (Vue, options) => {
     Vue.prototype.$request = Request
