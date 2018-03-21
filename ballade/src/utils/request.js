@@ -38,6 +38,7 @@ const Request = (opts = {}) => {
     }
     if (process.env.NODE_ENV === 'production') {
         window.phantomRequestCallbacks[opts.url] = (res) => {
+            res = JSON.parse(res)
             if (res.status === 200) {
                 (res.data.error === 0) ? successFn(res.data) : failFn(res.data)
                 completeFn(res.data)
