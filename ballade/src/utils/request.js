@@ -43,8 +43,8 @@ const Request = (opts = {}) => {
         }
         for (let key in params) paramsStr += `&${key}=${params[key]}`
         /* eslint-disable no-undef */
-        if ((typeof gmclient !== 'undefined') && (typeof gmclient.request !== 'undefined')) {
-            gmclient.request({
+        if ((typeof phantom !== 'undefined') && (typeof phantom.request !== 'undefined')) {
+            phantom.request({
                 url: Server + opts.url + paramsStr,
                 method: opts.method || 'GET',
                 data: JSON.stringify(opts.data),
