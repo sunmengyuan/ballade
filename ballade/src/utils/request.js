@@ -4,6 +4,7 @@ import Qs from 'qs'
 import Settings from '~/settings.json'
 import App from '@/utils/app'
 
+window.phantomRequestCallbacks = {}
 const Server = (process.env.NODE_ENV === 'production') ? Settings.server : ''
 const Request = (opts = {}) => {
     var tracks = {
@@ -36,11 +37,16 @@ const Request = (opts = {}) => {
         }
     }
     if (process.env.NODE_ENV === 'production') {
-        let paramsStr = '?'
-        let params = {
-            ...opts.params,
-            ...tracks
+        window.phantomRequestCallbacks[opts.url] = (res) => {
+            if (res.status === 200) {
+                (res.data.error === 0) ? successFn(res.data) : failFn(res.data)
+                completeFn(res.data)
+            } else {
+                errorFn()
+            }
         }
+        let paramsStr = '?'
+        let params = { ...opts.params, ...tracks }
         for (let key in params) paramsStr += `&${key}=${params[key]}`
         /* eslint-disable no-undef */
         if ((typeof phantom !== 'undefined') && (typeof phantom.request !== 'undefined')) {
@@ -48,14 +54,7 @@ const Request = (opts = {}) => {
                 url: Server + opts.url + paramsStr,
                 method: opts.method || 'GET',
                 data: JSON.stringify(opts.data),
-                callback: (res) => {
-                    if (res.status === 200) {
-                        (res.data.error === 0) ? successFn(res.data) : failFn(res.data)
-                        completeFn(res.data)
-                    } else {
-                        errorFn()
-                    }
-                }
+                callback: `window.phantomRequestCallbacks['${opts.url}']`
             })
         }
     } else {
