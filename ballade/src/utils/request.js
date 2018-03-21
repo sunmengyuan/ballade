@@ -50,12 +50,12 @@ const Request = (opts = {}) => {
         for (let key in params) paramsStr += `&${key}=${params[key]}`
         /* eslint-disable no-undef */
         if ((typeof phantom !== 'undefined') && (typeof phantom.request !== 'undefined')) {
-            phantom.request({
+            phantom.request(JSON.stringify({
                 url: Server + opts.url + paramsStr,
                 method: opts.method || 'GET',
-                data: JSON.stringify(opts.data),
+                data: opts.data,
                 callback: `window.phantomRequestCallbacks['${opts.url}']`
-            })
+            }))
         }
     } else {
         Axios({
